@@ -1,0 +1,399 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VORYX Official</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        body {
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
+        }
+
+        /* Star Dust Canvas */
+        #stardust-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+        }
+
+        /* Hero Text Animation */
+        .hero-title-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-title-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            line-height: 1.2;
+            font-weight: 700;
+            text-align: center;
+            background: linear-gradient(45deg, #B22222, #4169E1);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            opacity: 0;
+            animation: text-reveal 2s forwards;
+            animation-delay: 0.5s;
+        }
+
+        @media (min-width: 768px) {
+            .hero-title-text {
+                font-size: 5rem;
+            }
+        }
+
+        .hero-subtitle-text {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+            font-size: 1.25rem;
+            margin-top: 1rem;
+            text-align: center;
+            opacity: 0;
+            transform: translateY(20px);
+            animation: fade-in-up 1.5s forwards;
+            animation-delay: 1.5s;
+        }
+
+        .motto-text {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 300;
+            font-size: 1rem;
+            text-align: center;
+            color: #555;
+            margin-top: 0.5rem;
+            opacity: 0;
+            animation: fade-in-up 1.5s forwards;
+            animation-delay: 2s;
+        }
+
+        @keyframes text-reveal {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fade-in-up {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Product Card & Button Styles */
+        .product-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            border: 1px solid #e0e0e0;
+            background-color: #ffffff;
+            border-radius: 1rem;
+        }
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #B22222, #4169E1);
+            color: white;
+            padding: 0.75rem 2rem;
+            font-weight: 700;
+            border-radius: 9999px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .cta-button:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+            opacity: 0.9;
+        }
+        
+        /* Partners Section Styles */
+        .partner-logo {
+            transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+        }
+        .partner-logo:hover {
+            transform: scale(1.1);
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+        }
+
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #aaa;
+        }
+
+        /* Mobile Menu */
+        #mobile-menu {
+            transition: transform 0.5s ease-in-out;
+        }
+
+    </style>
+</head>
+<body class="bg-[#f5f5f5] text-[#333]">
+
+    <canvas id="stardust-canvas"></canvas>
+
+    <!-- Navbar -->
+    <nav class="p-6 md:p-8 flex justify-between items-center fixed top-0 left-0 w-full z-50 bg-[#f5f5f5] bg-opacity-90 backdrop-blur-sm shadow-md">
+        <a href="#hero" class="text-3xl font-bold font-['Playfair_Display'] text-[#B22222]">VORYX</a>
+        <div class="hidden md:flex space-x-8 text-lg font-semibold items-center">
+            <a href="#about" class="hover:text-[#4169E1] transition-colors">About</a>
+            <a href="#products" class="hover:text-[#4169E1] transition-colors">Products</a>
+            <a href="#partners" class="hover:text-[#4169E1] transition-colors">Partners</a>
+            <a href="#contact" class="hover:text-[#4169E1] transition-colors">Contact</a>
+            <button class="cta-button">Shop Now</button>
+        </div>
+        <button id="hamburger" class="md:hidden text-[#333] focus:outline-none z-50">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+        </button>
+    </nav>
+
+    <!-- Mobile Fullscreen Menu -->
+    <div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-[#f5f5f5] transform -translate-x-full z-40 flex items-center justify-center">
+        <button id="close-menu" class="absolute top-8 right-8 text-[#333] focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+        <div class="space-y-8 text-center">
+            <a href="#about" class="text-4xl font-['Playfair_Display'] font-bold text-[#B22222] block" onclick="closeMobileMenu()">About</a>
+            <a href="#products" class="text-4xl font-['Playfair_Display'] font-bold text-[#B22222] block" onclick="closeMobileMenu()">Products</a>
+            <a href="#partners" class="text-4xl font-['Playfair_Display'] font-bold text-[#B22222] block" onclick="closeMobileMenu()">Partners</a>
+            <a href="#contact" class="text-4xl font-['Playfair_Display'] font-bold text-[#B22222] block" onclick="closeMobileMenu()">Contact</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <header id="hero" class="relative w-full h-screen flex items-center justify-center text-center p-6 bg-center">
+        <div class="relative z-10 p-6 md:p-12 hero-title-container">
+            <h1 class="hero-title-text text-5xl md:text-7xl font-bold mb-4">VORYX Official</h1>
+            <p class="hero-subtitle-text">Where Style is Born of Dreams.</p>
+            <p class="motto-text">VORYX COSMOS | Be Yourself Is The Best Of Your Own</p>
+        </div>
+    </header>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 md:py-32 px-6 bg-[#f5f5f5]">
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-center space-y-12 md:space-y-0 md:space-x-16">
+            <div class="w-full md:w-1/2">
+                <img src="https://placehold.co/800x600/f0f0f0/333?text=Dream+in+Style" alt="VORYX Brand" class="rounded-3xl shadow-xl w-full h-auto transform transition-transform hover:scale-105">
+            </div>
+            <div class="w-full md:w-1/2">
+                <h2 class="text-3xl md:text-5xl font-['Playfair_Display'] font-bold mb-4">Our Story in Every Stitch</h2>
+                <p class="text-md md:text-lg text-gray-700 leading-relaxed mb-6">
+                    VORYX is more than a brand; it's a whisper of a dream. Each piece, from the softest fabric to the most intricate design, is a chapter in our romantic journey. We craft not just clothing, but feelings. Discover the elegance of expression, the beauty of being yourself, and the subtle sparkle in every detail.
+                </p>
+                <p class="text-md md:text-lg text-gray-700 leading-relaxed mb-6">
+                    This brand was founded, designed, and developed by Akshaya, with the vision of creating a universe where every individual can find their unique expression.
+                    <a href="https://akshaya.dev" target="_blank" class="text-[#4169E1] hover:underline font-bold">Visit Akshaya's personal website.</a>
+                </p>
+                <a href="#products" class="text-[#4169E1] font-bold text-lg hover:underline transition-all">Explore our collection &rarr;</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Products Section -->
+    <section id="products" class="py-20 md:py-32 px-6">
+        <h2 class="text-3xl md:text-5xl font-['Playfair_Display'] font-bold text-center mb-12">Romantic Collection</h2>
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Hoodie -->
+            <a href="#" class="product-card">
+                <img src="https://placehold.co/600x600/e9e9e9/333?text=Hoodie" alt="Hoodie" class="w-full h-auto object-cover rounded-t-3xl">
+                <div class="p-6 text-center">
+                    <h3 class="text-xl font-bold font-['Playfair_Display'] mb-2">Dreamer's Hoodie</h3>
+                    <p class="text-gray-600">Soft, elegant comfort.</p>
+                </div>
+            </a>
+            <!-- Tee -->
+            <a href="#" class="product-card">
+                <img src="https://placehold.co/600x600/e9e9e9/333?text=T-shirt" alt="Tee" class="w-full h-auto object-cover rounded-t-3xl">
+                <div class="p-6 text-center">
+                    <h3 class="text-xl font-bold font-['Playfair_Display'] mb-2">Starlight Tee</h3>
+                    <p class="text-gray-600">A touch of magic.</p>
+                </div>
+            </a>
+            <!-- Hats -->
+            <a href="#" class="product-card">
+                <img src="https://placehold.co/600x600/e9e9e9/333?text=Hat" alt="Hat" class="w-full h-auto object-cover rounded-t-3xl">
+                <div class="p-6 text-center">
+                    <h3 class="text-xl font-bold font-['Playfair_Display'] mb-2">Whisper Hat</h3>
+                    <p class="text-gray-600">Elegant headwear.</p>
+                </div>
+            </a>
+            <!-- Custom Jewelry -->
+            <a href="#" class="product-card">
+                <img src="https://placehold.co/600x600/e9e9e9/333?text=Jewelry" alt="Custom Jewelry" class="w-full h-auto object-cover rounded-t-3xl">
+                <div class="p-6 text-center">
+                    <h3 class="text-xl font-bold font-['Playfair_Display'] mb-2">Constellation Jewelry</h3>
+                    <p class="text-gray-600">Personalized sparkle.</p>
+                </div>
+            </a>
+            <!-- Crop Top -->
+            <a href="#" class="product-card">
+                <img src="https://placehold.co/600x600/e9e9e9/333?text=Crop+Top" alt="Crop Top" class="w-full h-auto object-cover rounded-t-3xl">
+                <div class="p-6 text-center">
+                    <h3 class="text-xl font-bold font-['Playfair_Display'] mb-2">Moonlight Crop Top</h3>
+                    <p class="text-gray-600">Radiant and beautiful.</p>
+                </div>
+            </a>
+            <!-- Pants -->
+            <a href="#" class="product-card">
+                <img src="https://placehold.co/600x600/e9e9e9/333?text=Pants" alt="Pants" class="w-full h-auto object-cover rounded-t-3xl">
+                <div class="p-6 text-center">
+                    <h3 class="text-xl font-bold font-['Playfair_Display'] mb-2">Flowing Pants</h3>
+                    <p class="text-gray-600">Effortless elegance.</p>
+                </div>
+            </a>
+        </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section id="partners" class="py-20 md:py-32 px-6 bg-[#f5f5f5]">
+        <h2 class="text-3xl md:text-5xl font-['Playfair_Display'] font-bold text-center mb-4">Our Partners</h2>
+        <p class="text-lg text-gray-700 text-center mb-12 max-w-2xl mx-auto">
+            We collaborate with the best print-on-demand services to ensure every product meets our high standards of quality and craftsmanship.
+        </p>
+        <div class="container mx-auto grid grid-cols-2 md:grid-cols-5 gap-8 items-center justify-items-center">
+            <a href="https://fourthwall.com" target="_blank" class="partner-logo">
+                <img src="https://placehold.co/200x80/f0f0f0/333?text=Fourthwall" alt="Fourthwall" class="rounded-xl shadow-md w-full h-auto">
+            </a>
+            <a href="https://teespring.com" target="_blank" class="partner-logo">
+                <img src="https://placehold.co/200x80/f0f0f0/333?text=Teespring" alt="Teespring" class="rounded-xl shadow-md w-full h-auto">
+            </a>
+            <a href="https://printful.com" target="_blank" class="partner-logo">
+                <img src="https://placehold.co/200x80/f0f0f0/333?text=Printiful" alt="Printiful" class="rounded-xl shadow-md w-full h-auto">
+            </a>
+            <a href="https://redbubble.com" target="_blank" class="partner-logo">
+                <img src="https://placehold.co/200x80/f0f0f0/333?text=Redbubble" alt="Redbubble" class="rounded-xl shadow-md w-full h-auto">
+            </a>
+            <a href="https://jetprint.com" target="_blank" class="partner-logo">
+                <img src="https://placehold.co/200x80/f0f0f0/333?text=Jetprint" alt="Jetprint" class="rounded-xl shadow-md w-full h-auto">
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 md:py-32 px-6 bg-[#f5f5f5]">
+        <div class="container mx-auto max-w-2xl text-center">
+            <h2 class="text-3xl md:text-5xl font-['Playfair_Display'] font-bold mb-4">Let's Connect</h2>
+            <p class="text-md md:text-lg text-gray-700 mb-8">
+                Share your dreams with us. We'd love to hear from you.
+            </p>
+            <form class="space-y-6">
+                <input type="text" placeholder="Your Name" class="w-full p-4 rounded-xl bg-white border border-[#e0e0e0] focus:outline-none focus:ring-2 focus:ring-[#4169E1]">
+                <input type="email" placeholder="Your Email" class="w-full p-4 rounded-xl bg-white border border-[#e0e0e0] focus:outline-none focus:ring-2 focus:ring-[#4169E1]">
+                <textarea placeholder="Your Message" rows="5" class="w-full p-4 rounded-xl bg-white border border-[#e0e0e0] focus:outline-none focus:ring-2 focus:ring-[#4169E1]"></textarea>
+                <button type="submit" class="cta-button w-full px-8 py-4 text-lg">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#f5f5f5] py-8 text-center text-gray-500">
+        <p>&copy; 2024 VORYX Official. All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const hamburger = document.getElementById('hamburger');
+            const closeMenu = document.getElementById('close-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            hamburger.addEventListener('click', () => {
+                mobileMenu.classList.remove('-translate-x-full');
+            });
+            closeMenu.addEventListener('click', () => {
+                mobileMenu.classList.add('-translate-x-full');
+            });
+            window.closeMobileMenu = () => {
+                mobileMenu.classList.add('-translate-x-full');
+            };
+
+            // Canvas Star Dust Effect
+            const canvas = document.getElementById('stardust-canvas');
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+
+            class Particle {
+                constructor(x, y) {
+                    this.x = x;
+                    this.y = y;
+                    this.size = Math.random() * 1.5 + 0.5;
+                    this.speedX = Math.random() * 0.5 - 0.25;
+                    this.speedY = Math.random() * 0.5 - 0.25;
+                    this.opacity = Math.random() * 0.8 + 0.2;
+                    this.directionX = (Math.random() > 0.5) ? 1 : -1;
+                    this.directionY = (Math.random() > 0.5) ? 1 : -1;
+                }
+                update() {
+                    this.x += this.speedX * this.directionX;
+                    this.y += this.speedY * this.directionY;
+
+                    if (this.x > canvas.width || this.x < 0) this.directionX *= -1;
+                    if (this.y > canvas.height || this.y < 0) this.directionY *= -1;
+
+                    if (Math.random() > 0.99) this.directionX *= -1;
+                    if (Math.random() > 0.99) this.directionY *= -1;
+                }
+                draw() {
+                    ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            function init() {
+                particles = [];
+                for (let i = 0; i < (window.innerWidth * window.innerHeight) / 9000; i++) {
+                    particles.push(new Particle(Math.random() * canvas.width, Math.random() * canvas.height));
+                }
+            }
+
+            function animate() {
+                requestAnimationFrame(animate);
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (let i = 0; i < particles.length; i++) {
+                    particles[i].update();
+                    particles[i].draw();
+                }
+            }
+
+            window.addEventListener('resize', () => {
+                resizeCanvas();
+                init();
+            });
+
+            resizeCanvas();
+            init();
+            animate();
+        });
+    </script>
+</body>
+</html>
