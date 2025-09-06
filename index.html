@@ -1,665 +1,401 @@
 
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VORYX - Your Cosmos of Unique Products</title>
-    <!-- Tailwind CSS CDN for modern styling -->
+    <title>VORYX Official</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700;800;900&family=Montserrat:wght@700;800;900&display=swap" rel="stylesheet">
-    <!-- Font Awesome for icons -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <style>
         body {
-            font-family: 'Inter', sans-serif;
-            background-color: #f0f4f8; /* Lighter blue-gray background */
-            color: #2d3748; /* Darker text for contrast */
-            overflow-x: hidden; /* Prevent horizontal scroll */
+            font-family: 'Roboto', sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            overflow-x: hidden;
+            scroll-behavior: smooth;
         }
-        .section-title {
-            position: relative;
-            padding-bottom: 0.75rem;
-            margin-bottom: 2.5rem;
-            font-weight: 800; /* Extra bold */
-            color: #1a202c; /* Even darker title */
-        }
-        .section-title::after {
-            content: '';
-            position: absolute;
-            left: 50%;
-            bottom: 0;
-            transform: translateX(-50%);
-            width: 80px;
-            height: 5px;
-            background-color: #6366f1; /* Indigo 500 */
-            border-radius: 9999px;
-        }
-        .product-card, .partner-card {
-            transition: transform 0.4s ease-in-out, box-shadow 0.4s ease-in-out, background-color 0.4s ease-in-out;
-            border-radius: 1.25rem; /* More rounded corners */
-            overflow: hidden;
-            background: linear-gradient(145deg, #ffffff, #f0f4f8); /* Subtle gradient */
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05), 0 10px 20px rgba(0, 0, 0, 0.05);
-            display: flex;
-            flex-direction: column;
-            justify-content: space-between;
-        }
-        .product-card:hover, .partner-card:hover {
-            transform: translateY(-8px) scale(1.02);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15), 0 5px 10px rgba(0, 0, 0, 0.08);
-            background: linear-gradient(145deg, #f0f4f8, #e2e8f0); /* Lighter hover gradient */
-        }
-        .promo-badge {
-            background-color: #ef4444; /* Red 500 */
-            color: white;
-            padding: 0.3rem 0.8rem;
-            border-radius: 0.75rem;
-            font-weight: 700;
-            font-size: 0.8rem;
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            z-index: 10;
-            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
-        }
-        .hero-section {
-            background: linear-gradient(to right top, #6366f1, #8b5cf6, #a855f7); /* Vibrant gradient */
-            clip-path: polygon(0 0, 100% 0, 100% 90%, 0% 100%); /* Angled bottom edge */
-            position: relative;
-            z-index: 10;
-        }
-        .hero-section::before {
-            content: '';
-            position: absolute;
+
+        /* Star Dust Canvas */
+        #stardust-canvas {
+            position: fixed;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background-image: url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='%239ca3af' fill-opacity='0.1' fill-rule='evenodd'%3E%3Cpath d='M0 0h30v30H0V0zm30 30h30v30H30V30z'/%3E%3C/g%3E%3C/svg%3E"); /* Subtle pattern */
-            opacity: 0.1;
+            width: 100%;
+            height: 100%;
             z-index: -1;
         }
-        .btn-primary {
-            background-color: #4f46e5; /* Indigo 600 */
-            color: white;
-            padding: 0.8rem 2.5rem;
-            border-radius: 9999px;
+
+        /* Hero Text Animation */
+        .hero-title-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-title-text {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            line-height: 1.2;
             font-weight: 700;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 10px rgba(79, 70, 229, 0.4);
-        }
-        .btn-primary:hover {
-            background-color: #6366f1; /* Indigo 500 */
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 6px 15px rgba(79, 70, 229, 0.6);
-        }
-        .about-section {
-            background-color: #ffffff;
-            border-radius: 1.5rem;
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
-            padding: 3rem;
-        }
-        .ceo-image {
-            width: 180px;
-            height: 180px;
-            border-radius: 50%;
-            object-fit: cover;
-            border: 6px solid #6366f1;
-            box-shadow: 0 0 0 8px rgba(99, 102, 241, 0.3);
-        }
-        .motto-text {
-            font-family: 'Montserrat', sans-serif;
-            font-weight: 900; /* Extra bold */
-            font-size: 1.5rem; /* Larger font size */
-            color: #fff; /* White color */
-            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.4); /* Subtle shadow */
-            background: linear-gradient(45deg, #ffeb3b, #ff9800); /* Gold to Orange gradient */
+            text-align: center;
+            background: linear-gradient(45deg, #B22222, #4169E1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            display: inline-block; /* Essential for text-fill-color to work */
-            animation: pulse 2s infinite ease-in-out; /* Add a pulse animation */
+            opacity: 0;
+            animation: text-reveal 2s forwards;
+            animation-delay: 0.5s;
         }
 
-        /* Animations */
-        @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(20px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
+        @media (min-width: 768px) {
+            .hero-title-text {
+                font-size: 5rem;
             }
         }
-        .animate-fade-in-up {
+
+        .hero-subtitle-text {
+            font-family: 'Playfair Display', serif;
+            font-weight: 400;
+            font-size: 1.25rem;
+            margin-top: 1rem;
+            text-align: center;
             opacity: 0;
             transform: translateY(20px);
-            animation: fadeInUp 0.8s ease-out forwards;
-        }
-        .animate-fade-in-up.delay-200 { animation-delay: 0.2s; }
-        .animate-fade-in-up.delay-400 { animation-delay: 0.4s; }
-
-        .animate-fade-in-up-visible {
-            opacity: 1;
-            transform: translateY(0);
-            transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+            animation: fade-in-up 1.5s forwards;
+            animation-delay: 1.5s;
         }
 
-        @keyframes pulse {
-            0% { transform: scale(1); opacity: 1; }
-            50% { transform: scale(1.02); opacity: 0.9; }
-            100% { transform: scale(1); opacity: 1; }
+        .motto-text {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-weight: 300;
+            font-size: 1rem;
+            text-align: center;
+            color: #555;
+            margin-top: 0.5rem;
+            opacity: 0;
+            animation: fade-in-up 1.5s forwards;
+            animation-delay: 2s;
         }
+
+        @keyframes text-reveal {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        @keyframes fade-in-up {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Product Card & Button Styles */
+        .product-card {
+            transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+            border: 1px solid #e0e0e0;
+            background-color: #ffffff;
+            border-radius: 1rem;
+        }
+        .product-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+        }
+
+        .cta-button {
+            background: linear-gradient(45deg, #B22222, #4169E1);
+            color: white;
+            padding: 0.75rem 2rem;
+            font-weight: 700;
+            border-radius: 9999px;
+            transition: all 0.3s ease-in-out;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        .cta-button:hover {
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
+            opacity: 0.9;
+        }
+        
+        /* Partners Section Styles */
+        .partner-logo {
+            transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+        }
+        .partner-logo:hover {
+            transform: scale(1.1);
+            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+        }
+
+        /* Custom scrollbar for a cleaner look */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #ccc;
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #aaa;
+        }
+
+        /* Mobile Menu */
+        #mobile-menu {
+            transition: transform 0.5s ease-in-out;
+        }
+
     </style>
 </head>
-<body class="text-gray-800">
+<body class="bg-[#f5f5f5] text-[#333]">
 
-    <!-- Header Section -->
-    <header class="bg-gradient-to-r from-indigo-800 to-purple-900 text-white p-6 shadow-xl sticky top-0 z-50 text-center">
-        <div class="container mx-auto">
-            <h1 class="text-4xl font-extrabold tracking-tight">VORYX</h1>
+    <canvas id="stardust-canvas"></canvas>
+
+    <!-- Navbar -->
+    <nav class="p-6 md:p-8 flex justify-between items-center fixed top-0 left-0 w-full z-50 bg-[#f5f5f5] bg-opacity-90 backdrop-blur-sm shadow-md">
+        <a href="#hero" class="text-3xl font-bold font-['Playfair_Display'] text-[#B22222]">VORYX</a>
+        <div class="hidden md:flex space-x-8 text-lg font-semibold items-center">
+            <a href="#about" class="hover:text-[#4169E1] transition-colors">About</a>
+            <a href="#products" class="hover:text-[#4169E1] transition-colors">Products</a>
+            <a href="#partners" class="hover:text-[#4169E1] transition-colors">Partners</a>
+            <a href="#contact" class="hover:text-[#4169E1] transition-colors">Contact</a>
+            <!-- Corrected "Shop Now" to be a proper link -->
+            <a href="https://voryx-shop.fourthwall.com/" target="_blank" class="cta-button">Shop Now</a>
+        </div>
+        <button id="hamburger" class="md:hidden text-[#333] focus:outline-none z-50">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
+            </svg>
+        </button>
+    </nav>
+
+    <!-- Mobile Fullscreen Menu -->
+    <div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-[#f5f5f5] transform -translate-x-full z-40 flex items-center justify-center">
+        <button id="close-menu" class="absolute top-8 right-8 text-[#333] focus:outline-none">
+            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+            </svg>
+        </button>
+        <div class="space-y-8 text-center">
+            <a href="#about" class="text-4xl font-['Playfair_Display'] font-bold text-[#B22222] block" onclick="closeMobileMenu()">About</a>
+            <a href="#products" class="text-4xl font-['Playfair_Display'] font-bold text-[#B22222] block" onclick="closeMobileMenu()">Products</a>
+            <a href="#partners" class="text-4xl font-['Playfair_Display'] font-bold text-[#B22222] block" onclick="closeMobileMenu()">Partners</a>
+            <a href="#contact" class="text-4xl font-['Playfair_Display'] font-bold text-[#B22222] block" onclick="closeMobileMenu()">Contact</a>
+        </div>
+    </div>
+
+    <!-- Hero Section -->
+    <header id="hero" class="relative w-full h-screen flex items-center justify-center text-center p-6 bg-center">
+        <div class="relative z-10 p-6 md:p-12 hero-title-container">
+            <h1 class="hero-title-text text-5xl md:text-7xl font-bold mb-4">VORYX Official</h1>
+            <p class="hero-subtitle-text">Where Style is Born of Dreams.</p>
+            <p class="motto-text">VORYX COSMOS | Be Yourself Is The Best Of Your Own</p>
         </div>
     </header>
 
-    <!-- Hero Section -->
-    <section class="hero-section text-white py-24 px-6 text-center shadow-2xl">
-        <div class="container mx-auto relative z-10">
-            <h2 class="text-5xl md:text-7xl font-extrabold leading-tight mb-6 animate-fade-in-up">
-                Your Style. Your Story. <span class="block text-purple-200">VORYX Excellence.</span>
-            </h2>
-            <p class="text-xl md:text-2xl mb-10 max-w-4xl mx-auto opacity-90 animate-fade-in-up delay-200">
-                <span class="motto-text">Voryx Cosmos: Be yourself is the best of your own.</span>
-            </p>
-            <a href="#product-categories" class="btn-primary animate-fade-in-up delay-400">Explore Our Collections</a>
-        </div>
-    </section>
-
-    <!-- Product Categories Section -->
-    <section id="product-categories" class="py-20 px-6 bg-gray-50">
-        <div class="container mx-auto">
-            <h2 class="text-4xl md:text-5xl text-center mb-16 section-title mx-auto w-fit">Our Unique Collections</h2>
-
-            <!-- Apparel Section -->
-            <div id="apparel" class="mb-20">
-                <h3 class="text-3xl font-bold mb-10 text-indigo-700 flex items-center">
-                    <i class="fas fa-tshirt text-purple-500 mr-4 text-4xl"></i> Apparel
-                </h3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
-                    <!-- Product Card 1: VORYX Signature Tee -->
-                    <div class="product-card p-6 relative">
-                        <span class="promo-badge">20% OFF!</span>
-                        <img src="https://placehold.co/400x400/6366f1/ffffff?text=VORYX+Signature+Tee" alt="VORYX Signature Tee" class="rounded-lg mb-4 w-full h-auto">
-                        <h3 class="text-2xl font-bold mb-2 text-indigo-700">Signature Tee</h3>
-                        <p class="text-gray-600 mb-3 flex-grow">Our classic tee, designed for comfort and style. Perfect for everyday wear.</p>
-                        <div class="flex justify-between items-center mt-auto">
-                            <span class="text-3xl font-extrabold text-purple-600">$24.99</span>
-                            <a href="#" class="bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 transition duration-300 transform hover:scale-105">Shop Now</a>
-                        </div>
-                    </div>
-
-                    <!-- Product Card 2: VORYX Urban Hoodie -->
-                    <div class="product-card p-6 relative">
-                        <span class="promo-badge">Free Shipping!</span>
-                        <img src="https://placehold.co/400x400/8b5cf6/ffffff?text=VORYX+Urban+Hoodie" alt="VORYX Urban Hoodie" class="rounded-lg mb-4 w-full h-auto">
-                        <h3 class="text-2xl font-bold mb-2 text-indigo-700">Urban Hoodie</h3>
-                        <p class="text-gray-600 mb-3 flex-grow">Stay warm and stylish with our premium urban hoodie. Soft, durable, and trendy.</p>
-                        <div class="flex justify-between items-center mt-auto">
-                            <span class="text-3xl font-extrabold text-purple-600">$49.99</span>
-                            <a href="#" class="bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 transition duration-300 transform hover:scale-105">Shop Now</a>
-                        </div>
-                    </div>
-
-                    <!-- Product Card 3: VORYX Athletic Leggings -->
-                    <div class="product-card p-6 relative">
-                        <span class="promo-badge">New Arrival!</span>
-                        <img src="https://placehold.co/400x400/a855f7/ffffff?text=VORYX+Athletic+Leggings" alt="VORYX Athletic Leggings" class="rounded-lg mb-4 w-full h-auto">
-                        <h3 class="text-2xl font-bold mb-2 text-indigo-700">Athletic Leggings</h3>
-                        <p class="text-gray-600 mb-3 flex-grow">High-performance leggings for your active lifestyle. Breathable and flexible.</p>
-                        <div class="flex justify-between items-center mt-auto">
-                            <span class="text-3xl font-extrabold text-purple-600">$34.99</span>
-                            <a href="#" class="bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 transition duration-300 transform hover:scale-105">Shop Now</a>
-                        </div>
-                    </div>
-
-                    <!-- Product Card 4: VORYX Premium Sweatshirt -->
-                    <div class="product-card p-6 relative">
-                        <span class="promo-badge">Limited Stock!</span>
-                        <img src="https://placehold.co/400x400/c084fc/ffffff?text=VORYX+Premium+Sweatshirt" alt="VORYX Premium Sweatshirt" class="rounded-lg mb-4 w-full h-auto">
-                        <h3 class="text-2xl font-bold mb-2 text-indigo-700">Premium Sweatshirt</h3>
-                        <p class="text-gray-600 mb-3 flex-grow">Luxuriously soft and warm, perfect for cozy evenings or casual outings.</p>
-                        <div class="flex justify-between items-center mt-auto">
-                            <span class="text-3xl font-extrabold text-purple-600">$44.99</span>
-                            <a href="#" class="bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 transition duration-300 transform hover:scale-105">Shop Now</a>
-                        </div>
-                    </div>
-                </div>
+    <!-- About Section -->
+    <section id="about" class="py-20 md:py-32 px-6 bg-[#f5f5f5]">
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-center space-y-12 md:space-y-0 md:space-x-16">
+            <div class="w-full md:w-1/2">
+                <img src="https://placehold.co/800x600/f0f0f0/333?text=Dream+in+Style" alt="VORYX Brand" class="rounded-3xl shadow-xl w-full h-auto transform transition-transform hover:scale-105">
             </div>
-
-            <!-- Jewelry Section -->
-            <div id="jewelry" class="mb-20">
-                <h3 class="text-3xl font-bold mb-10 text-indigo-700 flex items-center">
-                    <i class="fas fa-gem text-purple-500 mr-4 text-4xl"></i> Jewelry
-                </h3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
-                    <!-- Product Card 1: VORYX Personalized Necklace -->
-                    <div class="product-card p-6 relative">
-                        <span class="promo-badge">Custom Engrave!</span>
-                        <img src="https://placehold.co/400x400/4f46e5/ffffff?text=VORYX+Personalized+Necklace" alt="VORYX Personalized Necklace" class="rounded-lg mb-4 w-full h-auto">
-                        <h3 class="text-2xl font-bold mb-2 text-indigo-700">Personalized Necklace</h3>
-                        <p class="text-gray-600 mb-3 flex-grow">A delicate piece, perfect for a personalized touch or a thoughtful gift.</p>
-                        <div class="flex justify-between items-center mt-auto">
-                            <span class="text-3xl font-extrabold text-purple-600">$59.99</span>
-                            <a href="#" class="bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 transition duration-300 transform hover:scale-105">Shop Now</a>
-                        </div>
-                    </div>
-
-                    <!-- Product Card 2: VORYX Charm Bracelet -->
-                    <div class="product-card p-6 relative">
-                        <span class="promo-badge">New Design!</span>
-                        <img src="https://placehold.co/400x400/6366f1/ffffff?text=VORYX+Charm+Bracelet" alt="VORYX Charm Bracelet" class="rounded-lg mb-4 w-full h-auto">
-                        <h3 class="text-2xl font-bold mb-2 text-indigo-700">Charm Bracelet</h3>
-                        <p class="text-gray-600 mb-3 flex-grow">Elegant and versatile, add your favorite charms to tell your unique story.</p>
-                        <div class="flex justify-between items-center mt-auto">
-                            <span class="text-3xl font-extrabold text-purple-600">$45.99</span>
-                            <a href="#" class="bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 transition duration-300 transform hover:scale-105">Shop Now</a>
-                        </div>
-                    </div>
-
-                    <!-- Product Card 3: VORYX Stud Earrings -->
-                    <div class="product-card p-6 relative">
-                        <span class="promo-badge">Best Seller!</span>
-                        <img src="https://placehold.co/400x400/8b5cf6/ffffff?text=VORYX+Stud+Earrings" alt="VORYX Stud Earrings" class="rounded-lg mb-4 w-full h-auto">
-                        <h3 class="text-2xl font-bold mb-2 text-indigo-700">Sparkle Studs</h3>
-                        <p class="text-gray-600 mb-3 flex-grow">Subtle yet dazzling, perfect for adding a touch of sparkle to any outfit.</p>
-                        <div class="flex justify-between items-center mt-auto">
-                            <span class="text-3xl font-extrabold text-purple-600">$29.99</span>
-                            <a href="#" class="bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 transition duration-300 transform hover:scale-105">Shop Now</a>
-                        </div>
-                    </div>
-
-                    <!-- Product Card 4: VORYX Engravable Ring -->
-                    <div class="product-card p-6 relative">
-                        <span class="promo-badge">Limited Edition!</span>
-                        <img src="https://placehold.co/400x400/a855f7/ffffff?text=VORYX+Engravable+Ring" alt="VORYX Engravable Ring" class="rounded-lg mb-4 w-full h-auto">
-                        <h3 class="text-2xl font-bold mb-2 text-indigo-700">Engravable Ring</h3>
-                        <p class="text-gray-600 mb-3 flex-grow">A timeless ring, ideal for a custom engraving of initials or a special date.</p>
-                        <div class="flex justify-between items-center mt-auto">
-                            <span class="text-3xl font-extrabold text-purple-600">$39.99</span>
-                            <a href="#" class="bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 transition duration-300 transform hover:scale-105">Shop Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Home Decor Section -->
-            <div id="homedecor" class="mb-20">
-                <h3 class="text-3xl font-bold mb-10 text-indigo-700 flex items-center">
-                    <i class="fas fa-couch text-purple-500 mr-4 text-4xl"></i> Home Decor
-                </h3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
-                    <!-- Product Card 1: VORYX Accent Pillow -->
-                    <div class="product-card p-6 relative">
-                        <span class="promo-badge">Cozy Comfort!</span>
-                        <img src="https://placehold.co/400x400/c084fc/ffffff?text=VORYX+Accent+Pillow" alt="VORYX Accent Pillow" class="rounded-lg mb-4 w-full h-auto">
-                        <h3 class="text-2xl font-bold mb-2 text-indigo-700">Accent Pillow</h3>
-                        <p class="text-gray-600 mb-3 flex-grow">Add a pop of color and comfort to any room with our designer accent pillow.</p>
-                        <div class="flex justify-between items-center mt-auto">
-                            <span class="text-3xl font-extrabold text-purple-600">$29.99</span>
-                            <a href="#" class="bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 transition duration-300 transform hover:scale-105">Shop Now</a>
-                        </div>
-                    </div>
-
-                    <!-- Product Card 2: VORYX Ceramic Mug -->
-                    <div class="product-card p-6 relative">
-                        <span class="promo-badge">Morning Brew!</span>
-                        <img src="https://placehold.co/400x400/6d28d9/ffffff?text=VORYX+Ceramic+Mug" alt="VORYX Ceramic Mug" class="rounded-lg mb-4 w-full h-auto">
-                        <h3 class="text-2xl font-bold mb-2 text-indigo-700">Ceramic Mug</h3>
-                        <p class="text-gray-600 mb-3 flex-grow">Start your day with inspiration. Durable ceramic with vibrant VORYX designs.</p>
-                        <div class="flex justify-between items-center mt-auto">
-                            <span class="text-3xl font-extrabold text-purple-600">$15.99</span>
-                            <a href="#" class="bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 transition duration-300 transform hover:scale-105">Shop Now</a>
-                        </div>
-                    </div>
-
-                    <!-- Product Card 3: VORYX Fleece Blanket -->
-                    <div class="product-card p-6 relative">
-                        <span class="promo-badge">Ultimate Comfort!</span>
-                        <img src="https://placehold.co/400x400/7c3aed/ffffff?text=VORYX+Fleece+Blanket" alt="VORYX Fleece Blanket" class="rounded-lg mb-4 w-full h-auto">
-                        <h3 class="text-2xl font-bold mb-2 text-indigo-700">Fleece Blanket</h3>
-                        <p class="text-gray-600 mb-3 flex-grow">Soft and warm fleece blanket, perfect for snuggling on the couch.</p>
-                        <div class="flex justify-between items-center mt-auto">
-                            <span class="text-3xl font-extrabold text-purple-600">$49.99</span>
-                            <a href="#" class="bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 transition duration-300 transform hover:scale-105">Shop Now</a>
-                        </div>
-                    </div>
-
-                    <!-- Product Card 4: VORYX Wall Clock -->
-                    <div class="product-card p-6 relative">
-                        <span class="promo-badge">Timeless Design!</span>
-                        <img src="https://placehold.co/400x400/9333ea/ffffff?text=VORYX+Wall+Clock" alt="VORYX Wall Clock" class="rounded-lg mb-4 w-full h-auto">
-                        <h3 class="text-2xl font-bold mb-2 text-indigo-700">Designer Wall Clock</h3>
-                        <p class="text-gray-600 mb-3 flex-grow">A functional art piece to elevate your living space. Modern and minimalist.</p>
-                        <div class="flex justify-between items-center mt-auto">
-                            <span class="text-3xl font-extrabold text-purple-600">$38.99</span>
-                            <a href="#" class="bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 transition duration-300 transform hover:scale-105">Shop Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Wall Art Section -->
-            <div id="wallart" class="mb-20">
-                <h3 class="text-3xl font-bold mb-10 text-indigo-700 flex items-center">
-                    <i class="fas fa-paint-brush text-purple-500 mr-4 text-4xl"></i> Wall Art
-                </h3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
-                    <!-- Product Card 1: VORYX Canvas Print -->
-                    <div class="product-card p-6 relative">
-                        <span class="promo-badge">Gallery Quality!</span>
-                        <img src="https://placehold.co/400x400/a78bfa/ffffff?text=VORYX+Canvas+Print" alt="VORYX Canvas Print" class="rounded-lg mb-4 w-full h-auto">
-                        <h3 class="text-2xl font-bold mb-2 text-indigo-700">Cosmic Canvas Print</h3>
-                        <p class="text-gray-600 mb-3 flex-grow">Stunning canvas art to transform your walls. Vibrant colors and sharp details.</p>
-                        <div class="flex justify-between items-center mt-auto">
-                            <span class="text-3xl font-extrabold text-purple-600">$69.99</span>
-                            <a href="#" class="bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 transition duration-300 transform hover:scale-105">Shop Now</a>
-                        </div>
-                    </div>
-
-                    <!-- Product Card 2: VORYX Framed Poster -->
-                    <div class="product-card p-6 relative">
-                        <span class="promo-badge">Ready to Hang!</span>
-                        <img src="https://placehold.co/400x400/c4b5fd/ffffff?text=VORYX+Framed+Poster" alt="VORYX Framed Poster" class="rounded-lg mb-4 w-full h-auto">
-                        <h3 class="text-2xl font-bold mb-2 text-indigo-700">Framed Art Poster</h3>
-                        <p class="text-gray-600 mb-3 flex-grow">Premium framed poster, bringing elegance and artistry to your space.</p>
-                        <div class="flex justify-between items-center mt-auto">
-                            <span class="text-3xl font-extrabold text-purple-600">$49.99</span>
-                            <a href="#" class="bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 transition duration-300 transform hover:scale-105">Shop Now</a>
-                        </div>
-                    </div>
-
-                    <!-- Product Card 3: VORYX Metal Print -->
-                    <div class="product-card p-6 relative">
-                        <span class="promo-badge">Modern Edge!</span>
-                        <img src="https://placehold.co/400x400/ede9fe/ffffff?text=VORYX+Metal+Print" alt="VORYX Metal Print" class="rounded-lg mb-4 w-full h-auto">
-                        <h3 class="text-2xl font-bold mb-2 text-indigo-700">Sleek Metal Print</h3>
-                        <p class="text-gray-600 mb-3 flex-grow">Durable and vibrant metal print, offering a contemporary look for your walls.</p>
-                        <div class="flex justify-between items-center mt-auto">
-                            <span class="text-3xl font-extrabold text-purple-600">$79.99</span>
-                            <a href="#" class="bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 transition duration-300 transform hover:scale-105">Shop Now</a>
-                        </div>
-                    </div>
-
-                    <!-- Product Card 4: VORYX Tapestry -->
-                    <div class="product-card p-6 relative">
-                        <span class="promo-badge">Boho Vibe!</span>
-                        <img src="https://placehold.co/400x400/e0e7ff/ffffff?text=VORYX+Tapestry" alt="VORYX Tapestry" class="rounded-lg mb-4 w-full h-auto">
-                        <h3 class="text-2xl font-bold mb-2 text-indigo-700">Artistic Tapestry</h3>
-                        <p class="text-gray-600 mb-3 flex-grow">Lightweight and versatile tapestry, perfect for adding a unique touch to any space.</p>
-                        <div class="flex justify-between items-center mt-auto">
-                            <span class="text-3xl font-extrabold text-purple-600">$32.99</span>
-                            <a href="#" class="bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 transition duration-300 transform hover:scale-105">Shop Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Accessories Section -->
-            <div id="accessories" class="mb-20">
-                <h3 class="text-3xl font-bold mb-10 text-indigo-700 flex items-center">
-                    <i class="fas fa-headphones-alt text-purple-500 mr-4 text-4xl"></i> Accessories
-                </h3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
-                    <!-- Product Card 1: VORYX Phone Case -->
-                    <div class="product-card p-6 relative">
-                        <span class="promo-badge">Protect Your Style!</span>
-                        <img src="https://placehold.co/400x400/4338ca/ffffff?text=VORYX+Phone+Case" alt="VORYX Phone Case" class="rounded-lg mb-4 w-full h-auto">
-                        <h3 class="text-2xl font-bold mb-2 text-indigo-700">Designer Phone Case</h3>
-                        <p class="text-gray-600 mb-3 flex-grow">Stylish and durable case to protect your phone while showcasing your unique taste.</p>
-                        <div class="flex justify-between items-center mt-auto">
-                            <span class="text-3xl font-extrabold text-purple-600">$19.99</span>
-                            <a href="#" class="bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 transition duration-300 transform hover:scale-105">Shop Now</a>
-                        </div>
-                    </div>
-
-                    <!-- Product Card 2: VORYX Tote Bag -->
-                    <div class="product-card p-6 relative">
-                        <span class="promo-badge">Everyday Essential!</span>
-                        <img src="https://placehold.co/400x400/6366f1/ffffff?text=VORYX+Tote+Bag" alt="VORYX Tote Bag" class="rounded-lg mb-4 w-full h-auto">
-                        <h3 class="text-2xl font-bold mb-2 text-indigo-700">Artistic Tote Bag</h3>
-                        <p class="text-gray-600 mb-3 flex-grow">Spacious and stylish tote, perfect for shopping, work, or a day out.</p>
-                        <div class="flex justify-between items-center mt-auto">
-                            <span class="text-3xl font-extrabold text-purple-600">$28.99</span>
-                            <a href="#" class="bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 transition duration-300 transform hover:scale-105">Shop Now</a>
-                        </div>
-                    </div>
-
-                    <!-- Product Card 3: VORYX Sticker Pack -->
-                    <div class="product-card p-6 relative">
-                        <span class="promo-badge">Fan Favorite!</span>
-                        <img src="https://placehold.co/400x400/8b5cf6/ffffff?text=VORYX+Sticker+Pack" alt="VORYX Sticker Pack" class="rounded-lg mb-4 w-full h-auto">
-                        <h3 class="text-2xl font-bold mb-2 text-indigo-700">VORYX Sticker Pack</h3>
-                        <p class="text-gray-600 mb-3 flex-grow">High-quality vinyl stickers to personalize your laptop, water bottle, or gear.</p>
-                        <div class="flex justify-between items-center mt-auto">
-                            <span class="text-3xl font-extrabold text-purple-600">$9.99</span>
-                            <a href="#" class="bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 transition duration-300 transform hover:scale-105">Shop Now</a>
-                        </div>
-                    </div>
-
-                    <!-- Product Card 4: VORYX Water Bottle -->
-                    <div class="product-card p-6 relative">
-                        <span class="promo-badge">Stay Hydrated!</span>
-                        <img src="https://placehold.co/400x400/a855f7/ffffff?text=VORYX+Water+Bottle" alt="VORYX Water Bottle" class="rounded-lg mb-4 w-full h-auto">
-                        <h3 class="text-2xl font-bold mb-2 text-indigo-700">Designer Water Bottle</h3>
-                        <p class="text-gray-600 mb-3 flex-grow">Eco-friendly and stylish, perfect for staying hydrated on the go.</p>
-                        <div class="flex justify-between items-center mt-auto">
-                            <span class="text-3xl font-extrabold text-purple-600">$24.99</span>
-                            <a href="#" class="bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 transition duration-300 transform hover:scale-105">Shop Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Stationery Section -->
-            <div id="stationery" class="mb-20">
-                <h3 class="text-3xl font-bold mb-10 text-indigo-700 flex items-center">
-                    <i class="fas fa-pencil-ruler text-purple-500 mr-4 text-4xl"></i> Stationery
-                </h3>
-                <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-10">
-                    <!-- Product Card 1: VORYX Journal -->
-                    <div class="product-card p-6 relative">
-                        <span class="promo-badge">Unleash Ideas!</span>
-                        <img src="https://placehold.co/400x400/c084fc/ffffff?text=VORYX+Journal" alt="VORYX Journal" class="rounded-lg mb-4 w-full h-auto">
-                        <h3 class="text-2xl font-bold mb-2 text-indigo-700">Inspiration Journal</h3>
-                        <p class="text-gray-600 mb-3 flex-grow">High-quality journal for your thoughts, sketches, or daily notes.</p>
-                        <div class="flex justify-between items-center mt-auto">
-                            <span class="text-3xl font-extrabold text-purple-600">$18.99</span>
-                            <a href="#" class="bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 transition duration-300 transform hover:scale-105">Shop Now</a>
-                        </div>
-                    </div>
-
-                    <!-- Product Card 2: VORYX Greeting Card Set -->
-                    <div class="product-card p-6 relative">
-                        <span class="promo-badge">Share Joy!</span>
-                        <img src="https://placehold.co/400x400/6d28d9/ffffff?text=VORYX+Greeting+Card+Set" alt="VORYX Greeting Card Set" class="rounded-lg mb-4 w-full h-auto">
-                        <h3 class="text-2xl font-bold mb-2 text-indigo-700">Artistic Card Set</h3>
-                        <p class="text-gray-600 mb-3 flex-grow">Beautifully designed greeting cards for every occasion. Blank inside for your message.</p>
-                        <div class="flex justify-between items-center mt-auto">
-                            <span class="text-3xl font-extrabold text-purple-600">$14.99</span>
-                            <a href="#" class="bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 transition duration-300 transform hover:scale-105">Shop Now</a>
-                        </div>
-                    </div>
-
-                    <!-- Product Card 3: VORYX Planner -->
-                    <div class="product-card p-6 relative">
-                        <span class="promo-badge">Organize Your Life!</span>
-                        <img src="https://placehold.co/400x400/7c3aed/ffffff?text=VORYX+Planner" alt="VORYX Planner" class="rounded-lg mb-4 w-full h-auto">
-                        <h3 class="text-2xl font-bold mb-2 text-indigo-700">Productivity Planner</h3>
-                        <p class="text-gray-600 mb-3 flex-grow">Stay on track with our elegant and functional daily planner. Undated for flexibility.</p>
-                        <div class="flex justify-between items-center mt-auto">
-                            <span class="text-3xl font-extrabold text-purple-600">$25.99</span>
-                            <a href="#" class="bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 transition duration-300 transform hover:scale-105">Shop Now</a>
-                        </div>
-                    </div>
-
-                    <!-- Product Card 4: VORYX Pen Set -->
-                    <div class="product-card p-6 relative">
-                        <span class="promo-badge">Smooth Writing!</span>
-                        <img src="https://placehold.co/400x400/9333ea/ffffff?text=VORYX+Pen+Set" alt="VORYX Pen Set" class="rounded-lg mb-4 w-full h-auto">
-                        <h3 class="text-2xl font-bold mb-2 text-indigo-700">Premium Pen Set</h3>
-                        <p class="text-gray-600 mb-3 flex-grow">Experience effortless writing with our stylish and ergonomic pen set.</p>
-                        <div class="flex justify-between items-center mt-auto">
-                            <span class="text-3xl font-extrabold text-purple-600">$12.99</span>
-                            <a href="#" class="bg-indigo-600 text-white px-5 py-2 rounded-full hover:bg-indigo-700 transition duration-300 transform hover:scale-105">Shop Now</a>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Our Brand Partners Section -->
-    <section id="brand-partners" class="py-20 px-6 bg-purple-50">
-        <div class="container mx-auto">
-            <h2 class="text-4xl md:text-5xl text-center mb-16 section-title mx-auto w-fit">Our Trusted Brand Partners</h2>
-            <p class="text-center text-lg max-w-3xl mx-auto mb-12 text-gray-700">
-                At VORYX, we meticulously select and partner with the industry's leading Print-on-Demand platforms. These collaborations ensure that every product, designed and finalized by our CEO Akshaya, meets the highest standards of quality, offers exceptional profit potential, and benefits from robust promotional capabilities.
-            </p>
-
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-                <!-- Partner Card: Redbubble -->
-                <div class="partner-card p-8">
-                    <h4 class="text-2xl font-bold mb-4 text-indigo-700">Redbubble</h4>
-                    <p class="text-gray-700 mb-5">A global marketplace that gives VORYX designs immense exposure to millions of buyers.</p>
-                    <p class="font-semibold mb-3 text-gray-800">Benefits for VORYX:</p>
-                    <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
-                        <li>**High Profit Control:** VORYX sets its own royalty margins.</li>
-                        <li>**Marketplace Reach:** Designs are seen by a vast, active audience.</li>
-                        <li>**SEO & Retargeting:** Platform's marketing efforts boost VORYX visibility.</li>
-                    </ul>
-                </div>
-                <!-- Partner Card: Zazzle -->
-                <div class="partner-card p-8">
-                    <h4 class="text-2xl font-bold mb-4 text-indigo-700">Zazzle</h4>
-                    <p class="text-gray-700 mb-5">Known for extensive customization options, perfect for VORYX's personalized product lines.</p>
-                    <p class="font-semibold mb-3 text-gray-800">Benefits for VORYX:</p>
-                    <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
-                        <li>**Exceptional Profit Control:** VORYX defines its royalty rates.</li>
-                        <li>**Personalization Focus:** Attracts customers seeking unique, customizable items.</li>
-                        <li>**Broad Product Range:** Allows VORYX to offer diverse customized goods.</li>
-                    </ul>
-                </div>
-                <!-- Partner Card: Spring (formerly TeeSpring) -->
-                <div class="partner-card p-8">
-                    <h4 class="text-2xl font-bold mb-4 text-indigo-700">Spring</h4>
-                    <p class="text-gray-700 mb-5">Empowers VORYX to connect directly with audiences and monetize unique designs effectively.</p>
-                    <p class="font-semibold mb-3 text-gray-800">Benefits for VORYX:</p>
-                    <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
-                        <li>**Direct Sales Focus:** Streamlined platform for creators to sell directly.</li>
-                        <li>**Built-in Marketplace:** Offers additional exposure for VORYX collections.</li>
-                        <li>**Creator-Friendly Tools:** Supports VORYX's promotional efforts with integrated features.</li>
-                    </ul>
-                </div>
-                <!-- Partner Card: ShineOn -->
-                <div class="partner-card p-8">
-                    <h4 class="text-2xl font-bold mb-4 text-indigo-700">ShineOn</h4>
-                    <p class="text-gray-700 mb-5">VORYX's premier partner for high-profit, personalized jewelry and message card gifts.</p>
-                    <p class="font-semibold mb-3 text-gray-800">Benefits for VORYX:</p>
-                    <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
-                        <li>**Outstanding Profit Margins:** Specialized in high-value personalized jewelry.</li>
-                        <li>**High-Converting Templates:** Provides optimized product pages for VORYX's jewelry.</li>
-                        <li>**White-Labeling:** Allows VORYX to maintain its brand identity on packaging.</li>
-                    </ul>
-                </div>
-                <!-- Partner Card: Printify -->
-                <div class="partner-card p-8">
-                    <h4 class="text-2xl font-bold mb-4 text-indigo-700">Printify</h4>
-                    <p class="text-gray-700 mb-5">A versatile partner providing VORYX with competitive pricing and a vast product range for various categories.</p>
-                    <p class="font-semibold mb-3 text-gray-800">Benefits for VORYX:</p>
-                    <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
-                        <li>**Competitive Base Costs:** Enables VORYX to set higher profit margins.</li>
-                        <li>**Extensive Product Catalog:** Access to a wide variety of items across categories.</li>
-                        <li>**Excellent Mockup Generators:** Essential tools for VORYX's marketing visuals.</li>
-                    </ul>
-                </div>
-                <!-- Partner Card: Printful -->
-                <div class="partner-card p-8">
-                    <h4 class="text-2xl font-bold mb-4 text-indigo-700">Printful</h4>
-                    <p class="text-gray-700 mb-5">Ensures VORYX's products meet high-quality standards with reliable production and diverse customization.</p>
-                    <p class="font-semibold mb-3 text-gray-800">Benefits for VORYX:</p>
-                    <ul class="list-disc list-inside text-sm text-gray-600 space-y-1">
-                        <li>**Premium Quality:** Consistent, high-quality products that justify VORYX's pricing.</li>
-                        <li>**Advanced Mockup Tools:** Aids VORYX in creating professional marketing materials.</li>
-                        <li>**Branding Options:** Supports VORYX's brand identity with custom packaging features.</li>
-                    </ul>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- About CEO Section -->
-    <section id="about-ceo" class="py-20 px-6 bg-indigo-50">
-        <div class="container mx-auto about-section flex flex-col md:flex-row items-center justify-center gap-10">
-            <div class="md:w-1/3 flex justify-center">
-                <img src="https://placehold.co/180x180/6366f1/ffffff?text=Akshaya" alt="Akshaya - VORYX CEO" class="ceo-image">
-            </div>
-            <div class="md:w-2/3 text-center md:text-left">
-                <h2 class="text-4xl md:text-5xl font-extrabold mb-6 text-indigo-800">
-                    Meet Our Visionary: <span class="text-purple-600">Akshaya</span>
-                </h2>
-                <p class="text-lg leading-relaxed text-gray-700 mb-4">
-                    Akshaya, the driving force behind VORYX, envisioned a world where creativity knows no bounds and artistic passion translates directly into impactful products. With a keen eye for design and a deep understanding of the creator economy, Akshaya founded VORYX to empower artists and entrepreneurs to thrive.
+            <div class="w-full md:w-1/2">
+                <h2 class="text-3xl md:text-5xl font-['Playfair_Display'] font-bold mb-4">Our Story in Every Stitch</h2>
+                <p class="text-md md:text-lg text-gray-700 leading-relaxed mb-6">
+                    VORYX is more than a brand; it's a whisper of a dream. Each piece, from the softest fabric to the most intricate design, is a chapter in our romantic journey. We craft not just clothing, but feelings. Discover the elegance of expression, the beauty of being yourself, and the subtle sparkle in every detail.
                 </p>
-                <p class="text-lg leading-relaxed text-gray-700">
-                    **Every single product you see on VORYX, from its initial concept to its final design and presentation, is meticulously crafted and finalized by Akshaya herself.** Her dedication to quality, innovation, and fostering strong partnerships ensures that every VORYX product not only meets but exceeds expectations, making unique designs accessible and truly "your own."
+                <p class="text-md md:text-lg text-gray-700 leading-relaxed mb-6">
+                    This brand was founded, designed, and developed by Akshaya, with the vision of creating a universe where every individual can find their unique expression.
+                    <a href="https://akshaya.dev" target="_blank" class="text-[#4169E1] hover:underline font-bold">Visit Akshaya's personal website.</a>
                 </p>
+                <a href="#products" class="text-[#4169E1] font-bold text-lg hover:underline transition-all">Explore our collection &rarr;</a>
             </div>
         </div>
     </section>
 
-    <!-- Footer Section -->
-    <footer class="bg-gray-900 text-white py-8 px-6 text-center">
-        <div class="container mx-auto">
-            <p class="text-lg mb-4">&copy; <span id="current-year"></span> VORYX. All rights reserved.</p>
-            <p class="text-sm opacity-80">Voryx Cosmos: Be yourself is the best of your own.</p>
+    <!-- Products Section -->
+    <section id="products" class="py-20 md:py-32 px-6">
+        <h2 class="text-3xl md:text-5xl font-['Playfair_Display'] font-bold text-center mb-12">Romantic Collection</h2>
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Hoodie -->
+            <a href="https://voryx-shop.fourthwall.com/products/hoodie" target="_blank" class="product-card">
+                <img src="https://placehold.co/600x600/e9e9e9/333?text=Hoodie" alt="Hoodie" class="w-full h-auto object-cover rounded-t-3xl">
+                <div class="p-6 text-center">
+                    <h3 class="text-xl font-bold font-['Playfair_Display'] mb-2">Dreamer's Hoodie</h3>
+                    <p class="text-gray-600">Soft, elegant comfort.</p>
+                </div>
+            </a>
+            <!-- Tee -->
+            <a href="https://voryx-shop.fourthwall.com/products/tee" target="_blank" class="product-card">
+                <img src="https://placehold.co/600x600/e9e9e9/333?text=T-shirt" alt="Tee" class="w-full h-auto object-cover rounded-t-3xl">
+                <div class="p-6 text-center">
+                    <h3 class="text-xl font-bold font-['Playfair_Display'] mb-2">Starlight Tee</h3>
+                    <p class="text-gray-600">A touch of magic.</p>
+                </div>
+            </a>
+            <!-- Hats -->
+            <!-- Corrected the nested <a> tag issue -->
+            <a href="https://voryx-shop.fourthwall.com/products/voryx-emblematic-dad-hat" target="_blank" class="product-card">
+                <img src="https://imgproxy.fourthwall.com/kSp31VvN9Z-bqM88PT-8I0RVk1sMz8uCZPylB3JH3Wg/w:1920/sm:1/enc/lI6bYC1IvyM7zdzz/IaEaDsMMIw-yVeXG/xdU5SOmazdbgQQsT/18N1mDgKk_kD8ruM/-buSierKf12Yo9yo/BRmbrHecqshVYCQp/0ZGAk05Uq-flvk6q/5ktFWmyf1ew4drYw/7S1lwOjfh3281I0s/2dDRMvvwNGf_xwCi/IddxMl5SMuIAFl9z/iwoa7zucSZbW6tH7/320ykmHeddL2SPQE/27se-w" alt="Hat" class="w-full h-auto object-cover rounded-t-3xl">
+                <div class="p-6 text-center">
+                    <h3 class="text-xl font-bold font-['Playfair_Display'] mb-2">Whisper Hat</h3>
+                    <p class="text-gray-600">Elegant headwear.</p>
+                </div>
+            </a>
+            <!-- Custom Jewelry -->
+            <a href="https://voryx-shop.fourthwall.com/products/jewelry" target="_blank" class="product-card">
+                <img src="https://placehold.co/600x600/e9e9e9/333?text=Jewelry" alt="Custom Jewelry" class="w-full h-auto object-cover rounded-t-3xl">
+                <div class="p-6 text-center">
+                    <h3 class="text-xl font-bold font-['Playfair_Display'] mb-2">Constellation Jewelry</h3>
+                    <p class="text-gray-600">Personalized sparkle.</p>
+                </div>
+            </a>
+            <!-- Crop Top -->
+            <a href="https://voryx-shop.fourthwall.com/products/croptop" target="_blank" class="product-card">
+                <img src="https://placehold.co/600x600/e9e9e9/333?text=Crop+Top" alt="Crop Top" class="w-full h-auto object-cover rounded-t-3xl">
+                <div class="p-6 text-center">
+                    <h3 class="text-xl font-bold font-['Playfair_Display'] mb-2">Moonlight Crop Top</h3>
+                    <p class="text-gray-600">Radiant and beautiful.</p>
+                </div>
+            </a>
+            <!-- Pants -->
+            <a href="https://voryx-shop.fourthwall.com/products/pants" target="_blank" class="product-card">
+                <img src="https://placehold.co/600x600/e9e9e9/333?text=Pants" alt="Pants" class="w-full h-auto object-cover rounded-t-3xl">
+                <div class="p-6 text-center">
+                    <h3 class="text-xl font-bold font-['Playfair_Display'] mb-2">Flowing Pants</h3>
+                    <p class="text-gray-600">Effortless elegance.</p>
+                </div>
+            </a>
         </div>
+    </section>
+
+    <!-- Partners Section -->
+    <section id="partners" class="py-20 md:py-32 px-6 bg-[#f5f5f5]">
+        <h2 class="text-3xl md:text-5xl font-['Playfair_Display'] font-bold text-center mb-4">Our Partners</h2>
+        <p class="text-lg text-gray-700 text-center mb-12 max-w-2xl mx-auto">
+            We collaborate with the best print-on-demand services to ensure every product meets our high standards of quality and craftsmanship.
+        </p>
+        <div class="container mx-auto grid grid-cols-2 md:grid-cols-5 gap-8 items-center justify-items-center">
+            <a href="https://fourthwall.com" target="_blank" class="partner-logo">
+                <img src="https://placehold.co/200x80/f0f0f0/333?text=Fourthwall" alt="Fourthwall" class="rounded-xl shadow-md w-full h-auto">
+            </a>
+            <a href="https://teespring.com" target="_blank" class="partner-logo">
+                <img src="https://placehold.co/200x80/f0f0f0/333?text=Teespring" alt="Teespring" class="rounded-xl shadow-md w-full h-auto">
+            </a>
+            <a href="https://printful.com" target="_blank" class="partner-logo">
+                <img src="https://placehold.co/200x80/f0f0f0/333?text=Printiful" alt="Printiful" class="rounded-xl shadow-md w-full h-auto">
+            </a>
+            <a href="https://redbubble.com" target="_blank" class="partner-logo">
+                <img src="https://placehold.co/200x80/f0f0f0/333?text=Redbubble" alt="Redbubble" class="rounded-xl shadow-md w-full h-auto">
+            </a>
+            <a href="https://jetprint.com" target="_blank" class="partner-logo">
+                <img src="https://placehold.co/200x80/f0f0f0/333?text=Jetprint" alt="Jetprint" class="rounded-xl shadow-md w-full h-auto">
+            </a>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 md:py-32 px-6 bg-[#f5f5f5]">
+        <div class="container mx-auto max-w-2xl text-center">
+            <h2 class="text-3xl md:text-5xl font-['Playfair_Display'] font-bold mb-4">Let's Connect</h2>
+            <p class="text-md md:text-lg text-gray-700 mb-8">
+                Share your dreams with us. We'd love to hear from you.
+            </p>
+            <form class="space-y-6">
+                <input type="text" placeholder="Your Name" class="w-full p-4 rounded-xl bg-white border border-[#e0e0e0] focus:outline-none focus:ring-2 focus:ring-[#4169E1]">
+                <input type="email" placeholder="Your Email" class="w-full p-4 rounded-xl bg-white border border-[#e0e0e0] focus:outline-none focus:ring-2 focus:ring-[#4169E1]">
+                <textarea placeholder="Your Message" rows="5" class="w-full p-4 rounded-xl bg-white border border-[#e0e0e0] focus:outline-none focus:ring-2 focus:ring-[#4169E1]"></textarea>
+                <button type="submit" class="cta-button w-full px-8 py-4 text-lg">Send Message</button>
+            </form>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-[#f5f5f5] py-8 text-center text-gray-500">
+        <p>&copy; 2025 VORYX Official. All Rights Reserved.</p>
     </footer>
 
     <script>
-        // Set current year in the footer
-        document.getElementById('current-year').textContent = new Date().getFullYear();
+        document.addEventListener('DOMContentLoaded', function() {
+            // Mobile Menu Toggle
+            const hamburger = document.getElementById('hamburger');
+            const closeMenu = document.getElementById('close-menu');
+            const mobileMenu = document.getElementById('mobile-menu');
 
-        // Smooth scrolling for navigation links
-        document.querySelector('.hero-section .btn-primary').addEventListener('click', function (e) {
-            e.preventDefault();
-            const targetId = this.getAttribute('href');
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                window.scrollTo({
-                    top: targetElement.offsetTop - (document.querySelector('header').offsetHeight), // Adjust for sticky header
-                    behavior: 'smooth'
-                });
-            }
-        });
-
-        // Intersection Observer for fade-in effect on sections (product cards and about section)
-        const observerOptions = {
-            root: null,
-            rootMargin: '0px',
-            threshold: 0.1
-        };
-
-        const observer = new IntersectionObserver((entries, observer) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    entry.target.classList.add('animate-fade-in-up-visible');
-                    observer.unobserve(entry.target);
-                }
+            hamburger.addEventListener('click', () => {
+                mobileMenu.classList.remove('-translate-x-full');
             });
-        }, observerOptions);
+            closeMenu.addEventListener('click', () => {
+                mobileMenu.classList.add('-translate-x-full');
+            });
+            window.closeMobileMenu = () => {
+                mobileMenu.classList.add('-translate-x-full');
+            };
 
-        document.querySelectorAll('.product-card, .partner-card, .about-section').forEach(element => {
-            observer.observe(element);
+            // Canvas Star Dust Effect
+            const canvas = document.getElementById('stardust-canvas');
+            const ctx = canvas.getContext('2d');
+            let particles = [];
+
+            function resizeCanvas() {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            }
+
+            class Particle {
+                constructor(x, y) {
+                    this.x = x;
+                    this.y = y;
+                    this.size = Math.random() * 1.5 + 0.5;
+                    this.speedX = Math.random() * 0.5 - 0.25;
+                    this.speedY = Math.random() * 0.5 - 0.25;
+                    this.opacity = Math.random() * 0.8 + 0.2;
+                    this.directionX = (Math.random() > 0.5) ? 1 : -1;
+                    this.directionY = (Math.random() > 0.5) ? 1 : -1;
+                }
+                update() {
+                    this.x += this.speedX * this.directionX;
+                    this.y += this.speedY * this.directionY;
+
+                    if (this.x > canvas.width || this.x < 0) this.directionX *= -1;
+                    if (this.y > canvas.height || this.y < 0) this.directionY *= -1;
+
+                    if (Math.random() > 0.99) this.directionX *= -1;
+                    if (Math.random() > 0.99) this.directionY *= -1;
+                }
+                draw() {
+                    ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
+                    ctx.beginPath();
+                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                    ctx.fill();
+                }
+            }
+
+            function init() {
+                particles = [];
+                for (let i = 0; i < (window.innerWidth * window.innerHeight) / 9000; i++) {
+                    particles.push(new Particle(Math.random() * canvas.width, Math.random() * canvas.height));
+                }
+            }
+
+            function animate() {
+                requestAnimationFrame(animate);
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                for (let i = 0; i < particles.length; i++) {
+                    particles[i].update();
+                    particles[i].draw();
+                }
+            }
+
+            window.addEventListener('resize', () => {
+                resizeCanvas();
+                init();
+            });
+
+            resizeCanvas();
+            init();
+            animate();
         });
     </script>
 </body>
