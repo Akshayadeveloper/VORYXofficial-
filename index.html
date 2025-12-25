@@ -3,10 +3,52 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Voryx.Official</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Roboto:wght@300;400&display=swap" rel="stylesheet">
-     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <title>VORYX | Christmas Gala Edition</title>
+    <!-- ================= SEO & TRAFFIC OPTIMIZATION ================= -->
+    <title>VORYX | Christmas Gala Edition 2025 - Luxury Streetwear & Gifts</title>
+    <meta name="description" content="Experience the Voryx Christmas Gala. Shop exclusive luxury streetwear, limited edition hoodies, and bespoke jewelry designed by Akshaya Selvakumar. VIP Concierge Service available.">
+    <meta name="keywords" content="Voryx Official, Akshaya Selvakumar, Luxury Streetwear, Christmas Gifts 2025, High End Fashion, Custom Hoodies, Voryx Gala, Exclusive Drop, Designer Clothing India">
+    <meta name="author" content="Akshaya Selvakumar">
+    <meta name="robots" content="index, follow">
+    
+    <!-- Open Graph / Facebook / Instagram (Makes your link look rich when shared) -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://voryx.akshayaselvakumar.org/">
+    <meta property="og:title" content="VORYX | Christmas Gala Edition - Luxury Redefined">
+    <meta property="og:description" content="50% OFF Gala Edition. Discover the Memoir 2025 and shop the exclusive holiday collection.">
+    <meta property="og:image" content="https://voryx.akshayaselvakumar.org/og-image.jpg">
+
+    <!-- Twitter Card -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://voryx.akshayaselvakumar.org/">
+    <meta property="twitter:title" content="VORYX | Christmas Gala Edition">
+    <meta property="twitter:description" content="Where Style is Born of Dreams. Shop the Limited Edition Christmas Collection now.">
+    <meta property="twitter:image" content="https://voryx.akshayaselvakumar.org/og-image.jpg">
+
+    <!-- Schema Markup (Helps Google understand this is a Brand) -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Brand",
+      "name": "VORYX Official",
+      "url": "https://voryx.akshayaselvakumar.org",
+      "logo": "https://voryx.akshayaselvakumar.org/logo.png",
+      "founder": {
+        "@type": "Person",
+        "name": "Akshaya Selvakumar"
+      },
+      "sameAs": [
+        "https://www.instagram.com/voryx.official",
+        "https://x.com/VORYXofficial"
+      ]
+    }
+    </script>
+    <!-- ================= END SEO ================= -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Roboto:wght@300;400;500&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+
     <style>
         body {
             font-family: 'Roboto', sans-serif;
@@ -16,67 +58,26 @@
             scroll-behavior: smooth;
         }
 
-        /* Star Dust Canvas */
+        h1, h2, h3, .serif {
+            font-family: 'Playfair Display', serif;
+        }
+
+        /* --- Star Dust Canvas --- */
         #stardust-canvas {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             z-index: -1;
         }
 
-        /* Hero Text Animation */
-        .hero-title-container {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            justify-content: center;
-        }
-
+        /* --- Hero Animations --- */
         .hero-title-text {
-            font-family: 'Playfair Display', serif;
-            font-size: 2.5rem;
-            line-height: 1.2;
-            font-weight: 700;
-            text-align: center;
+            font-family: 'Playfair Display', serif;	
             background: linear-gradient(45deg, #B22222, #4169E1);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             opacity: 0;
-            animation: text-reveal 2s forwards;
-            animation-delay: 0.5s;
-        }
-
-        @media (min-width: 768px) {
-            .hero-title-text {
-                font-size: 5rem;
-            }
-        }
-
-        .hero-subtitle-text {
-            font-family: 'Playfair Display', serif;
-            font-weight: 400;
-            font-size: 1.25rem;
-            margin-top: 1rem;
-            text-align: center;
-            opacity: 0;
-            transform: translateY(20px);
-            animation: fade-in-up 1.5s forwards;
-            animation-delay: 1.5s;
-        }
-
-        .motto-text {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-weight: 300;
-            font-size: 1rem;
-            text-align: center;
-            color: #555;
-            margin-top: 0.5rem;
-            opacity: 0;
-            animation: fade-in-up 1.5s forwards;
-            animation-delay: 2s;
+            animation: text-reveal 2s forwards 0.5s;
         }
 
         @keyframes text-reveal {
@@ -84,67 +85,108 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
+        .fade-up {
+            opacity: 0;
+            animation: fade-in-up 1.5s forwards 1.5s;
+        }
+
         @keyframes fade-in-up {
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Product Card & Button Styles */
+        /* --- Product Cards --- */
         .product-card {
             transition: transform 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
             border: 1px solid #e0e0e0;
             background-color: #ffffff;
             border-radius: 1rem;
+            overflow: hidden;
         }
         .product-card:hover {
             transform: translateY(-8px);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.08);
         }
 
+        /* --- 3D Book Styles (Adapted for Light Theme) --- */
+        .scene {
+            width: 100%;
+            perspective: 1500px;
+            display: flex;
+            justify-content: center;
+            padding: 40px 0;
+        }
+
+        .book-wrapper {
+            position: relative;
+            width: 320px; height: 480px;
+            transform-style: preserve-3d;
+            transition: transform 0.5s ease;
+        }
+        @media(min-width: 768px) { .book-wrapper { width: 360px; height: 520px; } }
+
+        .page {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            transform-origin: left center;
+            transform-style: preserve-3d;
+            transition: transform 1.2s cubic-bezier(0.645, 0.045, 0.355, 1), z-index 0s 0.6s;
+            background: white;
+            border-radius: 4px 8px 8px 4px;
+            box-shadow: inset 3px 0 10px rgba(0,0,0,0.05);
+            cursor: pointer;
+        }
+        .page.flipped {
+            transform: rotateY(-180deg);
+            z-index: 100;
+        }
+        .face {
+            position: absolute;
+            width: 100%; height: 100%;
+            backface-visibility: hidden;
+            overflow: hidden;
+            background: white;
+            border-radius: 4px 8px 8px 4px;
+        }
+        .back {
+            transform: rotateY(180deg);
+            box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+        }
+
+        /* Leather Cover Style */
+        .cover-texture {
+            background-color: #2c3e50;
+            color: white;
+            border: 1px solid #34495e;
+            box-shadow: 5px 5px 15px rgba(0,0,0,0.2);
+        }
+
+        /* --- Buttons --- */
         .cta-button {
             background: linear-gradient(45deg, #B22222, #4169E1);
             color: white;
-            padding: 0.75rem 2rem;
+            padding: 12px 32px;
             font-weight: 700;
             border-radius: 9999px;
-            transition: all 0.3s ease-in-out;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 10px rgba(65, 105, 225, 0.3);
         }
         .cta-button:hover {
-            transform: translateY(-2px) scale(1.05);
-            box-shadow: 0 8px 12px rgba(0, 0, 0, 0.2);
-            opacity: 0.9;
+            transform: translateY(-2px);
+            box-shadow: 0 8px 20px rgba(178, 34, 34, 0.4);
         }
-        
-        /* Partners Section Styles */
+
         .partner-logo {
-            transition: transform 0.3s ease-in-out, filter 0.3s ease-in-out;
+            transition: transform 0.3s ease, filter 0.3s ease;
+            filter: grayscale(100%);
+            opacity: 0.7;
         }
         .partner-logo:hover {
             transform: scale(1.1);
-            filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.1));
+            filter: grayscale(0%);
+            opacity: 1;
         }
-
-        /* Custom scrollbar for a cleaner look */
-        ::-webkit-scrollbar {
-            width: 8px;
-        }
-        ::-webkit-scrollbar-track {
-            background: #f1f1f1;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #ccc;
-            border-radius: 4px;
-        }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #aaa;
-        }
-
-        /* Mobile Menu */
-        #mobile-menu {
-            transition: transform 0.5s ease-in-out;
-        }
-
     </style>
 </head>
 <body class="bg-[#f5f5f5] text-[#333]">
@@ -152,262 +194,407 @@
     <canvas id="stardust-canvas"></canvas>
 
     <!-- Navbar -->
-    <nav class="p-6 md:p-8 flex justify-between items-center fixed top-0 left-0 w-full z-50 bg-[#f5f5f5] bg-opacity-90 backdrop-blur-sm shadow-md">
-        <a href="#hero" class="text-3xl font-bold font-['Playfair_Display'] text-[#B22222]">VORYX</a>
-        <div class="hidden md:flex space-x-8 text-lg font-semibold items-center">
-            <a href="#about" class="hover:text-[#4169E1] transition-colors">About</a>
-            <a href="#products" class="hover:text-[#4169E1] transition-colors">Products</a>
-            <a href="#partners" class="hover:text-[#4169E1] transition-colors">Partners</a>
-            <a href="#contact" class="hover:text-[#4169E1] transition-colors">Contact</a>
-            <!-- Corrected "Shop Now" to be a proper link -->
+    <nav class="p-6 md:p-8 flex justify-between items-center fixed top-0 left-0 w-full z-50 bg-[#f5f5f5]/90 backdrop-blur-md shadow-sm transition-all">
+        <a href="#hero" class="flex flex-col group">
+            <span class="text-3xl font-bold font-['Playfair_Display'] text-[#B22222]">VORYX</span>
+            <span class="text-[10px] uppercase tracking-widest text-[#4169E1] group-hover:tracking-[0.2em] transition-all">Official</span>
+        </a>
+        <div class="hidden md:flex space-x-8 text-sm font-bold uppercase tracking-wide items-center text-gray-600">
+            <a href="#about" class="hover:text-[#B22222] transition-colors">About</a>
+            <a href="#products" class="hover:text-[#B22222] transition-colors">Collection</a>
+            <a href="#memoir" class="text-[#B22222] border-b-2 border-[#B22222] pb-1">The Memoir</a>
+            <a href="#partners" class="hover:text-[#B22222] transition-colors">Partners</a>
             <a href="https://voryx-shop.fourthwall.com/" target="_blank" class="cta-button">Shop Now</a>
         </div>
-        <button id="hamburger" class="md:hidden text-[#333] focus:outline-none z-50">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16m-7 6h7" />
-            </svg>
+        <button id="hamburger" class="md:hidden text-[#333] focus:outline-none">
+            <i class="fas fa-bars text-2xl"></i>
         </button>
     </nav>
 
-    <!-- Mobile Fullscreen Menu -->
-    <div id="mobile-menu" class="fixed top-0 left-0 w-full h-full bg-[#f5f5f5] transform -translate-x-full z-40 flex items-center justify-center">
-        <button id="close-menu" class="absolute top-8 right-8 text-[#333] focus:outline-none">
-            <svg xmlns="http://www.w3.org/2000/svg" class="h-8 w-8" fill="none" viewBox="0 0 24 24" stroke="currentColor">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
-            </svg>
-        </button>
-        <div class="space-y-8 text-center">
-            <a href="#about" class="text-4xl font-['Playfair_Display'] font-bold text-[#B22222] block" onclick="closeMobileMenu()">About</a>
-            <a href="#products" class="text-4xl font-['Playfair_Display'] font-bold text-[#B22222] block" onclick="closeMobileMenu()">Products</a>
-            <a href="#partners" class="text-4xl font-['Playfair_Display'] font-bold text-[#B22222] block" onclick="closeMobileMenu()">Partners</a>
-            <a href="#contact" class="text-4xl font-['Playfair_Display'] font-bold text-[#B22222] block" onclick="closeMobileMenu()">Contact</a>
+    <!-- Mobile Menu -->
+    <div id="mobile-menu" class="fixed inset-0 bg-[#f5f5f5] transform translate-x-full transition-transform duration-300 z-50 flex flex-col justify-center items-center">
+        <button id="close-menu" class="absolute top-8 right-8 text-3xl text-[#333]">&times;</button>
+        <div class="space-y-8 text-center text-2xl font-['Playfair_Display'] font-bold text-[#333]">
+            <a href="#about" class="block hover:text-[#B22222]" onclick="closeMobileMenu()">About</a>
+            <a href="#products" class="block hover:text-[#B22222]" onclick="closeMobileMenu()">Collection</a>
+            <a href="#memoir" class="block text-[#B22222]" onclick="closeMobileMenu()">The Memoir</a>
+            <a href="#contact" class="block hover:text-[#B22222]" onclick="closeMobileMenu()">Concierge</a>
         </div>
     </div>
 
     <!-- Hero Section -->
-    <header id="hero" class="relative w-full h-screen flex items-center justify-center text-center p-6 bg-center">
-        <div class="relative z-10 p-6 md:p-12 hero-title-container">
-            <h1 class="hero-title-text text-5xl md:text-7xl font-bold mb-4">VORYX Official</h1>
-            <p class="hero-subtitle-text">Where Style is Born of Dreams.</p>
-            <p class="motto-text">VORYX COSMOS | Be Yourself Is The Best Of Your Own</p>
+    <header id="hero" class="relative w-full min-h-screen flex items-center justify-center text-center p-6">
+        <div class="relative z-10 max-w-4xl">
+            <!-- Christmas Badge -->
+            <div class="inline-block mb-6 fade-up" style="animation-delay: 1s;">
+                <span class="bg-[#B22222] text-white px-3 py-1 rounded-full text-xs font-bold uppercase tracking-wider shadow-lg">Christmas Gala Edition</span>
+            </div>
+
+            <h1 class="hero-title-text text-5xl md:text-8xl font-bold mb-6 leading-tight">VORYX Official</h1>
+            
+            <p class="hero-subtitle-text fade-up font-['Playfair_Display'] text-xl md:text-2xl text-gray-700 font-light">
+                Where Style is Born of Dreams.
+            </p>
+            
+            <p class="motto-text fade-up text-sm md:text-base mt-4 italic text-gray-500">
+                "Be Yourself Is The Best Of Your Own" — <span class="font-bold text-[#4169E1]">Akshaya Selvakumar</span>
+            </p>
+
+            <div class="mt-12 fade-up" style="animation-delay: 2.5s;">
+                <a href="#memoir" class="inline-block border-2 border-[#333] text-[#333] px-8 py-3 rounded-full font-bold hover:bg-[#333] hover:text-white transition-all mr-4">
+                    View Memoir
+                </a>
+                <a href="#products" class="inline-block bg-gradient-to-r from-[#B22222] to-[#4169E1] text-white px-8 py-3 rounded-full font-bold shadow-lg hover:shadow-xl hover:-translate-y-1 transition-all">
+                    Explore Gifts
+                </a>
+            </div>
         </div>
     </header>
 
-    <!-- About Section -->
-    <section id="about" class="py-20 md:py-32 px-6 bg-[#f5f5f5]">
-        <div class="container mx-auto flex flex-col md:flex-row items-center justify-center space-y-12 md:space-y-0 md:space-x-16">
-            <div class="w-full md:w-1/2">
-                <img src="https://placehold.co/800x600/f0f0f0/333?text=Dream+in+Style" alt="VORYX Brand" class="rounded-3xl shadow-xl w-full h-auto transform transition-transform hover:scale-105">
+    <!-- About / CEO Section -->
+    <section id="about" class="py-24 px-6 bg-white">
+        <div class="container mx-auto flex flex-col md:flex-row items-center justify-center gap-16">
+            <div class="w-full md:w-1/2 relative">
+                <div class="absolute -top-4 -left-4 w-24 h-24 bg-[#B22222]/10 rounded-full blur-xl"></div>
+                <img src="Fashion.png" alt="VORYX Vision" class="rounded-3xl shadow-2xl w-full h-auto transform transition-transform hover:scale-[1.02] relative z-10">
             </div>
             <div class="w-full md:w-1/2">
-                <h2 class="text-3xl md:text-5xl font-['Playfair_Display'] font-bold mb-4">Our Story in Every Stitch</h2>
-                <p class="text-md md:text-lg text-gray-700 leading-relaxed mb-6">
-                    VORYX is more than a brand; it's a whisper of a dream. Each piece, from the softest fabric to the most intricate design, is a chapter in our romantic journey. We craft not just clothing, but feelings. Discover the elegance of expression, the beauty of being yourself, and the subtle sparkle in every detail.
+                <span class="text-[#4169E1] font-bold tracking-widest text-xs uppercase mb-2 block">The Vision</span>
+                <h2 class="text-4xl md:text-5xl font-['Playfair_Display'] font-bold mb-6 text-[#333]">Our Story in Every Stitch</h2>
+                <p class="text-lg text-gray-600 leading-relaxed mb-6 font-light">
+                    VORYX is more than a brand; it's a whisper of a dream. Each piece is a chapter in our romantic journey. We craft not just clothing, but feelings.
                 </p>
-                <p class="text-md md:text-lg text-gray-700 leading-relaxed mb-6">
-                    This brand was founded, designed, and developed by Akshaya, with the vision of creating a universe where every individual can find their unique expression.
-                    <a href="https://akshaya.dev" target="_blank" class="text-[#4169E1] hover:underline font-bold">Visit Akshaya's personal website.</a>
-                </p>
-                <a href="#products" class="text-[#4169E1] font-bold text-lg hover:underline transition-all">Explore our collection &rarr;</a>
+                <div class="border-l-4 border-[#B22222] pl-6 py-2 mb-8 bg-gray-50 rounded-r-lg">
+                    <p class="italic text-gray-700">
+                        "Designed and developed by Akshaya, with the vision of creating a universe where every individual can find their unique expression."
+                    </p>
+                    <a href="https://www.akshayaswlvakumar.com" target="_blank" class="text-[#4169E1] text-sm font-bold mt-2 inline-block hover:underline">Visit Akshaya's Portfolio &rarr;</a>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- 3D MEMOIR SECTION (NEW) -->
+    <section id="memoir" class="py-24 bg-[#f5f5f5] overflow-hidden">
+        <div class="container mx-auto text-center mb-12">
+            <h2 class="text-4xl md:text-5xl font-['Playfair_Display'] font-bold mb-4">The Memoir 2025</h2>
+            <p class="text-gray-600 max-w-xl mx-auto">
+                An interactive journey through our Christmas Collection. <br>
+                <span class="text-[#B22222] font-bold">Flip pages to find exclusive Product IDs.</span>
+            </p>
+        </div>
+
+        <div class="scene">
+            <div class="book-wrapper" id="book">
+                <!-- Pages injected via JS -->
+            </div>
+        </div>
+
+        <div class="flex justify-center gap-6 mt-10">
+            <button onclick="prevPage()" id="btnPrev" class="w-12 h-12 rounded-full bg-white shadow-md text-[#333] hover:text-[#B22222] flex items-center justify-center disabled:opacity-50 transition-all">
+                <i class="fas fa-chevron-left"></i>
+            </button>
+            <button onclick="nextPage()" id="btnNext" class="w-12 h-12 rounded-full bg-white shadow-md text-[#333] hover:text-[#B22222] flex items-center justify-center disabled:opacity-50 transition-all">
+                <i class="fas fa-chevron-right"></i>
+            </button>
+        </div>
+    </section>
+
     <!-- Products Section -->
-    <section id="products" class="py-20 md:py-32 px-6">
-        <h2 class="text-3xl md:text-5xl font-['Playfair_Display'] font-bold text-center mb-12">Romantic Collection</h2>
-        <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+    <section id="products" class="py-24 px-6 bg-white">
+        <h2 class="text-3xl md:text-5xl font-['Playfair_Display'] font-bold text-center mb-4">Romantic Collection</h2>
+        <p class="text-center text-gray-500 mb-16 italic">Curated for the Holiday Season</p>
+        
+        <div class="container mx-auto grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             <!-- Hoodie -->
-            <a href="https://voryx-shop.fourthwall.com/products/hoodie" target="_blank" class="product-card">
-                <img src="https://imgproxy.fourthwall.com/qRIm8fWnbUkVAWYGixbGb7ATRZn8I7AfsZs9B0iwb00/w:1920/sm:1/enc/cDQXw9MHck6WVOyx/-mj23d2xgRpYCTyH/_Reu0tB_kMFRIdev/xmVmCe5Vhme-C4Ay/IrnaiEhMjpC0cQFr/EFZtIjeG0RNn34qc/OjW7wFLlDJMZ-CR5/vw89A1fTNzXmc9wY/mqHEXdCQ1FfReEAV/uCOtTc5j573U7Oif/kfLPl6gidnZ6RZFA/1_g-G07UiAA32_eC/UkaLUWtaBHAvsNIY/9DGk3Q" alt="Hoodie" class="w-full h-auto object-cover rounded-t-3xl">
-                <div class="p-6 text-center">
-                    <h3 class="text-xl font-bold font-['Playfair_Display'] mb-2">Dreamer's Hoodie</h3>
-                    <p class="text-gray-600">Soft, elegant comfort.</p>
+            <a href="https://voryx-shop.fourthwall.com/" target="_blank" class="product-card group block h-full">
+                <div class="relative overflow-hidden h-96">
+                    <span class="absolute top-4 left-4 bg-[#B22222] text-white text-xs font-bold px-3 py-1 rounded-full z-10">Best Seller</span>
+                    <img src="Hoodie.jpg" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                </div>
+                <div class="p-8 text-center bg-white">
+                    <h3 class="text-2xl font-bold font-['Playfair_Display'] mb-2 group-hover:text-[#B22222] transition-colors">Dreamer's Hoodie</h3>
+                    <p class="text-gray-500 mb-4 font-light">Soft, elegant comfort.</p>
+                    <span class="text-[#333] font-bold text-lg">$65.00</span>
                 </div>
             </a>
-            <!-- Tee -->
-            <a href="https://voryx-shop.fourthwall.com/products/tee" target="_blank" class="product-card">
-                <img src="https://imgproxy.fourthwall.com/t4NhqV41onM6RZ-33Fvnt-64MB2fACdQk_VOMZkACx4/w:720/sm:1/enc/yPnwrldphbNKG9yE/1A0XHIM_t3Wo1W_a/AdPxzZnCuSHFf_oB/gOThJCZbzmXj7Oll/xYRaoty_gd_lds-v/CIcIMuiI_OvC92pd/-ks__CLViQspG2Xf/4XnsVkSVkGCAaONu/lPIPDdrERx5LWx7D/mnfnRKPUh24nxR9g/bOjuXWni9e4yN09m/IJlD0Yt1fM3Vdnzx/sCeOegSi7IAHDVcM/nrMmuw" alt="Tee" class="w-full h-auto object-cover rounded-t-3xl">
-                <div class="p-6 text-center">
-                    <h3 class="text-xl font-bold font-['Playfair_Display'] mb-2">Starlight Tee</h3>
-                    <p class="text-gray-600">A touch of magic.</p>
+            
+            <!-- Jewelry -->
+            <a href="https://voryx-shop.fourthwall.com/" target="_blank" class="product-card group block h-full">
+                <div class="relative overflow-hidden h-96">
+                    <span class="absolute top-4 left-4 bg-[#4169E1] text-white text-xs font-bold px-3 py-1 rounded-full z-10">CEO Pick</span>
+                    <img src="https://f3.jetprintapp.com/merchantUpload/58434/a7336b730dde46818b1396759d0a31a4.jpg" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
+                </div>
+                <div class="p-8 text-center bg-white">
+                    <h3 class="text-2xl font-bold font-['Playfair_Display'] mb-2 group-hover:text-[#4169E1] transition-colors">Constellation Jewelry</h3>
+                    <p class="text-gray-500 mb-4 font-light">Personalized sparkle.</p>
+                    <span class="text-[#333] font-bold text-lg">$120.00</span>
                 </div>
             </a>
-            <!-- Hats -->
-            <!-- Corrected the nested <a> tag issue -->
-            <a href="https://voryx-shop.fourthwall.com/products/voryx-emblematic-dad-hat" target="_blank" class="product-card">
-                <img src="https://imgproxy.fourthwall.com/kSp31VvN9Z-bqM88PT-8I0RVk1sMz8uCZPylB3JH3Wg/w:1920/sm:1/enc/lI6bYC1IvyM7zdzz/IaEaDsMMIw-yVeXG/xdU5SOmazdbgQQsT/18N1mDgKk_kD8ruM/-buSierKf12Yo9yo/BRmbrHecqshVYCQp/0ZGAk05Uq-flvk6q/5ktFWmyf1ew4drYw/7S1lwOjfh3281I0s/2dDRMvvwNGf_xwCi/IddxMl5SMuIAFl9z/iwoa7zucSZbW6tH7/320ykmHeddL2SPQE/27se-w" alt="Hat" class="w-full h-auto object-cover rounded-t-3xl">
-                <div class="p-6 text-center">
-                    <h3 class="text-xl font-bold font-['Playfair_Display'] mb-2">Whisper Hat</h3>
-                    <p class="text-gray-600">Elegant headwear.</p>
+
+            <!-- Hat -->
+            <a href="https://voryx-shop.fourthwall.com/" target="_blank" class="product-card group block h-full">
+                <div class="relative overflow-hidden h-96">
+                    <img src="Hat.png" class="w-full h-full object-cover transform group-hover:scale-110 transition-transform duration-700">
                 </div>
-            </a>
-            <!-- Custom Jewelry -->
-            <a href="https://voryx-shop.fourthwall.com/products/jewelry" target="_blank" class="product-card">
-                <img src="https://f3.jetprintapp.com/merchantUpload/58434/a7336b730dde46818b1396759d0a31a4.jpg" alt="Custom Jewelry" class="w-full h-auto object-cover rounded-t-3xl">
-                <div class="p-6 text-center">
-                    <h3 class="text-xl font-bold font-['Playfair_Display'] mb-2">Constellation Jewelry</h3>
-                    <p class="text-gray-600">Personalized sparkle.</p>
-                </div>
-            </a>
-            <!-- Crop Top -->
-            <a href="https://voryx-shop.fourthwall.com/products/croptop" target="_blank" class="product-card">
-                <img src="https://imgproxy.fourthwall.com/L_Rwhf0OfDvNN_1QrRilC8zr5_CTyBNfKjAbSpEh4So/w:1920/sm:1/enc/ZzR5IbEheGMAoqSE/IarIWeNaAkI49pWP/6GC13sNdwNPBABoQ/Uk_52OLD4yBN7z_T/5IyyeawW6_Wq6r1r/imNEo2KTUFb-LjEV/P_BVY7Hl7VOeuOV-/wOqqsauTWt8sJHue/nHwO7fzNwU17Mb-9/oCQblvpOkWOJD6hB/TpS-jI84yDx2ZY8V/ngL96ly5u9Mpdch_/6IGeN5o8utXSYCRK/iyM1oQ" alt="Crop Top" class="w-full h-auto object-cover rounded-t-3xl">
-                <div class="p-6 text-center">
-                    <h3 class="text-xl font-bold font-['Playfair_Display'] mb-2">Moonlight Crop Top</h3>
-                    <p class="text-gray-600">Radiant and beautiful.</p>
-                </div>
-            </a>
-            <!-- Pants -->
-            <a href="https://voryx-shop.fourthwall.com/products/pants" target="_blank" class="product-card">
-                <img src="https://imgproxy.fourthwall.com/AqkTYIVsY6RnVRs2FyrL6NVyvoVvK6iA-e6Jk5PW6lg/w:1920/sm:1/enc/TznPa4qskDtSolg_/jAPt-FB1AghbYRt5/PggMlQXVhybQcWKe/pWyJHj0XJBammxno/htQZcB4dYfZRpaaR/SpGdLnEQu5RES68h/Gmfgj5S_s7lfjlU-/yYJ2aN3DUG5AoISA/1E2SwpC5BqlSMESp/JWrhyN27jPKaYddP/3GVtWoeHkIxoM7-m/geS_hwEfDD9MA_cr/opTKQWDNjZN7QXLY/se7Lgw" alt="Pants" class="w-full h-auto object-cover rounded-t-3xl">
-                <div class="p-6 text-center">
-                    <h3 class="text-xl font-bold font-['Playfair_Display'] mb-2">Flowing Pants</h3>
-                    <p class="text-gray-600">Effortless elegance.</p>
+                <div class="p-8 text-center bg-white">
+                    <h3 class="text-2xl font-bold font-['Playfair_Display'] mb-2 group-hover:text-[#B22222] transition-colors">Whisper Hat</h3>
+                    <p class="text-gray-500 mb-4 font-light">Elegant headwear.</p>
+                    <span class="text-[#333] font-bold text-lg">$32.00</span>
                 </div>
             </a>
         </div>
     </section>
 
     <!-- Partners Section -->
-    <section id="partners" class="py-20 md:py-32 px-6 bg-[#f5f5f5]">
-        <h2 class="text-3xl md:text-5xl font-['Playfair_Display'] font-bold text-center mb-4">Our Partners</h2>
-        <p class="text-lg text-gray-700 text-center mb-12 max-w-2xl mx-auto">
-            We collaborate with the best print-on-demand services to ensure every product meets our high standards of quality and craftsmanship.
-        </p>
-        <div class="container mx-auto grid grid-cols-2 md:grid-cols-5 gap-8 items-center justify-items-center">
-            <a href="https://fourthwall.com" target="_blank" class="partner-logo">
-                <img src="https://placehold.co/200x80/f0f0f0/333?text=Fourthwall" alt="Fourthwall" class="rounded-xl shadow-md w-full h-auto">
-            </a>
-            <a href="https://teespring.com" target="_blank" class="partner-logo">
-                <img src="https://placehold.co/200x80/f0f0f0/333?text=Teespring" alt="Teespring" class="rounded-xl shadow-md w-full h-auto">
-            </a>
-            <a href="https://printful.com" target="_blank" class="partner-logo">
-                <img src="https://placehold.co/200x80/f0f0f0/333?text=Printiful" alt="Printiful" class="rounded-xl shadow-md w-full h-auto">
-            </a>
-            <a href="https://redbubble.com" target="_blank" class="partner-logo">
-                <img src="https://placehold.co/200x80/f0f0f0/333?text=Redbubble" alt="Redbubble" class="rounded-xl shadow-md w-full h-auto">
-            </a>
-            <a href="https://jetprint.com" target="_blank" class="partner-logo">
-                <img src="https://placehold.co/200x80/f0f0f0/333?text=Jetprint" alt="Jetprint" class="rounded-xl shadow-md w-full h-auto">
-            </a>
+    <section id="partners" class="py-20 px-6 bg-[#f5f5f5] border-t border-gray-200">
+        <h2 class="text-2xl font-['Playfair_Display'] font-bold text-center mb-12 text-gray-400">Trusted Partners</h2>
+        <div class="container mx-auto grid grid-cols-2 md:grid-cols-5 gap-8 items-center justify-items-center opacity-60">
+            <img src="https://placehold.co/200x80/e5e5e5/999?text=Fourthwall" class="partner-logo rounded-lg w-32">
+            <img src="https://placehold.co/200x80/e5e5e5/999?text=Teespring" class="partner-logo rounded-lg w-32">
+            <img src="https://placehold.co/200x80/e5e5e5/999?text=Printful" class="partner-logo rounded-lg w-32">
+            <img src="https://placehold.co/200x80/e5e5e5/999?text=Redbubble" class="partner-logo rounded-lg w-32">
+            <img src="https://placehold.co/200x80/e5e5e5/999?text=Jetprint" class="partner-logo rounded-lg w-32">
         </div>
     </section>
 
-    <!-- Contact Section -->
-   <section id="contact" class="py-20 md:py-32 px-6 bg-[#f5f5f5]">
-    <div class="container mx-auto max-w-2xl text-center">
-        <h2 class="text-3xl md:text-5xl font-['Playfair_Display'] font-bold mb-4">Let's Connect</h2>
-        <p class="text-md md:text-lg text-gray-700 mb-8">
-            Share your dreams with us. We'd love to hear from you.
-        </p>
-        <form action="https://formspree.io/f/xeooydzk" method="POST" class="space-y-6">
-            <input type="text" name="name" placeholder="Your Name" class="w-full p-4 rounded-xl bg-white border border-[#e0e0e0] focus:outline-none focus:ring-2 focus:ring-[#4169E1]" required>
-            <input type="email" name="_replyto" placeholder="Your Email" class="w-full p-4 rounded-xl bg-white border border-[#e0e0e0] focus:outline-none focus:ring-2 focus:ring-[#4169E1]" required>
-            <textarea name="message" placeholder="Your Message" rows="5" class="w-full p-4 rounded-xl bg-white border border-[#e0e0e0] focus:outline-none focus:ring-2 focus:ring-[#4169E1]" required></textarea>
-            
-            <div class="flex items-center justify-start w-full pt-2">
-                <input type="checkbox" id="newsletter" name="newsletter" value="Yes" class="h-4 w-4 text-[#4169E1] border-gray-300 rounded focus:ring-[#4169E1]">
-                <label for="newsletter" class="ml-2 text-gray-700 text-sm md:text-base">Subscribe to our newsletter</label>
+    <!-- Concierge / Contact Section -->
+    <section id="contact" class="py-24 px-6 bg-white relative">
+        <div class="container mx-auto max-w-4xl">
+            <div class="bg-white rounded-[2rem] shadow-2xl p-8 md:p-16 border border-gray-100 relative overflow-hidden">
+                <!-- Decorative Circle -->
+                <div class="absolute top-0 right-0 w-64 h-64 bg-gradient-to-bl from-[#B22222]/10 to-transparent rounded-bl-full pointer-events-none"></div>
+
+                <div class="text-center mb-10 relative z-10">
+                    <h2 class="text-3xl md:text-5xl font-['Playfair_Display'] font-bold mb-4">VIP Concierge</h2>
+                    <p class="text-lg text-gray-600">
+                        Acquire the collection or request the digital memoir.<br>
+                        <span class="text-sm text-[#B22222] font-bold">Inquiries sent directly to Akshaya Selvakumar's office.</span>
+                    </p>
+                </div>
+
+                <form action="https://formspree.io/f/xeooydzk" method="POST" class="space-y-6 relative z-10">
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                        <input type="text" name="name" placeholder="Your Name" class="w-full p-4 rounded-xl bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#B22222] transition-all" required>
+                        <input type="text" name="product_id" placeholder="Product ID (e.g., VYX-001)" class="w-full p-4 rounded-xl bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#4169E1] transition-all">
+                    </div>
+                    <input type="email" name="email" placeholder="Email Address" class="w-full p-4 rounded-xl bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#B22222] transition-all" required>
+                    <textarea name="message" placeholder="Message to Akshaya..." rows="4" class="w-full p-4 rounded-xl bg-gray-50 border border-gray-200 focus:outline-none focus:ring-2 focus:ring-[#B22222] transition-all"></textarea>
+                    
+                    <div class="flex items-center justify-center gap-2 pt-2">
+                        <input type="checkbox" name="subscribe" value="yes" id="newsletter" checked class="w-5 h-5 text-[#B22222] rounded border-gray-300 focus:ring-[#B22222]">
+                        <label for="newsletter" class="text-gray-600 text-sm">Send me the Christmas Collection PDF</label>
+                    </div>
+                    
+                    <button type="submit" class="w-full md:w-auto mx-auto block px-12 py-4 bg-[#333] text-white font-bold rounded-full hover:bg-[#B22222] transition-all shadow-lg text-lg">
+                        Send Request
+                    </button>
+                </form>
             </div>
-            <button type="submit" class="cta-button w-full px-8 py-4 text-lg">Send Message</button>
-        </form>
-    </div>
-</section>
+        </div>
+    </section>
+
 
     <!-- Footer -->
-      <footer class="bg-[#f5f5f5] py-8 text-center text-gray-500">
-        <div class="flex justify-center space-x-6 mb-4">
-            <a href="https://www.instagram.com/voryx.official" target="_blank" class="social-icon">
+    <footer class="bg-[#f5f5f5] py-12 text-center text-gray-500 border-t border-gray-200">
+        <div class="flex justify-center space-x-8 mb-6">
+            <a href="https://www.instagram.com/voryx.official" target="_blank" class="text-gray-400 hover:text-[#B22222] transition-colors">
                 <i class="fab fa-instagram text-2xl"></i>
             </a>
-            <a href="https://x.com/VORYXofficial" target="_blank" class="social-icon">
+            <a href="https://x.com/VORYXofficial" target="_blank" class="text-gray-400 hover:text-[#4169E1] transition-colors">
                 <i class="fab fa-twitter text-2xl"></i>
             </a>
+            <a href="mail::to=office@akshayaselvakumar.com" target="_blank" class="text-gray-400 hover:text-[#4169E1] transition-colors">
+                <i class="fab fa-email text-2xl">office@akshayaselvakumar.com</i>
+            </a>    
         </div>
-        <p>&copy; 2025 Voryx Official. All Rights Reserved.</p>
+        <p class="font-['Playfair_Display'] text-xl font-bold text-[#333] mb-2">VORYX</p>
+        <p class="text-sm">&copy; 2025 Voryx Official. Designed for Dreamers.</p>
     </footer>
-   <script>
-        document.addEventListener('DOMContentLoaded', function() {
-            // Mobile Menu Toggle
-            const hamburger = document.getElementById('hamburger');
-            const closeMenu = document.getElementById('close-menu');
-            const mobileMenu = document.getElementById('mobile-menu');
 
-            hamburger.addEventListener('click', () => {
-                mobileMenu.classList.remove('-translate-x-full');
-            });
-            closeMenu.addEventListener('click', () => {
-                mobileMenu.classList.add('-translate-x-full');
-            });
-            window.closeMobileMenu = () => {
-                mobileMenu.classList.add('-translate-x-full');
-            };
+    <!-- Logic -->
+    <script>
+        // --- Mobile Menu ---
+        const hamburger = document.getElementById('hamburger');
+        const closeMenu = document.getElementById('close-menu');
+        const mobileMenu = document.getElementById('mobile-menu');
 
-            // Canvas Star Dust Effect
-            const canvas = document.getElementById('stardust-canvas');
-            const ctx = canvas.getContext('2d');
-            let particles = [];
+        function openMobileMenu() { mobileMenu.classList.remove('translate-x-full'); }
+        function closeMobileMenu() { mobileMenu.classList.add('translate-x-full'); }
 
-            function resizeCanvas() {
-                canvas.width = window.innerWidth;
-                canvas.height = window.innerHeight;
+        hamburger.addEventListener('click', openMobileMenu);
+        closeMenu.addEventListener('click', closeMobileMenu);
+
+        // --- Stardust Canvas ---
+        const canvas = document.getElementById('stardust-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 1.5 + 0.5;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+                this.opacity = Math.random() * 0.5 + 0.1;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+            draw() {
+                // Use slight blue tint for stardust
+                ctx.fillStyle = `rgba(65, 105, 225, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            particles = [];
+            for (let i = 0; i < 150; i++) particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animateParticles);
+        }
+
+        window.addEventListener('resize', () => { resizeCanvas(); initParticles(); });
+        resizeCanvas();
+        initParticles();
+        animateParticles();
+
+        // --- 3D Book Logic (Light Mode) ---
+        const bookData = [
+            { type: 'cover-front', title: 'VORYX', subtitle: 'Gala Edition 2025' },
+            { 
+                type: 'page', 
+                frontImg: 'Korean.png', 
+                frontId: 'VYX-ART', 
+                backImg: 'American.png', 
+                backId: 'VYX-AME' 
+            },
+            { 
+                type: 'page', 
+                frontImg: 'Gilded Victorian Serenade.jpg', 
+                frontId: 'VYX-GOLD', 
+                backImg: 'Rain Deer Prism.jpg', 
+                backId: 'VYX-SPARK' 
+            },
+             { 
+                type: 'page', 
+                frontImg: 'Seoul Sparkle.jpg', 
+                frontId: 'VYX-Diamond', 
+                backImg: 'Urban Holiday Sparkle.jpg', 
+                backId: 'VYX-HOLI' 
+            },         
+            { type: 'cover-back', text: 'LEGACY' }
+        ];
+
+        const bookEl = document.getElementById('book');
+        let currentPage = 0;
+        const totalSheets = bookData.length;
+
+        bookData.forEach((page, index) => {
+            const pageEl = document.createElement('div');
+            pageEl.className = 'page';
+            if (page.type.includes('cover')) pageEl.classList.add('cover-texture');
+            pageEl.style.zIndex = totalSheets - index;
+
+            let frontHTML = '', backHTML = '';
+
+            if (page.type === 'cover-front') {
+                frontHTML = `
+                    <div class="face front flex flex-col items-center justify-center p-6 text-center text-white" style="background:#2c3e50">
+                        <div class="text-4xl font-['Playfair_Display'] font-bold tracking-widest border-4 border-double border-white/20 p-4">${page.title}</div>
+                        <p class="mt-4 text-xs uppercase tracking-[0.2em] opacity-80">${page.subtitle}</p>
+                    </div>`;
+                backHTML = `<div class="face back bg-gray-100 flex items-center justify-center text-gray-400 italic text-xs">Ex Libris</div>`;
+            } else if (page.type === 'cover-back') {
+                frontHTML = `<div class="face front bg-gray-100"></div>`;
+                backHTML = `
+                    <div class="face back flex items-center justify-center text-white" style="background:#2c3e50">
+                        <div class="text-2xl font-['Playfair_Display'] tracking-widest">${page.text}</div>
+                    </div>`;
+            } else {
+                frontHTML = `
+                    <div class="face front flex flex-col p-4 items-center justify-center bg-white">
+                         <div class="w-full h-3/4 mb-4 shadow-sm border border-gray-100 p-2 bg-white">
+                            <img src="${page.frontImg}" class="w-full h-full object-cover">
+                         </div>
+                         <div class="text-xs font-bold text-[#B22222]">ID: ${page.frontId}</div>
+                    </div>`;
+                backHTML = `
+                    <div class="face back flex flex-col p-4 items-center justify-center bg-white">
+                         <div class="w-full h-3/4 mb-4 shadow-sm border border-gray-100 p-2 bg-white">
+                            <img src="${page.backImg}" class="w-full h-full object-cover">
+                         </div>
+                         <div class="text-xs font-bold text-[#B22222]">ID: ${page.backId}</div>
+                    </div>`;
             }
 
-            class Particle {
-                constructor(x, y) {
-                    this.x = x;
-                    this.y = y;
-                    this.size = Math.random() * 1.5 + 0.5;
-                    this.speedX = Math.random() * 0.5 - 0.25;
-                    this.speedY = Math.random() * 0.5 - 0.25;
-                    this.opacity = Math.random() * 0.8 + 0.2;
-                    this.directionX = (Math.random() > 0.5) ? 1 : -1;
-                    this.directionY = (Math.random() > 0.5) ? 1 : -1;
-                }
-                update() {
-                    this.x += this.speedX * this.directionX;
-                    this.y += this.speedY * this.directionY;
-
-                    if (this.x > canvas.width || this.x < 0) this.directionX *= -1;
-                    if (this.y > canvas.height || this.y < 0) this.directionY *= -1;
-
-                    if (Math.random() > 0.99) this.directionX *= -1;
-                    if (Math.random() > 0.99) this.directionY *= -1;
-                }
-                draw() {
-                    ctx.fillStyle = `rgba(255, 255, 255, ${this.opacity})`;
-                    ctx.beginPath();
-                    ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                    ctx.fill();
-                }
-            }
-
-            function init() {
-                particles = [];
-                for (let i = 0; i < (window.innerWidth * window.innerHeight) / 9000; i++) {
-                    particles.push(new Particle(Math.random() * canvas.width, Math.random() * canvas.height));
-                }
-            }
-
-            function animate() {
-                requestAnimationFrame(animate);
-                ctx.clearRect(0, 0, canvas.width, canvas.height);
-                for (let i = 0; i < particles.length; i++) {
-                    particles[i].update();
-                    particles[i].draw();
-                }
-            }
-
-            window.addEventListener('resize', () => {
-                resizeCanvas();
-                init();
-            });
-
-            resizeCanvas();
-            init();
-            animate();
+            pageEl.innerHTML = frontHTML + backHTML;
+            pageEl.onclick = () => { if(index===currentPage) nextPage(); else if(index===currentPage-1) prevPage(); };
+            bookEl.appendChild(pageEl);
         });
+
+        function updateBookState() {
+            if(window.innerWidth > 768) {
+                bookEl.style.transform = (currentPage > 0 && currentPage < totalSheets) ? 'translateX(50%)' : 'translateX(0)';
+            }
+            document.getElementById('btnPrev').disabled = currentPage === 0;
+            document.getElementById('btnNext').disabled = currentPage === totalSheets;
+        }
+
+        function nextPage() {
+            if(currentPage < totalSheets) {
+                const page = bookEl.children[currentPage];
+                page.classList.add('flipped');
+                page.style.zIndex = currentPage + 50;
+                currentPage++;
+                updateBookState();
+            }
+        }
+
+        function prevPage() {
+            if(currentPage > 0) {
+                currentPage--;
+                const page = bookEl.children[currentPage];
+                page.classList.remove('flipped');
+                setTimeout(() => { page.style.zIndex = totalSheets - currentPage; }, 600);
+                updateBookState();
+            }
+        }
+
+        window.addEventListener('resize', updateBookState);
+
+        // --- Concierge Logic ---
+        function handleConcierge(e) {
+            e.preventDefault();
+            const btn = e.target.querySelector('button');
+            const original = btn.innerText;
+            btn.innerText = "Request Sent Successfully!";
+            btn.style.backgroundColor = "#4169E1"; // Success Blue
+            setTimeout(() => {
+                btn.innerText = original;
+                btn.style.backgroundColor = "#333";
+                alert("Your request has been forwarded to Akshaya's team.");
+            }, 2000);
+        }
+
     </script>
 </body>
 </html>
