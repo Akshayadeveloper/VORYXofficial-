@@ -3,13 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VORYX Official | Sovereign Romance 2026</title>
+    <title>VORYX | Chamber 10: Masterpiece</title>
     
     <!-- SEO & Metadata -->
-    <meta name="description" content="Official Voryx Global Portal. Luxury redefined through Sovereign Romance. $1000B Trust architecture in high fashion.">
+    <meta name="description" content="Official Voryx Global Portal. Chamber 10: Masterpiece. Luxury redefined through Sovereign Romance.">
     
     <!-- Fonts & Icons -->
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@300;400;600;800&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@200;300;400;600;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
@@ -20,9 +20,11 @@
             --voryx-crimson: #8B0000;
             --voryx-rose: #FF2E63;
             --voryx-gold: #D4AF37;
-            --voryx-midnight: #0A050A;
-            --voryx-gold-light: #FDFBD3;
+            --voryx-midnight: #080408;
+            --voryx-glass: rgba(255, 255, 255, 0.03);
         }
+
+        * { cursor: none; }
 
         body {
             font-family: 'Inter', sans-serif;
@@ -32,403 +34,490 @@
             scroll-behavior: smooth;
         }
 
-        h1, h2, h3, .serif {
-            font-family: 'Playfair Display', serif;
+        .serif { font-family: 'Playfair Display', serif; }
+
+        /* Sparkling Particles Background */
+        #sparkle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
         }
 
-        /* 1. Billion-Dollar Heart Gradient */
-        .bg-heart-gradient {
-            background: linear-gradient(135deg, var(--voryx-navy) 0%, var(--voryx-crimson) 50%, var(--voryx-rose) 100%);
+        /* 3D Tilt Effect */
+        .tilt-card {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transition: transform 0.2s ease-out;
         }
 
-        /* 2. Mesmerizing Gold Text */
+        /* Text Gradient (Sparkling Gold) */
         .text-gold {
-            background: linear-gradient(45deg, #D4AF37 0%, #F1C40F 50%, #FDFBD3 100%);
+            background: linear-gradient(75deg, #D4AF37 0%, #FDFBD3 50%, #D4AF37 100%);
+            background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            display: inline-block;
+            animation: shine 3s linear infinite;
         }
 
-        /* 3. Velvet Midnight Surface */
-        .bg-velvet {
-            background-color: var(--voryx-midnight);
-        }
+        @keyframes shine { to { background-position: 200% center; } }
 
-        /* 4. Typography & Glassmorphism */
+        /* Glassmorphism */
         .glass-card {
-            background: rgba(255, 255, 255, 0.03);
-            backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 24px;
-            transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+            background: var(--voryx-glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
         }
+
         .glass-card:hover {
+            border-color: var(--voryx-gold);
             background: rgba(255, 255, 255, 0.06);
-            border: 1px solid rgba(212, 175, 55, 0.3);
-            transform: translateY(-5px);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
         }
 
-        /* 5. Gold Line Divider */
-        .gold-line {
-            height: 1px;
-            background: linear-gradient(to right, transparent, var(--voryx-gold), transparent);
-            width: 100%;
+        /* Custom Cursor */
+        #custom-cursor {
+            width: 15px;
+            height: 15px;
+            background: var(--voryx-gold);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.1s ease;
         }
 
-        /* CTA Style */
-        .btn-sovereign {
-            background: linear-gradient(135deg, var(--voryx-navy) 0%, var(--voryx-crimson) 50%, var(--voryx-rose) 100%);
-            color: white;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 20px rgba(255, 46, 99, 0.2);
-        }
-        .btn-sovereign:hover {
-            transform: scale(1.05);
-            box-shadow: 0 0 30px rgba(255, 46, 99, 0.4);
-        }
-
-        /* Custom Scrollbar */
-        ::-webkit-scrollbar { width: 6px; }
+        /* Smooth Scrollbar */
+        ::-webkit-scrollbar { width: 4px; }
         ::-webkit-scrollbar-track { background: var(--voryx-midnight); }
-        ::-webkit-scrollbar-thumb { background: var(--voryx-crimson); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb { background: var(--voryx-gold); }
 
-        @keyframes pulse-gold {
-            0% { opacity: 0.8; }
-            50% { opacity: 1; }
-            100% { opacity: 0.8; }
+        .btn-voryx {
+            background: linear-gradient(135deg, var(--voryx-navy) 0%, var(--voryx-crimson) 100%);
+            padding: 1rem 2.5rem;
+            border-radius: 99px;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-size: 0.75rem;
+            font-weight: 800;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
         }
-        .animate-gold { animation: pulse-gold 3s infinite ease-in-out; }
+
+        .btn-voryx:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(255, 46, 99, 0.3);
+        }
+
+        /* Slideshow Animation */
+        .slideshow-track {
+            display: flex;
+            transition: transform 1.2s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        .product-slide {
+            flex: 0 0 100%;
+            max-width: 100%;
+            padding: 0 10px;
+        }
+
+        @media (min-width: 768px) {
+            .product-slide { flex: 0 0 33.333%; }
+        }
+
+        .chamber-label {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            transform: rotate(180deg);
+        }
+
+        .hero-title {
+            animation: heroReveal 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        @keyframes heroReveal {
+            from { opacity: 0; transform: translateY(40px) skewY(5deg); }
+            to { opacity: 1; transform: translateY(0) skewY(0); }
+        }
     </style>
 </head>
 <body>
 
-    <!-- Navigation (Sticky Velvet Midnight) -->
-    <nav class="sticky top-0 w-full bg-[#0A050A]/90 backdrop-blur-xl border-b border-white/5 z-50 py-4 px-6 md:px-12">
-        <div class="container mx-auto flex justify-between items-center">
-            <a href="#" class="flex flex-col items-center group">
-                <span class="text-2xl md:text-3xl font-bold serif tracking-widest text-gold group-hover:scale-105 transition-transform">VORYX</span>
-                <span class="text-[8px] uppercase tracking-[0.4em] font-semibold text-gray-400">Sovereign Empire</span>
-            </a>
+    <div id="custom-cursor"></div>
+    <canvas id="sparkle-canvas"></canvas>
 
-            <div class="hidden lg:flex space-x-10 text-[10px] uppercase font-bold tracking-[0.2em] text-gray-400 items-center">
-                <a href="#collections" class="hover:text-gold transition-colors">The Vault</a>
-                <a href="#materials" class="hover:text-gold transition-colors">Empire Standards</a>
-                <a href="#magazine" class="hover:text-gold transition-colors">The Memoir</a>
-                <a href="#offers" class="text-rose-500 animate-pulse">Valentine Tier</a>
-                <a href="https://partner.voryx.akshayaselvakumar.org" target="_blank" class="btn-sovereign px-8 py-2 rounded-full text-white">Enter Shop</a>
-            </div>
-
-            <button class="lg:hidden text-white" onclick="toggleMenu()">
-                <i data-lucide="menu"></i>
-            </button>
+    <!-- Header Navigation -->
+    <nav class="fixed top-0 w-full z-50 py-6 px-10 flex justify-between items-center mix-blend-difference">
+        <a href="https://voryx.akshayaselvakumar.org" class="flex flex-col">
+            <span class="text-3xl font-black serif tracking-widest text-gold">VORYX</span>
+            <span id="lang-tagline" class="text-[8px] uppercase tracking-[0.4em] opacity-60">Sovereign Cosmos</span>
+        </a>
+        <div class="hidden md:flex space-x-12 text-[10px] uppercase font-bold tracking-[0.3em]">
+            <a href="#chamber-archives" class="hover:text-gold transition-all">Archives 6-10</a>
+            <a href="#blog" class="hover:text-gold transition-all">Memoirs</a>
+            <a href="#valentine" class="text-rose-500 animate-pulse">Valentine Special</a>
+            <a href="https://partner.voryx.akshayaselvakumar.org" class="hover:text-gold transition-all">The Shop</a>
         </div>
+        <button class="md:hidden text-white"><i data-lucide="menu"></i></button>
     </nav>
 
-    <!-- Mobile Nav -->
-    <div id="mobile-nav" class="fixed inset-0 bg-[#0A050A] z-[70] hidden flex-col items-center justify-center space-y-10 p-10">
-        <button class="absolute top-10 right-10" onclick="toggleMenu()"><i data-lucide="x" class="text-white"></i></button>
-        <a href="#collections" class="text-3xl serif text-gold" onclick="toggleMenu()">The Vault</a>
-        <a href="#magazine" class="text-3xl serif" onclick="toggleMenu()">The Memoir</a>
-        <a href="#offers" class="text-3xl serif text-rose-500" onclick="toggleMenu()">Valentine Rewards</a>
-        <a href="https://partner.voryx.akshayaselvakumar.org" class="btn-sovereign px-12 py-5 rounded-full font-bold">Shop Now</a>
-    </div>
-
-    <!-- Hero Section (Billion-Dollar Heart Gradient Background Logic) -->
-    <header class="relative h-screen flex items-center justify-center overflow-hidden">
-        <!-- The Background Architecture -->
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
         <div class="absolute inset-0 z-0">
-            <div class="absolute inset-0 bg-heart-gradient opacity-20"></div>
-            <img src="https://images.unsplash.com/photo-1550684848-fac1c5b4e853?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover mix-blend-overlay">
-            <div class="absolute inset-0 bg-gradient-to-t from-velvet via-transparent to-velvet"></div>
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-midnight to-midnight"></div>
+            <img src="https://images.unsplash.com/photo-1549439157-d3ae58d8ff3a?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover opacity-30">
         </div>
 
-        <div class="relative z-20 text-center px-6 max-w-5xl">
-            <span class="text-gold text-xs md:text-sm uppercase tracking-[0.6em] mb-8 block animate-gold">Deterministic Luxury | Akshaya Selvakumar</span>
-            <h1 class="text-5xl md:text-[10rem] font-bold serif leading-none mb-10 tracking-tighter">
-                Sovereign <br><span class="text-gold">Romance</span>
+        <div class="relative z-10 text-center max-w-6xl px-6">
+            <span id="geo-welcome" class="text-[10px] uppercase tracking-[0.8em] text-gold mb-10 block animate-pulse">Initializing Sovereign Protocol...</span>
+            <h1 class="text-6xl md:text-[10rem] font-black serif leading-none hero-title mb-12">
+                Chamber <span class="text-gold">10</span><br>
+                <span class="text-5xl md:text-8xl tracking-tighter">Masterpiece</span>
             </h1>
-            <p class="text-gray-400 max-w-2xl mx-auto text-sm md:text-xl mb-14 font-light leading-relaxed tracking-widest">
-                A $1000B Trust in Every Thread. Attract wealth, command presence, and define your own destiny.
+            <p id="lang-hero-desc" class="text-gray-400 max-w-2xl mx-auto text-sm md:text-lg mb-12 font-light tracking-widest leading-relaxed">
+                Be yourself is the best of your own. Architecting the $1000B Trust architecture in global luxury fashion.
             </p>
-            <div class="flex flex-col md:flex-row gap-8 justify-center items-center">
-                <a href="#offers" class="btn-sovereign px-12 py-5 rounded-full font-bold uppercase text-xs tracking-[0.3em]">Secure Valentine Gifts</a>
-                <a href="#magazine" class="text-white/60 hover:text-white transition-all text-xs uppercase tracking-widest border-b border-white/20 pb-2">Read The 2026 Memoir</a>
+            <div class="flex flex-col md:flex-row justify-center items-center gap-6">
+                <a href="https://partner.voryx.akshayaselvakumar.org" class="btn-voryx">Acquire Collection</a>
+                <a href="#chamber-archives" class="text-xs uppercase tracking-[0.4em] border-b border-gold/40 pb-2 hover:border-gold transition-all">View Archives 6-10</a>
             </div>
         </div>
-    </header>
+    </section>
 
-    <div class="gold-line"></div>
-
-    <!-- Tiered Rewards (Glassmorphism Content Layer) -->
-    <section id="offers" class="py-32 bg-velvet">
-        <div class="container mx-auto px-6">
-            <div class="text-center mb-24">
-                <h2 class="text-4xl md:text-7xl serif mb-6">The Attraction <span class="text-gold">Tiers</span></h2>
-                <p class="text-rose-500 font-bold uppercase tracking-[0.4em] text-xs">Deterministic Love Valid Until Feb 28</p>
+    <!-- Sovereign Chambers Archives (Slideshow System) -->
+    <section id="chamber-archives" class="py-32 bg-midnight overflow-hidden">
+        <div class="container mx-auto px-10">
+            <div class="mb-20 text-center">
+                <h2 class="text-4xl md:text-6xl serif mb-4">Sovereign <span class="text-gold">Archives</span></h2>
+                <p class="text-[10px] text-gray-500 uppercase tracking-[0.6em]">Chambers 06 through 10 | Architectural Evolution</p>
             </div>
 
-            <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <!-- Slideshow Container -->
+            <div id="slideshow-root" class="space-y-32">
+                <!-- Each Chamber will be injected here via JS for 30 products -->
+            </div>
+        </div>
+    </section>
+
+    <!-- Valentine Tiers Section -->
+    <section id="valentine" class="py-32 relative bg-[#0a050a] border-t border-white/5">
+        <div class="container mx-auto px-10">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-10">
+                <div class="max-w-xl">
+                    <h2 class="text-5xl md:text-7xl serif mb-6">Sovereign <br><span class="text-gold">Romance</span></h2>
+                    <p class="text-gray-500 uppercase text-[10px] tracking-[0.5em]">Deterministic Love valid until Feb 28th</p>
+                </div>
+                <div class="h-[1px] flex-grow mx-10 bg-gold/20 hidden md:block"></div>
+                <div class="text-rose-400 text-xs font-bold uppercase tracking-widest">Limited Availability</div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
                 <!-- Tier 1 -->
-                <div class="glass-card p-12 text-center group">
-                    <i data-lucide="sparkles" class="mx-auto mb-8 text-rose-400 w-10 h-10 group-hover:scale-110 transition-transform"></i>
-                    <h3 class="text-2xl serif mb-4 text-gold">L’Amour Rose</h3>
-                    <p class="text-gray-500 text-xs mb-8 tracking-widest uppercase">Investment: $500+</p>
-                    <ul class="text-[11px] space-y-4 text-gray-300 font-medium uppercase tracking-widest">
-                        <li class="flex items-center justify-center gap-2"><i data-lucide="check" class="w-3 h-3 text-gold"></i> Fresh Flower Bouquet</li>
-                        <li class="flex items-center justify-center gap-2"><i data-lucide="check" class="w-3 h-3 text-gold"></i> Priority Global Logistics</li>
-                        <li class="flex items-center justify-center gap-2"><i data-lucide="check" class="w-3 h-3 text-gold"></i> Sovereign Gift Box</li>
+                <div class="glass-card p-12 text-center tilt-card">
+                    <i data-lucide="sparkles" class="mx-auto mb-8 text-rose-400 w-10 h-10"></i>
+                    <h3 class="text-2xl serif mb-4">L’Amour Rose</h3>
+                    <p class="text-[10px] text-gray-500 mb-8 tracking-[0.3em] uppercase">Tier I Experience</p>
+                    <ul class="text-[10px] space-y-4 text-gray-400 uppercase tracking-[0.2em] mb-10">
+                        <li>Fresh Flower Bouquet</li>
+                        <li>Priority Logistics</li>
+                        <li>Sovereign Gift Box</li>
                     </ul>
+                    <a href="https://partner.voryx.akshayaselvakumar.org" class="text-gold text-[10px] font-bold uppercase tracking-widest">Select Tier</a>
                 </div>
+
                 <!-- Tier 2 -->
-                <div class="glass-card p-12 text-center relative border-gold/30 ring-1 ring-gold/20 shadow-[0_0_50px_rgba(212,175,55,0.1)]">
-                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gold text-black text-[9px] px-6 py-1 rounded-full uppercase tracking-widest font-black">Most Attracted</div>
+                <div class="glass-card p-12 text-center border-gold/40 relative tilt-card">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gold text-black text-[8px] px-6 py-1 rounded-full font-black uppercase">Most Attracted</div>
                     <i data-lucide="heart" class="mx-auto mb-8 text-rose-500 w-12 h-12"></i>
-                    <h3 class="text-3xl serif mb-4 text-gold">Gala Romance</h3>
-                    <p class="text-gray-400 text-xs mb-8 tracking-widest uppercase">Investment: $1000+</p>
-                    <ul class="text-[11px] space-y-4 text-white font-bold uppercase tracking-widest">
-                        <li class="flex items-center justify-center gap-2"><i data-lucide="check" class="w-3 h-3 text-gold"></i> Heart Cake & Flowers</li>
-                        <li class="flex items-center justify-center gap-2"><i data-lucide="check" class="w-3 h-3 text-gold"></i> Ltd. Voryx Scarf</li>
-                        <li class="flex items-center justify-center gap-2"><i data-lucide="check" class="w-3 h-3 text-gold"></i> VIP Empire Concierge</li>
+                    <h3 class="text-3xl serif mb-4">Gala Romance</h3>
+                    <p class="text-[10px] text-gray-500 mb-8 tracking-[0.3em] uppercase">Tier II Masterpiece</p>
+                    <ul class="text-[10px] space-y-4 text-white font-bold uppercase tracking-[0.2em] mb-10">
+                        <li>Heart Cake & Flowers</li>
+                        <li>Chamber 10 Scarf</li>
+                        <li>Empire Concierge</li>
                     </ul>
+                    <a href="https://partner.voryx.akshayaselvakumar.org" class="btn-voryx inline-block">Secure Gala</a>
                 </div>
+
                 <!-- Tier 3 -->
-                <div class="glass-card p-12 text-center bg-white/5">
+                <div class="glass-card p-12 text-center tilt-card">
                     <i data-lucide="crown" class="mx-auto mb-8 text-gold w-14 h-14"></i>
-                    <h3 class="text-2xl serif mb-4 text-gold">The Sovereign</h3>
-                    <p class="text-gray-500 text-xs mb-8 tracking-widest uppercase">Investment: $3000+</p>
-                    <ul class="text-[11px] space-y-4 text-gray-300 font-medium uppercase tracking-widest">
-                        <li class="flex items-center justify-center gap-2"><i data-lucide="check" class="w-3 h-3 text-gold"></i> Bespoke Custom Necklace</li>
-                        <li class="flex items-center justify-center gap-2"><i data-lucide="check" class="w-3 h-3 text-gold"></i> Private Gift Hamper</li>
-                        <li class="flex items-center justify-center gap-2"><i data-lucide="check" class="w-3 h-3 text-gold"></i> Personal Note & Cake</li>
-                        <li class="flex items-center justify-center gap-2"><i data-lucide="check" class="w-3 h-3 text-gold"></i> Lifetime Empire Pass</li>
+                    <h3 class="text-2xl serif mb-4">The Sovereign</h3>
+                    <p class="text-[10px] text-gray-500 mb-8 tracking-[0.3em] uppercase">Tier III Ultimate</p>
+                    <ul class="text-[10px] space-y-4 text-gray-400 uppercase tracking-[0.2em] mb-10">
+                        <li>Bespoke Jewelry</li>
+                        <li>Luxury Gift Hamper</li>
+                        <li>Lifetime Empire Pass</li>
                     </ul>
+                    <a href="mailto:office@akshayaselvakumar.com" class="text-gold text-[10px] font-bold uppercase tracking-widest">Private Commission</a>
                 </div>
             </div>
         </div>
     </section>
 
-    <div class="gold-line"></div>
-
-    <!-- Collections Section -->
-    <section id="collections" class="py-32 bg-[#0C070C]">
-        <div class="container mx-auto px-6">
-            <div class="flex flex-col md:flex-row justify-between items-end mb-24 gap-10">
-                <div class="max-w-2xl">
-                    <h2 class="text-4xl md:text-6xl serif mb-8">The Vault <br><span class="text-gold">Sovereign Edition</span></h2>
-                    <p class="text-gray-500 tracking-widest uppercase text-xs leading-relaxed">Where Mars meets Venus. Structural security meets mesmerizing desire.</p>
-                </div>
-                <div class="flex gap-4">
-                    <button class="glass-card px-8 py-3 text-[10px] font-bold uppercase tracking-widest hover:text-gold">Curated Streetwear</button>
-                    <button class="glass-card px-8 py-3 text-[10px] font-bold uppercase tracking-widest hover:text-gold">Gifts & Jewelry</button>
-                </div>
-            </div>
-
-            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
-                <!-- Hoodie -->
+    <!-- Blog / Memoir Section -->
+    <section id="blog" class="py-32 bg-midnight border-t border-white/5">
+        <div class="container mx-auto px-10">
+            <h2 class="text-center text-4xl md:text-6xl serif mb-20">The <span class="text-gold italic">Memoirs</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
                 <div class="glass-card overflow-hidden group">
-                    <div class="h-96 relative">
-                        <img src="IMG-20260205-WA0000.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-                        <a href="https://partner.voryx.akshayaselvakumar.org/products/valentine-liquid-heart-metallic-hoodie" target="_blank" class="btn-sovereign px-8 py-2 rounded-full text-white">Shop</a>              
+                    <div class="h-80 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
                     </div>
-                    <div class="p-8 text-center">
-                        <h4 class="text-gold serif text-lg mb-2">Billionaire Hoodie</h4>
-                        <p class="text-[9px] text-gray-500 tracking-widest uppercase">450 GSM Heavy Architecture</p>
-                    </div>
-                </div>
-                <!-- Jewelry -->
-                <div class="glass-card overflow-hidden group mt-12">
-                    <div class="h-96 relative">
-                        <img src="IMG-20260205-WA0001.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-                        <a href="https://partner.voryx.akshayaselvakumar.org/products/valentine-heartweb-unisex-t-shirt" target="_blank" class="btn-sovereign px-8 py-2 rounded-full text-white">Shop</a>           
-                    </div>
-                    <div class="p-8 text-center">
-                        <h4 class="text-gold serif text-lg mb-2">Sovereign Chain</h4>
-                        <p class="text-[9px] text-gray-500 tracking-widest uppercase">18k Mesmerizing Gold Plated</p>
+                    <div class="p-10">
+                        <span class="text-rose-500 text-[9px] font-black uppercase tracking-[0.4em]">Inside Chamber 10</span>
+                        <h4 class="text-2xl serif mt-4 mb-6">The Architecture of Self: Why Mastery is Intentional</h4>
+                        <p class="text-gray-500 text-xs tracking-widest leading-loose mb-8">Exploring the deterministic nature of fashion in the 2026 Voryx Cosmos...</p>
+                        <a href="#" class="text-gold text-[10px] font-bold uppercase tracking-widest border-b border-gold/30 pb-1">Read Memoir</a>
                     </div>
                 </div>
-                <!-- Sweatshirt -->
                 <div class="glass-card overflow-hidden group">
-                    <div class="h-96 relative">
-                        <img src="IMG-20260205-WA0003.jpg" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-                        <a href="https://partner.voryx.akshayaselvakumar.org/products/valentine-liquid-heart-metallic-hoodie" target="_blank" class="btn-sovereign px-8 py-2 rounded-full text-white">Shop</a>                    
+                    <div class="h-80 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
                     </div>
-                    <div class="p-8 text-center">
-                        <h4 class="text-gold serif text-lg mb-2">Empire Crewneck</h4>
-                        <p class="text-[9px] text-gray-500 tracking-widest uppercase">Velvet Interior Lining</p>
-                    </div>
-                </div>
-                <!-- Hat -->
-                <div class="glass-card overflow-hidden group mt-12">
-                    <div class="h-96 relative">
-                        <img src="https://images.unsplash.com/photo-1521335629791-ce4aec67dd15?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
-                        <div class="absolute inset-0 bg-gradient-to-t from-black via-transparent to-transparent"></div>
-                       <a href="https://partner.voryx.akshayaselvakumar.org/products/valentine-liquid-heart-metallic-hoodie" target="_blank" class="btn-sovereign px-8 py-2 rounded-full text-white">Shop</a>             
-                    </div>
-                    <div class="p-8 text-center">
-                        <h4 class="text-gold serif text-lg mb-2">Attraction Snapback</h4>
-                        <p class="text-[9px] text-gray-500 tracking-widest uppercase">Deterministic Fit</p>
+                    <div class="p-10">
+                        <span class="text-gold text-[9px] font-black uppercase tracking-[0.4em]">Lifestyle</span>
+                        <h4 class="text-2xl serif mt-4 mb-6">High Net-Worth Romance: The 2026 Guide</h4>
+                        <p class="text-gray-500 text-xs tracking-widest leading-loose mb-8">How Voryx is redefining gift culture for the global elite this Valentine's season...</p>
+                        <a href="#" class="text-gold text-[10px] font-bold uppercase tracking-widest border-b border-gold/30 pb-1">Read Memoir</a>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- Magazine (The Trust Layer) -->
-    <section id="magazine" class="py-32 bg-velvet border-t border-white/5">
-        <div class="container mx-auto px-6">
-            <div class="glass-card p-10 md:p-24 overflow-hidden relative border-gold/10">
-                <div class="grid grid-cols-1 lg:grid-cols-2 gap-20 items-center">
-                    <div class="relative group">
-                        <div class="w-full aspect-[3/4] rounded-xl overflow-hidden shadow-2xl ring-1 ring-gold/20">
-                            <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop" class="w-full h-full object-cover">
-                        </div>
-                        <div class="absolute -bottom-6 -right-6 bg-heart-gradient w-24 h-24 rounded-full flex items-center justify-center shadow-2xl animate-gold">
-                            <span class="text-white text-[10px] font-bold tracking-tighter uppercase leading-none text-center">Free<br>Read</span>
-                        </div>
-                    </div>
-                    <div>
-                        <span class="text-gold text-[10px] font-bold uppercase tracking-[0.5em] mb-6 inline-block">2026 Sovereign Archive</span>
-                        <h2 class="text-5xl md:text-7xl serif mb-8 leading-tight">The Memoir: <br><span class="text-gold italic underline decoration-rose-500/30">Ethereal Love</span></h2>
-                        <p class="text-gray-400 mb-12 text-sm md:text-lg leading-relaxed font-light tracking-widest">
-                            The definitive visual guide to high-net-worth romance. Mesmerizing photography meets the $1000B Trust architecture. Subscribe for a free preview or secure the master digital file for **$5.00**.
-                        </p>
-                        
-                        <div class="flex flex-col sm:flex-row gap-6">
-                            <button onclick="showMagModal('free')" class="glass-card px-12 py-5 font-bold text-xs uppercase tracking-widest hover:text-gold">Unlock Free Preview</button>
-                            <button onclick="showMagModal('paid')" class="btn-sovereign px-12 py-5 rounded-full font-bold text-xs uppercase tracking-widest shadow-lg">Download Master File ($5.00)</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <!-- Footer (Sticky Velvet Midnight) -->
-    <footer class="bg-velvet border-t border-white/5 pt-32 pb-16">
-        <div class="container mx-auto px-6">
+    <!-- Global Legal Footer -->
+    <footer class="bg-midnight border-t border-white/10 pt-32 pb-10">
+        <div class="container mx-auto px-10">
             <div class="grid grid-cols-1 md:grid-cols-4 gap-16 mb-24">
                 <div class="col-span-1 md:col-span-2">
-                    <h2 class="text-5xl serif mb-8 tracking-widest text-gold">VORYX</h2>
-                    <p class="text-gray-500 text-sm max-w-sm mb-12 leading-loose tracking-widest uppercase text-[10px]">
-                        Architecting global desire through deterministic luxury. Founded by Akshaya Selvakumar.
+                    <h3 class="text-4xl serif text-gold mb-8">VORYX</h3>
+                    <p class="text-gray-500 text-[10px] uppercase tracking-[0.4em] max-w-sm mb-12">
+                        Architecting global desire through deterministic luxury. Built for the $1000B Trust.
                     </p>
-                    <div class="flex space-x-10">
-                        <a href="https://instagram.com/voryx.official" target="_blank" class="text-gray-500 hover:text-gold transition-all"><i class="fab fa-instagram text-2xl"></i></a>
-                        <a href="#" class="text-gray-500 hover:text-gold transition-all"><i class="fab fa-linkedin text-2xl"></i></a>
-                        <a href="mailto:office@akshayaselvakumar.com" class="text-gray-500 hover:text-rose-500 transition-all"><i class="far fa-envelope text-2xl"></i></a>
+                    <div class="flex space-x-8">
+                        <a href="https://instagram.com/voryx.official" class="footer-link"><i class="fab fa-instagram text-xl"></i></a>
+                        <a href="https://pinterest.com" class="footer-link"><i class="fab fa-pinterest text-xl"></i></a>
+                        <a href="https://twitter.com" class="footer-link"><i class="fab fa-twitter text-xl"></i></a>
+                        <a href="mailto:office@akshayaselvakumar.com" class="footer-link"><i class="far fa-envelope text-xl"></i></a>
                     </div>
                 </div>
                 <div>
-                    <h4 class="text-[9px] font-black uppercase tracking-[0.4em] mb-8 text-gold">Empire Map</h4>
-                    <ul class="text-[10px] space-y-6 text-gray-500 uppercase tracking-widest">
-                        <li><a href="#collections" class="hover:text-white transition-colors">The Vault</a></li>
-                        <li><a href="#materials" class="hover:text-white transition-colors">Standards</a></li>
-                        <li><a href="#magazine" class="hover:text-white transition-colors">The Archive</a></li>
-                        <li><a href="#offers" class="hover:text-rose-500 transition-colors">Attraction Tiers</a></li>
+                    <h5 class="text-[10px] font-black uppercase tracking-[0.5em] mb-8 text-gold">The Cosmos</h5>
+                    <ul class="text-[9px] uppercase tracking-[0.3em] text-gray-400 space-y-6">
+                        <li><a href="#chamber-archives" class="hover:text-white transition-colors">Chamber 06-10</a></li>
+                        <li><a href="https://partner.voryx.akshayaselvakumar.org" class="hover:text-white transition-colors">Shop Partner</a></li>
+                        <li><a href="#blog" class="hover:text-white transition-colors">The Memoirs</a></li>
+                        <li><a href="mailto:office@akshayaselvakumar.com" class="hover:text-white transition-colors">Contact Office</a></li>
                     </ul>
                 </div>
                 <div>
-                    <h4 class="text-[9px] font-black uppercase tracking-[0.4em] mb-8 text-rose-500">Logistics</h4>
-                    <ul class="text-[10px] space-y-6 text-gray-500 uppercase tracking-widest">
-                        <li>Global Priority Shipping</li>
-                        <li>Empire Returns</li>
-                        <li>Concierge Service</li>
-                        <li>Private Commissions</li>
+                    <h5 class="text-[10px] font-black uppercase tracking-[0.5em] mb-8 text-rose-500">Legal Architecture</h5>
+                    <ul class="text-[9px] uppercase tracking-[0.3em] text-gray-400 space-y-6">
+                        <li><a href="#" class="hover:text-white transition-colors">Terms of Sovereignty</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Global Privacy Protocol</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Logistics & Returns</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Ethics & CSR</a></li>
                     </ul>
                 </div>
             </div>
-            <div class="gold-line mb-10 opacity-20"></div>
-            <div class="flex flex-col md:flex-row justify-between items-center text-[9px] text-gray-600 uppercase tracking-[0.3em]">
-                <p>&copy; 2026 Voryx Global Fashion. Built for $1000B Trust.</p>
-                <div class="flex space-x-8 mt-6 md:mt-0">
-                    <a href="#" class="hover:text-gold">Privacy</a>
-                    <a href="#" class="hover:text-gold">Sovereign Terms</a>
-                </div>
+            <div class="flex flex-col md:flex-row justify-between items-center text-[8px] text-gray-600 uppercase tracking-[0.4em]">
+                <p>&copy; 2026 VORYX GLOBAL FASHION. BY AKSHAYA SELVAKUMAR.</p>
+                <div class="mt-4 md:mt-0">BE YOURSELF IS THE BEST OF YOUR OWN</div>
             </div>
         </div>
     </footer>
 
-    <!-- Modals (Sovereign Mystery) -->
-    <div id="mag-modal" class="fixed inset-0 bg-black/95 z-[100] hidden items-center justify-center p-6 backdrop-blur-xl">
-        <div class="glass-card max-w-lg w-full p-12 relative border-gold/20">
-            <button onclick="closeModal()" class="absolute top-8 right-8 text-gray-500 hover:text-gold"><i data-lucide="x"></i></button>
-            <div id="modal-content" class="text-center">
-                <!-- Dynamic Content -->
-            </div>
-        </div>
-    </div>
-
-    <!-- Logic -->
+    <!-- Logic Script -->
     <script>
         lucide.createIcons();
 
-        function toggleMenu() {
-            const nav = document.getElementById('mobile-nav');
-            nav.classList.toggle('hidden');
-            nav.classList.toggle('flex');
+        // 1. Sparkle Engine
+        const canvas = document.getElementById('sparkle-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
         }
 
-        async function detectUser() {
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.speedY = (Math.random() - 0.5) * 0.5;
+                this.opacity = Math.random();
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.opacity < 0) this.opacity = 1;
+                this.opacity -= 0.005;
+            }
+            draw() {
+                ctx.fillStyle = `rgba(212, 175, 55, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            for (let i = 0; i < 100; i++) particles.push(new Particle());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
+        }
+
+        // 2. Custom Cursor
+        const cursor = document.getElementById('custom-cursor');
+        window.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // 3. 30 Products Slideshow Injection
+        const chapters = [
+            { id: 6, title: "The Scarlet Edge", subtitle: "High Spec Embroidery", color: "text-rose-500", img: "https://images.unsplash.com/photo-1512436991641-6745cdb1723f?q=80&w=2070&auto=format&fit=crop" },
+            { id: 7, title: "Midnight Silk", subtitle: "Architectural Draping", color: "text-blue-400", img: "https://images.unsplash.com/photo-1445205170230-053b830c6050?q=80&w=2071&auto=format&fit=crop" },
+            { id: 8, title: "Liquid Chrome", subtitle: "Reflective Streetwear", color: "text-gray-300", img: "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?q=80&w=2070&auto=format&fit=crop" },
+            { id: 9, title: "Velvet Sovereignty", subtitle: "Regal Heavy GSM", color: "text-purple-500", img: "https://images.unsplash.com/photo-1556905085-8ef21d173562?q=80&w=2070&auto=format&fit=crop" },
+            { id: 10, title: "Masterpiece", subtitle: "Final $1000B Trust Layer", color: "text-gold", img: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=1974&auto=format&fit=crop" }
+        ];
+
+        const slideshowRoot = document.getElementById('slideshow-root');
+
+        chapters.forEach(ch => {
+            const chamberSection = document.createElement('div');
+            chamberSection.className = "flex flex-col lg:flex-row items-center gap-10";
+            
+            let productSlides = "";
+            for(let i = 1; i <= 6; i++) {
+                productSlides += `
+                    <div class="product-slide">
+                        <div class="glass-card overflow-hidden group tilt-card">
+                            <div class="h-[450px] relative">
+                                <img src="${ch.img}&sig=${ch.id}${i}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                                <div class="absolute bottom-6 left-6 text-left">
+                                    <p class="text-[8px] uppercase tracking-[0.4em] opacity-60 mb-2">Item ARCH-0${ch.id}0${i}</p>
+                                    <h5 class="text-sm font-bold uppercase tracking-widest">${ch.title} Unit ${i}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                `;
+            }
+
+            chamberSection.innerHTML = `
+                <div class="lg:w-1/6 flex items-center justify-center lg:justify-start">
+                    <div class="chamber-label flex items-center gap-4">
+                        <span class="text-[10px] font-black uppercase tracking-[0.8em] opacity-30">Chamber</span>
+                        <span class="text-6xl font-black serif ${ch.color}">0${ch.id}</span>
+                    </div>
+                    <div class="ml-10 text-left">
+                        <h4 class="text-2xl serif mb-2">${ch.title}</h4>
+                        <p class="text-[9px] uppercase tracking-widest opacity-50">${ch.subtitle}</p>
+                    </div>
+                </div>
+                <div class="lg:w-5/6 overflow-hidden relative">
+                    <div id="track-ch-${ch.id}" class="slideshow-track">
+                        ${productSlides}
+                        ${productSlides} <!-- Duplicate for infinite loop -->
+                    </div>
+                </div>
+            `;
+            slideshowRoot.appendChild(chamberSection);
+        });
+
+        // 4. Automatic Slide Logic
+        function startAutoSlide() {
+            const tracks = [6,7,8,9,10].map(id => ({
+                el: document.getElementById(`track-ch-${id}`),
+                pos: 0,
+                max: 6
+            }));
+
+            setInterval(() => {
+                tracks.forEach(track => {
+                    track.pos++;
+                    if (track.pos >= track.max) {
+                        track.el.style.transition = 'none';
+                        track.pos = 0;
+                        track.el.style.transform = `translateX(0)`;
+                        setTimeout(() => {
+                            track.el.style.transition = 'transform 1.2s cubic-bezier(0.65, 0, 0.35, 1)';
+                            track.pos = 1;
+                            updateTransform(track);
+                        }, 50);
+                    } else {
+                        updateTransform(track);
+                    }
+                });
+            }, 4000);
+        }
+
+        function updateTransform(track) {
+            const width = window.innerWidth >= 768 ? 33.333 : 100;
+            track.el.style.transform = `translateX(-${track.pos * width}%)`;
+        }
+
+        // 5. 3D Tilt Hook for new elements
+        function initTilts() {
+            document.querySelectorAll('.tilt-card').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const xc = rect.width / 2;
+                    const yc = rect.height / 2;
+                    const dx = x - xc;
+                    const dy = y - yc;
+                    card.style.transform = `rotateY(${dx / 20}deg) rotateX(${-dy / 20}deg)`;
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'rotateY(0) rotateX(0)';
+                });
+            });
+        }
+
+        // 6. IP-Based Localization
+        const translations = {
+            'EN': { welcome: 'Initializing Sovereign Protocol...', hero: 'Be yourself is the best of your own. Architecting the $1000B Trust architecture.' },
+            'FR': { welcome: 'Protocole Souverain...', hero: 'Soyez vous-même. Architecture de confiance de 1000 milliards de dollars.' },
+            'IN': { welcome: 'Voryx India Portal...', hero: 'Be yourself is the best of your own. Built for the global fashion empire.' }
+        };
+
+        async function localize() {
             try {
                 const response = await fetch('https://ipapi.co/json/');
                 const data = await response.json();
-                const banner = document.getElementById('geo-text');
-                
-                const greetings = {
-                    'FR': 'L’Élite de Voryx France',
-                    'KR': '보릭스 로열티 코리아',
-                    'DE': 'Voryx Imperium Deutschland',
-                    'IN': 'Sovereign Voryx India',
-                    'US': 'Voryx Empire United States'
-                };
-
-                const welcome = greetings[data.country_code] || `Voryx Empire: ${data.country_name}`;
-                if(banner) banner.innerText = `${welcome} | Detected in ${data.city} | Deterministic Shipping Enabled`;
-            } catch (err) {
-                console.log("Geo-offline");
-            }
+                const welcomeEl = document.getElementById('geo-welcome');
+                if(welcomeEl) welcomeEl.innerText = `${translations[data.country_code]?.welcome || translations['EN'].welcome} [Detected: ${data.country_name}]`;
+            } catch (err) { console.log("Localisation defaults."); }
         }
 
-        function showMagModal(type) {
-            const modal = document.getElementById('mag-modal');
-            const content = document.getElementById('modal-content');
-            modal.classList.remove('hidden');
-            modal.classList.add('flex');
+        window.onload = () => {
+            resizeCanvas();
+            initParticles();
+            animate();
+            localize();
+            startAutoSlide();
+            initTilts();
+        };
 
-            if (type === 'free') {
-                content.innerHTML = `
-                    <h3 class="text-3xl serif mb-6 text-gold">The Inner Circle</h3>
-                    <p class="text-[11px] text-gray-400 mb-10 tracking-widest uppercase leading-loose">Enter your identity to unlock the free Sovereign Memoir Preview.</p>
-                    <form onsubmit="event.preventDefault(); alert('Access Granted. Redirecting to Vault...'); closeModal();">
-                        <input type="email" placeholder="YOUR EMAIL" class="w-full bg-white/5 border border-white/10 p-5 rounded-xl mb-6 text-xs text-white tracking-widest focus:outline-none focus:border-gold" required>
-                        <button class="btn-sovereign w-full py-5 rounded-xl font-bold uppercase tracking-widest text-xs">Authorize Access</button>
-                    </form>
-                `;
-            } else {
-                content.innerHTML = `
-                    <h3 class="text-3xl serif mb-6 text-gold">Master Archive</h3>
-                    <p class="text-[11px] text-gray-400 mb-10 tracking-widest uppercase leading-loose">Secure the high-resolution 4K Memoir including the private Valentine's BTS session.</p>
-                    <div class="bg-white/5 p-8 rounded-2xl mb-10">
-                        <div class="flex justify-between font-bold text-xs tracking-widest">
-                            <span class="text-gray-500 uppercase">Archive Vol. 1</span>
-                            <span class="text-gold">$5.00</span>
-                        </div>
-                    </div>
-                    <button onclick="alert('Securing Gateway...'); closeModal();" class="btn-sovereign w-full py-5 rounded-xl font-bold uppercase tracking-widest text-xs mb-4">Finalize Acquisition</button>
-                    <p class="text-[8px] text-gray-600 tracking-widest uppercase">Secure Deterministic Transaction</p>
-                `;
-            }
-        }
-
-        function closeModal() {
-            document.getElementById('mag-modal').classList.add('hidden');
-            document.getElementById('mag-modal').classList.remove('flex');
-        }
-
-        detectUser();
+        window.onresize = resizeCanvas;
     </script>
 </body>
 </html>
