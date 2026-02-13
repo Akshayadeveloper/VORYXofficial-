@@ -199,7 +199,7 @@
 
             <!-- Slideshow Container -->
             <div id="slideshow-root" class="space-y-32">
-                <!-- Each Chamber will be injected here via JS for 30 products -->
+                <!-- Each Chamber will be injected here via JS for 30 products using official GitHub Assets -->
             </div>
         </div>
     </section>
@@ -387,32 +387,47 @@
             cursor.style.top = e.clientY + 'px';
         });
 
-        // 3. 30 Products Slideshow Injection
+        // 3. 30 Products Slideshow Injection with REAL GITHUB ASSETS
+        const productImages = [
+            "Beanie.jpg", "Bloodline.jpg", "Boxer.jpg", "Bucket.jpg", "Chain.jpg", 
+            "Cuff.jpg", "Curtain.jpg", "Denim.jpg", "Dog.jpg", "Earring1.jpg", 
+            "Earring2.jpg", "Face%20Mask.jpg", "Hoodie.jpg", "Joggers.jpg", "Leather%20Tote.jpg", 
+            "Phone.jpg", "Pulse.jpg", "Ring.jpg", "Scarf.jpg", "Shorts.jpg", 
+            "Sign.jpg", "Silk%20Robe.jpg", "Sleep%20Mask.jpg", "Slipper.jpg", "Socks.jpg", 
+            "Street%20tech.jpg", "Thron.jpg", "Tie.jpg", "Umbrella.jpg", "Velvet.jpg"
+        ];
+        
+        const baseUrl = "https://raw.githubusercontent.com/Akshayadeveloper/VORYXofficial-/refs/heads/main/Chapters/";
+
         const chapters = [
-            { id: 6, title: "The Scarlet Edge", subtitle: "High Spec Embroidery", color: "text-rose-500", img: "https://raw.githubusercontent.com/Akshayadeveloper/VORYXofficial-/main/Chapters/Silk%20Robe.jpg" },
-            { id: 7, title: "Midnight Silk", subtitle: "Architectural Draping", color: "text-blue-400", img: "https://images.unsplash.com/photo-1445205170230-053b830c6050?q=80&w=2071&auto=format&fit=crop" },
-            { id: 8, title: "Liquid Chrome", subtitle: "Reflective Streetwear", color: "text-gray-300", img: "https://images.unsplash.com/photo-1551488831-00ddcb6c6bd3?q=80&w=2070&auto=format&fit=crop" },
-            { id: 9, title: "Velvet Sovereignty", subtitle: "Regal Heavy GSM", color: "text-purple-500", img: "https://images.unsplash.com/photo-1556905085-8ef21d173562?q=80&w=2070&auto=format&fit=crop" },
-            { id: 10, title: "Masterpiece", subtitle: "Final $1000B Trust Layer", color: "text-gold", img: "https://images.unsplash.com/photo-1539109136881-3be0616acf4b?q=80&w=1974&auto=format&fit=crop" }
+            { id: 6, title: "The Scarlet Edge", subtitle: "High Spec Embroidery", color: "text-rose-500" },
+            { id: 7, title: "Midnight Silk", subtitle: "Architectural Draping", color: "text-blue-400" },
+            { id: 8, title: "Liquid Chrome", subtitle: "Reflective Streetwear", color: "text-gray-300" },
+            { id: 9, title: "Velvet Sovereignty", subtitle: "Regal Heavy GSM", color: "text-purple-500" },
+            { id: 10, title: "Masterpiece", subtitle: "Final $1000B Trust Layer", color: "text-gold" }
         ];
 
         const slideshowRoot = document.getElementById('slideshow-root');
 
-        chapters.forEach(ch => {
+        chapters.forEach((ch, chIndex) => {
             const chamberSection = document.createElement('div');
             chamberSection.className = "flex flex-col lg:flex-row items-center gap-10";
             
             let productSlides = "";
-            for(let i = 1; i <= 6; i++) {
+            for(let i = 0; i < 6; i++) {
+                const imgIndex = (chIndex * 6) + i;
+                const fileName = productImages[imgIndex];
+                const cleanName = fileName.replace('.jpg', '').replace('%20', ' ');
+                
                 productSlides += `
                     <div class="product-slide">
                         <div class="glass-card overflow-hidden group tilt-card">
                             <div class="h-[450px] relative">
-                                <img src="${ch.img}&sig=${ch.id}${i}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
+                                <img src="${baseUrl}${fileName}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
                                 <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
                                 <div class="absolute bottom-6 left-6 text-left">
-                                    <p class="text-[8px] uppercase tracking-[0.4em] opacity-60 mb-2">Item ARCH-0${ch.id}0${i}</p>
-                                    <h5 class="text-sm font-bold uppercase tracking-widest">${ch.title} Unit ${i}</h5>
+                                    <p class="text-[8px] uppercase tracking-[0.4em] opacity-60 mb-2">Item ARCH-V${ch.id}-${i+1}</p>
+                                    <h5 class="text-sm font-bold uppercase tracking-widest">${cleanName}</h5>
                                 </div>
                             </div>
                         </div>
