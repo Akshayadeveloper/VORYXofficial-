@@ -1,0 +1,449 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>VORYX | Sovereign Romance - Valentine Special</title>
+    
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@200;300;400;600;800&display=swap" rel="stylesheet">
+
+    <style>
+        :root {
+            --voryx-gold: #D4AF37;
+            --voryx-midnight: #080408;
+            --voryx-crimson: #8B0000;
+            --voryx-glass: rgba(255, 255, 255, 0.03);
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--voryx-midnight);
+            color: #ffffff;
+            overflow-x: hidden;
+            cursor: default;
+        }
+
+        .serif { font-family: 'Playfair Display', serif; }
+
+        .voryx-bg {
+            background: radial-gradient(circle at top right, #1a0b0b, transparent 60%),
+                        radial-gradient(circle at bottom left, #0b1a1a, transparent 60%);
+        }
+
+        .glass-card {
+            background: var(--voryx-glass);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+            border-radius: 24px;
+        }
+
+        .text-gold {
+            background: linear-gradient(75deg, #D4AF37 0%, #FDFBD3 50%, #D4AF37 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-size: 200% auto;
+            animation: shine 4s linear infinite;
+        }
+
+        @keyframes shine { to { background-position: 200% center; } }
+
+        #photoCanvas {
+            width: 100%;
+            height: auto;
+            border-radius: 12px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        }
+
+        .btn-gold {
+            background: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%);
+            color: #000;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .btn-gold:hover:not(:disabled) {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
+            filter: brightness(1.1);
+        }
+
+        .frame-thumb {
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+        }
+
+        .frame-thumb.active {
+            border-color: var(--voryx-gold);
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        /* Modal Overlay */
+        .modal-overlay {
+            background: rgba(0,0,0,0.9);
+            backdrop-filter: blur(10px);
+            display: none;
+            align-items: center;
+            justify-content: center;
+            z-index: 100;
+        }
+        
+        .modal-overlay.active { display: flex; }
+
+        .loader-bar {
+            height: 2px;
+            background: #D4AF37;
+            width: 0%;
+            transition: width 0.5s ease;
+        }
+    </style>
+</head>
+<body class="voryx-bg min-h-screen">
+
+    <!-- Social Gating Modal -->
+    <div id="socialModal" class="modal-overlay fixed inset-0 p-6">
+        <div class="glass-card max-w-md w-full p-8 text-center border-gold/30">
+            <div id="modalIcon" class="mb-6 flex justify-center text-gold"></div>
+            <h3 id="modalTitle" class="text-2xl serif mb-4 tracking-wide"></h3>
+            <p id="modalDesc" class="text-gray-400 text-sm mb-8 leading-relaxed"></p>
+            
+            <a id="socialActionBtn" href="#" target="_blank" class="btn-gold block w-full py-4 rounded-full text-sm mb-4">
+                Proceed to Follow
+            </a>
+            
+            <button id="verifyBtn" class="text-[10px] uppercase tracking-[0.3em] text-gold/60 hover:text-gold transition-colors">
+                I have followed / shared
+            </button>
+        </div>
+    </div>
+
+    <!-- Navigation -->
+    <nav class="p-8 flex justify-between items-center max-w-7xl mx-auto">
+        <div class="flex flex-col">
+            <span class="text-3xl font-black serif tracking-widest text-gold">VORYX</span>
+            <span class="text-[8px] uppercase tracking-[0.4em] opacity-60">Sovereign Romance</span>
+        </div>
+        <div class="hidden md:flex space-x-8 text-[10px] font-bold uppercase tracking-[0.2em]">
+            <a href="#" class="hover:text-gold">Home</a>
+            <a href="#" class="hover:text-gold">Archives</a>
+            <a href="#" class="text-rose-500">Valentine Special</a>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
+        
+        <!-- Left: Controls -->
+        <div class="lg:col-span-5 space-y-8 order-2 lg:order-1">
+            <div class="glass-card p-8">
+                <h2 class="text-xl serif mb-6 tracking-wide">1. Architect Your Canvas</h2>
+                <div class="relative group">
+                    <input type="file" id="imageInput" accept="image/*" class="hidden">
+                    <label for="imageInput" class="flex flex-col items-center justify-center p-12 border-2 border-dashed border-white/10 rounded-2xl hover:border-gold/40 cursor-pointer transition-all bg-white/5">
+                        <i data-lucide="upload" class="mb-4 text-gray-400"></i>
+                        <span class="text-xs uppercase tracking-[0.2em] text-gray-300">Select Portrait</span>
+                    </label>
+                </div>
+            </div>
+
+            <div class="glass-card p-8">
+                <h2 class="text-xl serif mb-6 tracking-wide">2. The Sovereign Frame</h2>
+                <div class="grid grid-cols-2 gap-4" id="frameContainer">
+                    <!-- Frames Injected by JS -->
+                </div>
+            </div>
+
+            <div class="glass-card p-8">
+                <h2 class="text-xl serif mb-6 tracking-wide">3. Eternal Message</h2>
+                <input type="text" id="quoteInput" placeholder="Enter your romantic vow..." class="w-full bg-white/5 border border-white/10 p-4 rounded-xl text-sm focus:outline-none focus:border-gold/40 transition-all mb-4">
+                
+                <button id="downloadBtn" class="btn-gold w-full py-5 rounded-full text-xs shadow-lg flex items-center justify-center gap-2" disabled>
+                    <i data-lucide="download" class="w-4 h-4"></i>
+                    Acquire Masterpiece
+                </button>
+            </div>
+        </div>
+
+        <!-- Right: Preview -->
+        <div class="lg:col-span-7 order-1 lg:order-2">
+            <div class="glass-card p-4 md:p-12 relative overflow-hidden">
+                <div class="absolute top-0 left-0 w-full loader-bar" id="processingBar"></div>
+                <div class="mb-6 flex justify-between items-center">
+                    <span class="text-[9px] uppercase tracking-[0.5em] text-gold/60">Live Masterpiece Preview</span>
+                    <span class="text-[9px] uppercase tracking-[0.5em] text-white/20">VORYX-RMC-2026</span>
+                </div>
+                
+                <div id="previewContainer" class="flex items-center justify-center min-h-[400px] bg-white/5 rounded-xl border border-white/5">
+                    <p id="placeholderText" class="text-xs uppercase tracking-[0.3em] text-gray-600">No Portrait Loaded</p>
+                    <canvas id="photoCanvas" class="hidden"></canvas>
+                </div>
+
+                <div class="mt-8 flex justify-between text-[8px] uppercase tracking-[0.4em] text-gray-500">
+                    <span>Designed for Global Desire</span>
+                    <span>Deterministic Love Protocol</span>
+                </div>
+            </div>
+        </div>
+    </main>
+
+    <footer class="mt-24 border-t border-white/5 py-12 px-8 text-center">
+        <p class="text-[10px] text-gray-600 uppercase tracking-[0.4em]">
+            &copy; 2026 VORYX GLOBAL. BY AKSHAYA SELVAKUMAR.
+        </p>
+    </footer>
+
+    <script>
+        lucide.createIcons();
+
+        const canvas = document.getElementById('photoCanvas');
+        const ctx = canvas.getContext('2d');
+        const imageInput = document.getElementById('imageInput');
+        const downloadBtn = document.getElementById('downloadBtn');
+        const quoteInput = document.getElementById('quoteInput');
+        const processingBar = document.getElementById('processingBar');
+        const socialModal = document.getElementById('socialModal');
+        const verifyBtn = document.getElementById('verifyBtn');
+
+        let userImage = null;
+        let activeFrame = 'sovereign_gold';
+        let downloadCount = parseInt(localStorage.getItem('voryx_dl_count') || '0');
+
+        const frames = [
+            { id: 'sovereign_gold', name: 'Sovereign Gold', icon: 'crown' },
+            { id: 'crimson_bloom', name: 'Crimson Bloom', icon: 'heart' },
+            { id: 'midnight_velvet', name: 'Midnight Velvet', icon: 'moon' },
+            { id: 'eternal_glow', name: 'Eternal Glow', icon: 'sparkles' }
+        ];
+
+        const socialGating = [
+            {
+                platform: 'Instagram',
+                title: 'Voryx Instagram Presence',
+                desc: 'To acquire your first masterpiece, join the Sovereign Elite on Instagram.',
+                url: 'https://instagram.com/voryx.official',
+                icon: 'instagram'
+            },
+            {
+                platform: 'Pinterest',
+                title: 'Voryx Visual Archives',
+                desc: 'Access our visual legacy. Follow Voryx Official on Pinterest to proceed.',
+                url: 'https://www.pinterest.com/VoryxOfficial',
+                icon: 'image'
+            },
+            {
+                platform: 'Twitter',
+                title: 'The Sovereign Feed',
+                desc: 'Stay informed on the $1000B Trust. Follow our broadcast on X.',
+                url: 'https://x.com/VORYXofficial',
+                icon: 'twitter'
+            },
+            {
+                platform: 'Share',
+                title: 'Sovereign Proclamation',
+                desc: 'The final step: Proclaim your masterpiece. Share your creation and tag @VoryxOfficial.',
+                url: 'https://voryx.akshayaselvakumar.org',
+                icon: 'share-2'
+            }
+        ];
+
+        // UI Initialization
+        function initUI() {
+            const container = document.getElementById('frameContainer');
+            frames.forEach(frame => {
+                const btn = document.createElement('button');
+                btn.className = `frame-thumb p-4 rounded-xl flex flex-col items-center gap-2 bg-white/5 ${activeFrame === frame.id ? 'active' : ''}`;
+                btn.innerHTML = `
+                    <i data-lucide="${frame.icon}" class="w-5 h-5 text-gold"></i>
+                    <span class="text-[9px] uppercase tracking-widest text-gray-400">${frame.name}</span>
+                `;
+                btn.onclick = () => {
+                    document.querySelectorAll('.frame-thumb').forEach(b => b.classList.remove('active'));
+                    btn.classList.add('active');
+                    activeFrame = frame.id;
+                    render();
+                };
+                container.appendChild(btn);
+            });
+            lucide.createIcons();
+        }
+
+        imageInput.onchange = (e) => {
+            const file = e.target.files[0];
+            if (!file) return;
+            const reader = new FileReader();
+            reader.onload = (event) => {
+                userImage = new Image();
+                userImage.onload = () => {
+                    canvas.classList.remove('hidden');
+                    document.getElementById('placeholderText').classList.add('hidden');
+                    downloadBtn.disabled = false;
+                    render();
+                };
+                userImage.src = event.target.result;
+            };
+            reader.readAsDataURL(file);
+        };
+
+        quoteInput.oninput = () => render();
+
+        function render() {
+            if (!userImage) return;
+
+            processingBar.style.width = "100%";
+            setTimeout(() => { processingBar.style.width = "0%"; }, 600);
+
+            // Aspect Ratio 4:5 (Professional Portrait)
+            const targetW = 1080;
+            const targetH = 1350;
+            canvas.width = targetW;
+            canvas.height = targetH;
+
+            // Draw Base Image (Cover Style)
+            const imgAr = userImage.width / userImage.height;
+            const targetAr = targetW / targetH;
+            let drawW, drawH, drawX, drawY;
+
+            if (imgAr > targetAr) {
+                drawH = targetH;
+                drawW = targetH * imgAr;
+                drawX = -(drawW - targetW) / 2;
+                drawY = 0;
+            } else {
+                drawW = targetW;
+                drawH = targetW / imgAr;
+                drawX = 0;
+                drawY = -(drawH - targetH) / 2;
+            }
+
+            ctx.clearRect(0, 0, targetW, targetH);
+            ctx.drawImage(userImage, drawX, drawY, drawW, drawH);
+
+            applyFrameEffect(activeFrame, targetW, targetH);
+            drawWatermark(targetW, targetH);
+        }
+
+        function applyFrameEffect(type, w, h) {
+            const pad = w * 0.05;
+
+            if (type === 'sovereign_gold') {
+                // Double Border
+                ctx.strokeStyle = '#D4AF37';
+                ctx.lineWidth = w * 0.02;
+                ctx.strokeRect(pad, pad, w - pad*2, h - pad*2);
+                
+                ctx.lineWidth = 2;
+                ctx.strokeRect(pad * 1.5, pad * 1.5, w - pad*3, h - pad*3);
+                
+                // Vignette
+                const grad = ctx.createRadialGradient(w/2, h/2, w*0.3, w/2, h/2, w*0.8);
+                grad.addColorStop(0, 'transparent');
+                grad.addColorStop(1, 'rgba(0,0,0,0.6)');
+                ctx.fillStyle = grad;
+                ctx.fillRect(0,0,w,h);
+            }
+
+            if (type === 'crimson_bloom') {
+                const grad = ctx.createLinearGradient(0,0,0,h);
+                grad.addColorStop(0, 'rgba(139,0,0,0.3)');
+                grad.addColorStop(0.5, 'transparent');
+                grad.addColorStop(1, 'rgba(139,0,0,0.4)');
+                ctx.fillStyle = grad;
+                ctx.fillRect(0,0,w,h);
+                
+                // Petals (Randomized simple shapes)
+                ctx.fillStyle = 'rgba(255,46,99,0.4)';
+                for(let i=0; i<40; i++) {
+                    ctx.beginPath();
+                    ctx.ellipse(Math.random()*w, Math.random()*h, 10, 15, Math.random()*Math.PI, 0, Math.PI*2);
+                    ctx.fill();
+                }
+            }
+
+            if (type === 'midnight_velvet') {
+                const grad = ctx.createRadialGradient(w/2, h/2, 0, w/2, h/2, w);
+                grad.addColorStop(0, 'rgba(0,0,0,0)');
+                grad.addColorStop(1, 'rgba(10,5,20,0.8)');
+                ctx.fillStyle = grad;
+                ctx.fillRect(0,0,w,h);
+
+                // Stardust
+                ctx.fillStyle = 'white';
+                for(let i=0; i<200; i++) {
+                    ctx.globalAlpha = Math.random();
+                    ctx.fillRect(Math.random()*w, Math.random()*h, 2, 2);
+                }
+                ctx.globalAlpha = 1;
+            }
+
+            if (type === 'eternal_glow') {
+                ctx.globalCompositeOperation = 'screen';
+                const grad = ctx.createLinearGradient(0,0,w,h);
+                grad.addColorStop(0, 'rgba(212,175,55,0.2)');
+                grad.addColorStop(1, 'rgba(255,255,255,0.1)');
+                ctx.fillStyle = grad;
+                ctx.fillRect(0,0,w,h);
+                ctx.globalCompositeOperation = 'source-over';
+            }
+
+            // Draw Quote
+            const quote = quoteInput.value.trim();
+            if (quote) {
+                ctx.textAlign = 'center';
+                ctx.font = `italic ${w * 0.045}px 'Playfair Display', serif`;
+                ctx.fillStyle = 'white';
+                ctx.shadowColor = 'rgba(0,0,0,0.8)';
+                ctx.shadowBlur = 10;
+                ctx.fillText(quote, w/2, h * 0.85);
+                ctx.shadowBlur = 0;
+            }
+        }
+
+        function drawWatermark(w, h) {
+            ctx.textAlign = 'right';
+            ctx.font = `bold ${w * 0.02}px 'Inter', sans-serif`;
+            ctx.fillStyle = 'rgba(212, 175, 55, 0.5)';
+            ctx.letterSpacing = "2px";
+            ctx.fillText("VORYX OFFICIAL", w - 50, h - 50);
+            
+            ctx.textAlign = 'left';
+            ctx.font = `300 ${w * 0.015}px 'Inter', sans-serif`;
+            ctx.fillText("SOVEREIGN ROMANCE COLLECTION", 50, h - 50);
+        }
+
+        // Gating Logic
+        downloadBtn.onclick = () => {
+            const gateIndex = Math.min(downloadCount, socialGating.length - 1);
+            const gate = socialGating[gateIndex];
+
+            // Set Modal Content
+            document.getElementById('modalTitle').innerText = gate.title;
+            document.getElementById('modalDesc').innerText = gate.desc;
+            document.getElementById('modalIcon').innerHTML = `<i data-lucide="${gate.icon}" class="w-12 h-12"></i>`;
+            document.getElementById('socialActionBtn').href = gate.url;
+            document.getElementById('socialActionBtn').innerText = gateIndex === 3 ? 'Share Voryx Portal' : `Follow on ${gate.platform}`;
+
+            lucide.createIcons();
+            socialModal.classList.add('active');
+        };
+
+        verifyBtn.onclick = () => {
+            socialModal.classList.remove('active');
+            
+            // Increment and Save
+            downloadCount++;
+            localStorage.setItem('voryx_dl_count', downloadCount);
+
+            // Execute Download
+            const link = document.createElement('a');
+            link.download = `VORYX_Masterpiece_${Date.now()}.png`;
+            link.href = canvas.toDataURL('image/png', 1.0);
+            link.click();
+        };
+
+        initUI();
+    </script>
+</body>
+</html>
