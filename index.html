@@ -3,10 +3,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VORYX | Chamber 10: Masterpiece</title>
+    <title>VORYX | Chamber 10: Masterpiece & Studio</title>
     
     <!-- SEO & Metadata -->
-    <meta name="description" content="Official Voryx Global Portal. Chamber 10: Masterpiece. Luxury redefined through Sovereign Romance.">
+    <meta name="description" content="Official Voryx Global Portal. Chamber 10: Masterpiece & Voryx Studio. Luxury redefined through Sovereign Romance.">
 
     <!-- Pinterest Domain Verification -->
     <meta content="502e0566070831d65459f5e40fe7c0e8" name="p:domain_verify"/>
@@ -110,6 +110,7 @@
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            display: inline-block;
         }
 
         .btn-voryx:hover {
@@ -147,6 +148,11 @@
             from { opacity: 0; transform: translateY(40px) skewY(5deg); }
             to { opacity: 1; transform: translateY(0) skewY(0); }
         }
+
+        .studio-card {
+            background: radial-gradient(circle at center, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+            border: 1px solid rgba(212, 175, 55, 0.1);
+        }
     </style>
 </head>
 <body>
@@ -156,11 +162,12 @@
 
     <!-- Header Navigation -->
     <nav class="fixed top-0 w-full z-50 py-6 px-10 flex justify-between items-center mix-blend-difference">
-        <a href="https://voryx.akshayaselvakumar.org" class="flex flex-col">
+        <a href="#" class="flex flex-col">
             <span class="text-3xl font-black serif tracking-widest text-gold">VORYX</span>
             <span id="lang-tagline" class="text-[8px] uppercase tracking-[0.4em] opacity-60">Sovereign Cosmos</span>
         </a>
         <div class="hidden md:flex space-x-12 text-[10px] uppercase font-bold tracking-[0.3em]">
+            <a href="Frame.html" class="text-gold font-bold border-b border-gold/40 pb-1">Voryx Studio</a>
             <a href="#chamber-archives" class="hover:text-gold transition-all">Archives 6-10</a>
             <a href="#blog" class="hover:text-gold transition-all">Memoirs</a>
             <a href="#valentine" class="text-rose-500 animate-pulse">Valentine Special</a>
@@ -186,24 +193,34 @@
                 Be yourself is the best of your own. Architecting the $1000B Trust architecture in global luxury fashion.
             </p>
             <div class="flex flex-col md:flex-row justify-center items-center gap-6">
-                <a href="https://partner.voryx.akshayaselvakumar.org" class="btn-voryx">Acquire Collection</a>
-                <a href="#chamber-archives" class="text-xs uppercase tracking-[0.4em] border-b border-gold/40 pb-2 hover:border-gold transition-all">View Archives 6-10</a>
+                <a href="Frame.html" class="btn-voryx">Open Voryx Studio</a>
+                <a href="https://partner.voryx.akshayaselvakumar.org" class="text-xs uppercase tracking-[0.4em] border-b border-gold/40 pb-2 hover:border-gold transition-all">Acquire Collection</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Voryx Studio Portal Section -->
+    <section id="studio-intro" class="py-32 bg-midnight relative z-10">
+        <div class="container mx-auto px-10">
+            <div class="max-w-4xl mx-auto glass-card p-12 md:p-20 text-center studio-card">
+                <i data-lucide="image-plus" class="w-16 h-16 mx-auto mb-8 text-gold"></i>
+                <h2 class="text-4xl serif mb-6">Voryx <span class="text-gold italic">Studio</span></h2>
+                <p class="text-gray-400 text-sm tracking-widest leading-loose max-w-xl mx-auto mb-10">
+                    Architect your visual identity. Access the Sovereign Romance image editor to frame your portraits in Voryx Gold and Crimson. Verification of social membership is required to unlock master downloads.
+                </p>
+                <a href="Frame.html" class="btn-voryx">Launch Masterpiece Editor</a>
             </div>
         </div>
     </section>
 
     <!-- Sovereign Chambers Archives (Slideshow System) -->
-    <section id="chamber-archives" class="py-32 bg-midnight overflow-hidden">
+    <section id="chamber-archives" class="py-32 bg-midnight overflow-hidden border-t border-white/5">
         <div class="container mx-auto px-10">
             <div class="mb-20 text-center">
                 <h2 class="text-4xl md:text-6xl serif mb-4">Sovereign <span class="text-gold">Archives</span></h2>
                 <p class="text-[10px] text-gray-500 uppercase tracking-[0.6em]">Chambers 06 through 10 | Architectural Evolution</p>
             </div>
-
-            <!-- Slideshow Container -->
-            <div id="slideshow-root" class="space-y-32">
-                <!-- Each Chamber will be injected here via JS for 30 products using official GitHub Assets -->
-            </div>
+            <div id="slideshow-root" class="space-y-32"></div>
         </div>
     </section>
 
@@ -276,7 +293,7 @@
                         <span class="text-rose-500 text-[9px] font-black uppercase tracking-[0.4em]">Inside Chamber 10</span>
                         <h4 class="text-2xl serif mt-4 mb-6">The Architecture of Self: Why Mastery is Intentional</h4>
                         <p class="text-gray-500 text-xs tracking-widest leading-loose mb-8">Exploring the deterministic nature of fashion in the 2026 Voryx Cosmos...</p>
-                        <a href="https://akshayaselvakumarceo.blogspot.com/2026/02/the-clock-is-ticking-why-this-february.html?m=1" class="text-gold text-[10px] font-bold uppercase tracking-widest border-b border-gold/30 pb-1">Read Memoir</a>
+                        <a href="https://akshayaselvakumarceo.blogspot.com/2026/02/the-clock-is-ticking-why-this-february.html?m=1" target="_blank" class="text-gold text-[10px] font-bold uppercase tracking-widest border-b border-gold/30 pb-1">Read Memoir</a>
                     </div>
                 </div>
                 <div class="glass-card overflow-hidden group">
@@ -287,7 +304,7 @@
                         <span class="text-gold text-[9px] font-black uppercase tracking-[0.4em]">Lifestyle</span>
                         <h4 class="text-2xl serif mt-4 mb-6">High Net-Worth Romance: The 2026 Guide</h4>
                         <p class="text-gray-500 text-xs tracking-widest leading-loose mb-8">How Voryx is redefining gift culture for the global elite this Valentine's season...</p>
-                        <a href="https://akshayaselvakumarceo.blogspot.com/2026/02/the-clock-is-ticking-why-this-february.html?m=1" class="text-gold text-[10px] font-bold uppercase tracking-widest border-b border-gold/30 pb-1">Read Memoir</a>
+                        <a href="https://akshayaselvakumarceo.blogspot.com/2026/02/the-clock-is-ticking-why-this-february.html?m=1" target="_blank" class="text-gold text-[10px] font-bold uppercase tracking-widest border-b border-gold/30 pb-1">Read Memoir</a>
                     </div>
                 </div>
             </div>
@@ -313,19 +330,17 @@
                 <div>
                     <h5 class="text-[10px] font-black uppercase tracking-[0.5em] mb-8 text-gold">The Cosmos</h5>
                     <ul class="text-[9px] uppercase tracking-[0.3em] text-gray-400 space-y-6">
+                        <li><a href="Frame.html" class="hover:text-white transition-colors">Voryx Studio</a></li>
                         <li><a href="#chamber-archives" class="hover:text-white transition-colors">Chamber 06-10</a></li>
                         <li><a href="https://partner.voryx.akshayaselvakumar.org" class="hover:text-white transition-colors">Shop Partner</a></li>
-                        <li><a href="#blog" class="hover:text-white transition-colors">The Memoirs</a></li>
-                        <li><a href="mailto:office@akshayaselvakumar.com" class="hover:text-white transition-colors">Contact Office</a></li>
                     </ul>
                 </div>
                 <div>
                     <h5 class="text-[10px] font-black uppercase tracking-[0.5em] mb-8 text-rose-500">Legal Architecture</h5>
                     <ul class="text-[9px] uppercase tracking-[0.3em] text-gray-400 space-y-6">
-                        <li><a href="#" class="hover:text-white transition-colors">Terms of Sovereignty</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Global Privacy Protocol</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Logistics & Returns</a></li>
-                        <li><a href="#" class="hover:text-white transition-colors">Ethics & CSR</a></li>
+                        <li>Terms of Sovereignty</li>
+                        <li>Global Privacy Protocol</li>
+                        <li>Logistics & CSR</li>
                     </ul>
                 </div>
             </div>
@@ -390,7 +405,7 @@
             cursor.style.top = e.clientY + 'px';
         });
 
-        // 3. 30 Products Slideshow Injection with REAL GITHUB ASSETS
+        // 3. Slideshow Injection with EXACT GITHUB ASSET ORDER
         const productImages = [
             "Bloodline.jpg", "Pulse.jpg", "Thron.jpg", "Beanie.jpg", "Denim.jpg",  
             "Joggers.jpg",  "Dog.jpg", "Chain.jpg", "Ring.jpg", "Cuff.jpg", 
