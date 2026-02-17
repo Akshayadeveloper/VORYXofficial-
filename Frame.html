@@ -3,447 +3,554 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>VORYX | Sovereign Romance - Valentine Special</title>
+    <title>VORYX | Chamber 10: Masterpiece & Studio</title>
     
+    <!-- SEO & Metadata -->
+    <meta name="description" content="Official Voryx Global Portal. Chamber 10: Masterpiece & Voryx Studio. Luxury redefined through Sovereign Romance.">
+
+    <!-- Pinterest Domain Verification -->
+    <meta content="502e0566070831d65459f5e40fe7c0e8" name="p:domain_verify"/>
+
+    <!-- Fonts & Icons -->
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@200;300;400;600;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://unpkg.com/lucide@latest"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400;1,700&family=Inter:wght@200;300;400;600;800&display=swap" rel="stylesheet">
 
     <style>
         :root {
+            --voryx-navy: #001F3F;
+            --voryx-crimson: #8B0000;
+            --voryx-rose: #FF2E63;
             --voryx-gold: #D4AF37;
             --voryx-midnight: #080408;
-            --voryx-crimson: #8B0000;
             --voryx-glass: rgba(255, 255, 255, 0.03);
         }
+
+        * { cursor: none; }
 
         body {
             font-family: 'Inter', sans-serif;
             background-color: var(--voryx-midnight);
             color: #ffffff;
             overflow-x: hidden;
-            cursor: default;
+            scroll-behavior: smooth;
         }
 
         .serif { font-family: 'Playfair Display', serif; }
 
-        .voryx-bg {
-            background: radial-gradient(circle at top right, #1a0b0b, transparent 60%),
-                        radial-gradient(circle at bottom left, #0b1a1a, transparent 60%);
+        /* Sparkling Particles Background */
+        #sparkle-canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 1;
         }
 
-        .glass-card {
-            background: var(--voryx-glass);
-            backdrop-filter: blur(25px);
-            border: 1px solid rgba(212, 175, 55, 0.1);
-            border-radius: 24px;
+        /* 3D Tilt Effect */
+        .tilt-card {
+            transform-style: preserve-3d;
+            perspective: 1000px;
+            transition: transform 0.2s ease-out;
         }
 
+        /* Text Gradient (Sparkling Gold) */
         .text-gold {
             background: linear-gradient(75deg, #D4AF37 0%, #FDFBD3 50%, #D4AF37 100%);
+            background-size: 200% auto;
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
-            background-size: 200% auto;
-            animation: shine 4s linear infinite;
+            animation: shine 3s linear infinite;
         }
 
         @keyframes shine { to { background-position: 200% center; } }
 
-        #photoCanvas {
-            width: 100%;
-            height: auto;
-            border-radius: 12px;
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+        /* Glassmorphism */
+        .glass-card {
+            background: var(--voryx-glass);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 20px;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        .btn-gold {
-            background: linear-gradient(135deg, #D4AF37 0%, #B8860B 100%);
-            color: #000;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 0.1em;
-            transition: all 0.3s cubic-bezier(0.23, 1, 0.32, 1);
-        }
-
-        .btn-gold:hover:not(:disabled) {
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(212, 175, 55, 0.3);
-            filter: brightness(1.1);
-        }
-
-        .frame-thumb {
-            border: 2px solid transparent;
-            transition: all 0.3s ease;
-        }
-
-        .frame-thumb.active {
+        .glass-card:hover {
             border-color: var(--voryx-gold);
-            background: rgba(212, 175, 55, 0.1);
+            background: rgba(255, 255, 255, 0.06);
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.15);
         }
 
-        /* Modal Overlay */
-        .modal-overlay {
-            background: rgba(0,0,0,0.9);
-            backdrop-filter: blur(10px);
-            display: none;
-            align-items: center;
-            justify-content: center;
-            z-index: 100;
+        /* Custom Cursor */
+        #custom-cursor {
+            width: 15px;
+            height: 15px;
+            background: var(--voryx-gold);
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            z-index: 9999;
+            mix-blend-mode: difference;
+            transition: transform 0.1s ease;
         }
-        
-        .modal-overlay.active { display: flex; }
 
-        .loader-bar {
-            height: 2px;
-            background: #D4AF37;
-            width: 0%;
-            transition: width 0.5s ease;
+        /* Smooth Scrollbar */
+        ::-webkit-scrollbar { width: 4px; }
+        ::-webkit-scrollbar-track { background: var(--voryx-midnight); }
+        ::-webkit-scrollbar-thumb { background: var(--voryx-gold); }
+
+        .btn-voryx {
+            background: linear-gradient(135deg, var(--voryx-navy) 0%, var(--voryx-crimson) 100%);
+            padding: 1rem 2.5rem;
+            border-radius: 99px;
+            text-transform: uppercase;
+            letter-spacing: 0.2em;
+            font-size: 0.75rem;
+            font-weight: 800;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            display: inline-block;
+        }
+
+        .btn-voryx:hover {
+            transform: translateY(-3px) scale(1.02);
+            box-shadow: 0 10px 30px rgba(255, 46, 99, 0.3);
+        }
+
+        /* Slideshow Animation */
+        .slideshow-track {
+            display: flex;
+            transition: transform 1.2s cubic-bezier(0.65, 0, 0.35, 1);
+        }
+
+        .product-slide {
+            flex: 0 0 100%;
+            max-width: 100%;
+            padding: 0 10px;
+        }
+
+        @media (min-width: 768px) {
+            .product-slide { flex: 0 0 33.333%; }
+        }
+
+        .chamber-label {
+            writing-mode: vertical-rl;
+            text-orientation: mixed;
+            transform: rotate(180deg);
+        }
+
+        .hero-title {
+            animation: heroReveal 1.5s cubic-bezier(0.77, 0, 0.175, 1);
+        }
+
+        @keyframes heroReveal {
+            from { opacity: 0; transform: translateY(40px) skewY(5deg); }
+            to { opacity: 1; transform: translateY(0) skewY(0); }
+        }
+
+        .studio-card {
+            background: radial-gradient(circle at center, rgba(212, 175, 55, 0.05) 0%, transparent 70%);
+            border: 1px solid rgba(212, 175, 55, 0.1);
         }
     </style>
 </head>
-<body class="voryx-bg min-h-screen">
+<body>
 
-    <!-- Social Gating Modal -->
-    <div id="socialModal" class="modal-overlay fixed inset-0 p-6">
-        <div class="glass-card max-w-md w-full p-8 text-center border-gold/30">
-            <div id="modalIcon" class="mb-6 flex justify-center text-gold"></div>
-            <h3 id="modalTitle" class="text-2xl serif mb-4 tracking-wide"></h3>
-            <p id="modalDesc" class="text-gray-400 text-sm mb-8 leading-relaxed"></p>
-            
-            <a id="socialActionBtn" href="#" target="_blank" class="btn-gold block w-full py-4 rounded-full text-sm mb-4">
-                Proceed to Follow
-            </a>
-            
-            <button id="verifyBtn" class="text-[10px] uppercase tracking-[0.3em] text-gold/60 hover:text-gold transition-colors">
-                I have followed / shared
-            </button>
-        </div>
-    </div>
+    <div id="custom-cursor"></div>
+    <canvas id="sparkle-canvas"></canvas>
 
-    <!-- Navigation -->
-    <nav class="p-8 flex justify-between items-center max-w-7xl mx-auto">
-        <div class="flex flex-col">
+    <!-- Header Navigation -->
+    <nav class="fixed top-0 w-full z-50 py-6 px-10 flex justify-between items-center mix-blend-difference">
+        <a href="#" class="flex flex-col">
             <span class="text-3xl font-black serif tracking-widest text-gold">VORYX</span>
-            <span class="text-[8px] uppercase tracking-[0.4em] opacity-60">Sovereign Romance</span>
+            <span id="lang-tagline" class="text-[8px] uppercase tracking-[0.4em] opacity-60">Sovereign Cosmos</span>
+        </a>
+        <div class="hidden md:flex space-x-12 text-[10px] uppercase font-bold tracking-[0.3em]">
+            <a href="Frame.html" class="text-gold font-bold border-b border-gold/40 pb-1">Voryx Studio</a>
+            <a href="#chamber-archives" class="hover:text-gold transition-all">Archives 6-10</a>
+            <a href="#blog" class="hover:text-gold transition-all">Memoirs</a>
+            <a href="#valentine" class="text-rose-500 animate-pulse">Valentine Special</a>
+            <a href="https://partner.voryx.akshayaselvakumar.org" class="hover:text-gold transition-all">The Shop</a>
         </div>
-        <div class="hidden md:flex space-x-8 text-[10px] font-bold uppercase tracking-[0.2em]">
-            <a href="#" class="hover:text-gold">Home</a>
-            <a href="#" class="hover:text-gold">Archives</a>
-            <a href="#" class="text-rose-500">Valentine Special</a>
-        </div>
+        <button class="md:hidden text-white"><i data-lucide="menu"></i></button>
     </nav>
 
-    <!-- Main Content -->
-    <main class="max-w-7xl mx-auto px-6 py-12 grid grid-cols-1 lg:grid-cols-12 gap-12 items-start">
-        
-        <!-- Left: Controls -->
-        <div class="lg:col-span-5 space-y-8 order-2 lg:order-1">
-            <div class="glass-card p-8">
-                <h2 class="text-xl serif mb-6 tracking-wide">1. Architect Your Canvas</h2>
-                <div class="relative group">
-                    <input type="file" id="imageInput" accept="image/*" class="hidden">
-                    <label for="imageInput" class="flex flex-col items-center justify-center p-12 border-2 border-dashed border-white/10 rounded-2xl hover:border-gold/40 cursor-pointer transition-all bg-white/5">
-                        <i data-lucide="upload" class="mb-4 text-gray-400"></i>
-                        <span class="text-xs uppercase tracking-[0.2em] text-gray-300">Select Portrait</span>
-                    </label>
-                </div>
-            </div>
-
-            <div class="glass-card p-8">
-                <h2 class="text-xl serif mb-6 tracking-wide">2. The Sovereign Frame</h2>
-                <div class="grid grid-cols-2 gap-4" id="frameContainer">
-                    <!-- Frames Injected by JS -->
-                </div>
-            </div>
-
-            <div class="glass-card p-8">
-                <h2 class="text-xl serif mb-6 tracking-wide">3. Eternal Message</h2>
-                <input type="text" id="quoteInput" placeholder="Enter your romantic vow..." class="w-full bg-white/5 border border-white/10 p-4 rounded-xl text-sm focus:outline-none focus:border-gold/40 transition-all mb-4">
-                
-                <button id="downloadBtn" class="btn-gold w-full py-5 rounded-full text-xs shadow-lg flex items-center justify-center gap-2" disabled>
-                    <i data-lucide="download" class="w-4 h-4"></i>
-                    Acquire Masterpiece
-                </button>
-            </div>
+    <!-- Hero Section -->
+    <section class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden">
+        <div class="absolute inset-0 z-0">
+            <div class="absolute inset-0 bg-gradient-to-b from-transparent via-midnight to-midnight"></div>
+            <img src="https://images.unsplash.com/photo-1549439157-d3ae58d8ff3a?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover opacity-30">
         </div>
 
-        <!-- Right: Preview -->
-        <div class="lg:col-span-7 order-1 lg:order-2">
-            <div class="glass-card p-4 md:p-12 relative overflow-hidden">
-                <div class="absolute top-0 left-0 w-full loader-bar" id="processingBar"></div>
-                <div class="mb-6 flex justify-between items-center">
-                    <span class="text-[9px] uppercase tracking-[0.5em] text-gold/60">Live Masterpiece Preview</span>
-                    <span class="text-[9px] uppercase tracking-[0.5em] text-white/20">VORYX-RMC-2026</span>
+        <div class="relative z-10 text-center max-w-6xl px-6">
+            <span id="geo-welcome" class="text-[10px] uppercase tracking-[0.8em] text-gold mb-10 block animate-pulse">Initializing Sovereign Protocol...</span>
+            <h1 class="text-6xl md:text-[10rem] font-black serif leading-none hero-title mb-12">
+                Chamber <span class="text-gold">10</span><br>
+                <span class="text-5xl md:text-8xl tracking-tighter">Masterpiece</span>
+            </h1>
+            <p id="lang-hero-desc" class="text-gray-400 max-w-2xl mx-auto text-sm md:text-lg mb-12 font-light tracking-widest leading-relaxed">
+                Be yourself is the best of your own. Architecting the $1000B Trust architecture in global luxury fashion.
+            </p>
+            <div class="flex flex-col md:flex-row justify-center items-center gap-6">
+                <a href="Frame.html" class="btn-voryx">Open Voryx Studio</a>
+                <a href="https://partner.voryx.akshayaselvakumar.org" class="text-xs uppercase tracking-[0.4em] border-b border-gold/40 pb-2 hover:border-gold transition-all">Acquire Collection</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Voryx Studio Portal Section -->
+    <section id="studio-intro" class="py-32 bg-midnight relative z-10">
+        <div class="container mx-auto px-10">
+            <div class="max-w-4xl mx-auto glass-card p-12 md:p-20 text-center studio-card">
+                <i data-lucide="image-plus" class="w-16 h-16 mx-auto mb-8 text-gold"></i>
+                <h2 class="text-4xl serif mb-6">Voryx <span class="text-gold italic">Studio</span></h2>
+                <p class="text-gray-400 text-sm tracking-widest leading-loose max-w-xl mx-auto mb-10">
+                    Architect your visual identity. Access the Sovereign Romance image editor to frame your portraits in Voryx Gold and Crimson. Verification of social membership is required to unlock master downloads.
+                </p>
+                <a href="Frame.html" class="btn-voryx">Launch Masterpiece Editor</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Sovereign Chambers Archives (Slideshow System) -->
+    <section id="chamber-archives" class="py-32 bg-midnight overflow-hidden border-t border-white/5">
+        <div class="container mx-auto px-10">
+            <div class="mb-20 text-center">
+                <h2 class="text-4xl md:text-6xl serif mb-4">Sovereign <span class="text-gold">Archives</span></h2>
+                <p class="text-[10px] text-gray-500 uppercase tracking-[0.6em]">Chambers 06 through 10 | Architectural Evolution</p>
+            </div>
+            <div id="slideshow-root" class="space-y-32"></div>
+        </div>
+    </section>
+
+    <!-- Valentine Tiers Section -->
+    <section id="valentine" class="py-32 relative bg-[#0a050a] border-t border-white/5">
+        <div class="container mx-auto px-10">
+            <div class="flex flex-col md:flex-row justify-between items-end mb-20 gap-10">
+                <div class="max-w-xl">
+                    <h2 class="text-5xl md:text-7xl serif mb-6">Sovereign <br><span class="text-gold">Romance</span></h2>
+                    <p class="text-gray-500 uppercase text-[10px] tracking-[0.5em]">Deterministic Love valid until Feb 28th</p>
                 </div>
-                
-                <div id="previewContainer" class="flex items-center justify-center min-h-[400px] bg-white/5 rounded-xl border border-white/5">
-                    <p id="placeholderText" class="text-xs uppercase tracking-[0.3em] text-gray-600">No Portrait Loaded</p>
-                    <canvas id="photoCanvas" class="hidden"></canvas>
+                <div class="h-[1px] flex-grow mx-10 bg-gold/20 hidden md:block"></div>
+                <div class="text-rose-400 text-xs font-bold uppercase tracking-widest">Limited Availability</div>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+                <!-- Tier 1 -->
+                <div class="glass-card p-12 text-center tilt-card">
+                    <i data-lucide="sparkles" class="mx-auto mb-8 text-rose-400 w-10 h-10"></i>
+                    <h3 class="text-2xl serif mb-4">L’Amour Rose</h3>
+                    <p class="text-[10px] text-gray-500 mb-8 tracking-[0.3em] uppercase">Tier I Experience</p>
+                    <ul class="text-[10px] space-y-4 text-gray-400 uppercase tracking-[0.2em] mb-10">
+                        <li>Fresh Flower Bouquet</li>
+                        <li>Priority Logistics</li>
+                        <li>Sovereign Gift Box</li>
+                    </ul>
+                    <a href="https://partner.voryx.akshayaselvakumar.org" class="text-gold text-[10px] font-bold uppercase tracking-widest">Select Tier</a>
                 </div>
 
-                <div class="mt-8 flex justify-between text-[8px] uppercase tracking-[0.4em] text-gray-500">
-                    <span>Designed for Global Desire</span>
-                    <span>Deterministic Love Protocol</span>
+                <!-- Tier 2 -->
+                <div class="glass-card p-12 text-center border-gold/40 relative tilt-card">
+                    <div class="absolute -top-4 left-1/2 -translate-x-1/2 bg-gold text-black text-[8px] px-6 py-1 rounded-full font-black uppercase">Most Attracted</div>
+                    <i data-lucide="heart" class="mx-auto mb-8 text-rose-500 w-12 h-12"></i>
+                    <h3 class="text-3xl serif mb-4">Gala Romance</h3>
+                    <p class="text-[10px] text-gray-500 mb-8 tracking-[0.3em] uppercase">Tier II Masterpiece</p>
+                    <ul class="text-[10px] space-y-4 text-white font-bold uppercase tracking-[0.2em] mb-10">
+                        <li>Heart Cake & Flowers</li>
+                        <li>Chamber 10 Scarf</li>
+                        <li>Empire Concierge</li>
+                    </ul>
+                    <a href="https://partner.voryx.akshayaselvakumar.org" class="btn-voryx inline-block">Secure Gala</a>
+                </div>
+
+                <!-- Tier 3 -->
+                <div class="glass-card p-12 text-center tilt-card">
+                    <i data-lucide="crown" class="mx-auto mb-8 text-gold w-14 h-14"></i>
+                    <h3 class="text-2xl serif mb-4">The Sovereign</h3>
+                    <p class="text-[10px] text-gray-500 mb-8 tracking-[0.3em] uppercase">Tier III Ultimate</p>
+                    <ul class="text-[10px] space-y-4 text-gray-400 uppercase tracking-[0.2em] mb-10">
+                        <li>Bespoke Jewelry</li>
+                        <li>Luxury Gift Hamper</li>
+                        <li>Lifetime Empire Pass</li>
+                    </ul>
+                    <a href="mailto:office@akshayaselvakumar.com" class="text-gold text-[10px] font-bold uppercase tracking-widest">Private Commission</a>
                 </div>
             </div>
         </div>
-    </main>
+    </section>
 
-    <footer class="mt-24 border-t border-white/5 py-12 px-8 text-center">
-        <p class="text-[10px] text-gray-600 uppercase tracking-[0.4em]">
-            &copy; 2026 VORYX GLOBAL. BY AKSHAYA SELVAKUMAR.
-        </p>
+    <!-- Blog / Memoir Section -->
+    <section id="blog" class="py-32 bg-midnight border-t border-white/5">
+        <div class="container mx-auto px-10">
+            <h2 class="text-center text-4xl md:text-6xl serif mb-20">The <span class="text-gold italic">Memoirs</span></h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="glass-card overflow-hidden group">
+                    <div class="h-80 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?q=80&w=2070&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
+                    </div>
+                    <div class="p-10">
+                        <span class="text-rose-500 text-[9px] font-black uppercase tracking-[0.4em]">Inside Chamber 10</span>
+                        <h4 class="text-2xl serif mt-4 mb-6">The Architecture of Self: Why Mastery is Intentional</h4>
+                        <p class="text-gray-500 text-xs tracking-widest leading-loose mb-8">Exploring the deterministic nature of fashion in the 2026 Voryx Cosmos...</p>
+                        <a href="https://akshayaselvakumarceo.blogspot.com/2026/02/the-clock-is-ticking-why-this-february.html?m=1" target="_blank" class="text-gold text-[10px] font-bold uppercase tracking-widest border-b border-gold/30 pb-1">Read Memoir</a>
+                    </div>
+                </div>
+                <div class="glass-card overflow-hidden group">
+                    <div class="h-80 overflow-hidden">
+                        <img src="https://images.unsplash.com/photo-1534528741775-53994a69daeb?q=80&w=1964&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
+                    </div>
+                    <div class="p-10">
+                        <span class="text-gold text-[9px] font-black uppercase tracking-[0.4em]">Lifestyle</span>
+                        <h4 class="text-2xl serif mt-4 mb-6">High Net-Worth Romance: The 2026 Guide</h4>
+                        <p class="text-gray-500 text-xs tracking-widest leading-loose mb-8">How Voryx is redefining gift culture for the global elite this Valentine's season...</p>
+                        <a href="https://akshayaselvakumarceo.blogspot.com/2026/02/the-clock-is-ticking-why-this-february.html?m=1" target="_blank" class="text-gold text-[10px] font-bold uppercase tracking-widest border-b border-gold/30 pb-1">Read Memoir</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Global Legal Footer -->
+    <footer class="bg-midnight border-t border-white/10 pt-32 pb-10">
+        <div class="container mx-auto px-10">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-16 mb-24">
+                <div class="col-span-1 md:col-span-2">
+                    <h3 class="text-4xl serif text-gold mb-8">VORYX</h3>
+                    <p class="text-gray-500 text-[10px] uppercase tracking-[0.4em] max-w-sm mb-12">
+                        Architecting global desire through deterministic luxury. Built for the $1000B Trust.
+                    </p>
+                    <div class="flex space-x-8">
+                        <a href="https://instagram.com/voryx.official" class="footer-link"><i class="fab fa-instagram text-xl"></i></a>
+                        <a href="https://www.pinterest.com/VoryxOfficial" class="footer-link"><i class="fab fa-pinterest text-xl"></i></a>
+                        <a href="https://x.com/VORYXofficial" class="footer-link"><i class="fab fa-twitter text-xl"></i></a>
+                        <a href="mailto:office@akshayaselvakumar.com" class="footer-link"><i class="far fa-envelope text-xl"></i></a>
+                    </div>
+                </div>
+                <div>
+                    <h5 class="text-[10px] font-black uppercase tracking-[0.5em] mb-8 text-gold">The Cosmos</h5>
+                    <ul class="text-[9px] uppercase tracking-[0.3em] text-gray-400 space-y-6">
+                        <li><a href="Frame.html" class="hover:text-white transition-colors">Voryx Studio</a></li>
+                        <li><a href="#chamber-archives" class="hover:text-white transition-colors">Chamber 06-10</a></li>
+                        <li><a href="https://partner.voryx.akshayaselvakumar.org" class="hover:text-white transition-colors">Shop Partner</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h5 class="text-[10px] font-black uppercase tracking-[0.5em] mb-8 text-rose-500">Legal Architecture</h5>
+                    <ul class="text-[9px] uppercase tracking-[0.3em] text-gray-400 space-y-6">
+                        <li>Terms of Sovereignty</li>
+                        <li>Global Privacy Protocol</li>
+                        <li>Logistics & CSR</li>
+                    </ul>
+                </div>
+            </div>
+            <div class="flex flex-col md:flex-row justify-between items-center text-[8px] text-gray-600 uppercase tracking-[0.4em]">
+                <p>&copy; 2026 VORYX GLOBAL FASHION. BY AKSHAYA SELVAKUMAR.</p>
+                <div class="mt-4 md:mt-0">BE YOURSELF IS THE BEST OF YOUR OWN</div>
+            </div>
+        </div>
     </footer>
 
+    <!-- Logic Script -->
     <script>
         lucide.createIcons();
 
-        const canvas = document.getElementById('photoCanvas');
+        // 1. Sparkle Engine
+        const canvas = document.getElementById('sparkle-canvas');
         const ctx = canvas.getContext('2d');
-        const imageInput = document.getElementById('imageInput');
-        const downloadBtn = document.getElementById('downloadBtn');
-        const quoteInput = document.getElementById('quoteInput');
-        const processingBar = document.getElementById('processingBar');
-        const socialModal = document.getElementById('socialModal');
-        const verifyBtn = document.getElementById('verifyBtn');
+        let particles = [];
 
-        let userImage = null;
-        let activeFrame = 'sovereign_gold';
-        let downloadCount = parseInt(localStorage.getItem('voryx_dl_count') || '0');
+        function resizeCanvas() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
 
-        const frames = [
-            { id: 'sovereign_gold', name: 'Sovereign Gold', icon: 'crown' },
-            { id: 'crimson_bloom', name: 'Crimson Bloom', icon: 'heart' },
-            { id: 'midnight_velvet', name: 'Midnight Velvet', icon: 'moon' },
-            { id: 'eternal_glow', name: 'Eternal Glow', icon: 'sparkles' }
-        ];
-
-        const socialGating = [
-            {
-                platform: 'Instagram',
-                title: 'Voryx Instagram Presence',
-                desc: 'To acquire your first masterpiece, join the Sovereign Elite on Instagram.',
-                url: 'https://instagram.com/voryx.official',
-                icon: 'instagram'
-            },
-            {
-                platform: 'Pinterest',
-                title: 'Voryx Visual Archives',
-                desc: 'Access our visual legacy. Follow Voryx Official on Pinterest to proceed.',
-                url: 'https://www.pinterest.com/VoryxOfficial',
-                icon: 'image'
-            },
-            {
-                platform: 'Twitter',
-                title: 'The Sovereign Feed',
-                desc: 'Stay informed on the $1000B Trust. Follow our broadcast on X.',
-                url: 'https://x.com/VORYXofficial',
-                icon: 'twitter'
-            },
-            {
-                platform: 'Share',
-                title: 'Sovereign Proclamation',
-                desc: 'The final step: Proclaim your masterpiece. Share your creation and tag @VoryxOfficial.',
-                url: 'https://voryx.akshayaselvakumar.org',
-                icon: 'share-2'
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2;
+                this.speedX = (Math.random() - 0.5) * 0.5;
+                this.speedY = (Math.random() - 0.5) * 0.5;
+                this.opacity = Math.random();
             }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.opacity < 0) this.opacity = 1;
+                this.opacity -= 0.005;
+            }
+            draw() {
+                ctx.fillStyle = `rgba(212, 175, 55, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function initParticles() {
+            for (let i = 0; i < 100; i++) particles.push(new Particle());
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
+        }
+
+        // 2. Custom Cursor
+        const cursor = document.getElementById('custom-cursor');
+        window.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+        });
+
+        // 3. Slideshow Injection with EXACT GITHUB ASSET ORDER
+        const productImages = [
+            "Bloodline.jpg", "Pulse.jpg", "Thron.jpg", "Beanie.jpg", "Denim.jpg",  
+            "Joggers.jpg",  "Dog.jpg", "Chain.jpg", "Ring.jpg", "Cuff.jpg", 
+            "Earring1.jpg", "Tie.jpg", "Silk%20Robe.jpg", "Sleep%20Mask.jpg", "Curtain.jpg", 
+            "Velvet.jpg", "Boxer.jpg", "Slipper.jpg", "Street%20tech.jpg",  "Wind.jpg", 
+            "Bucket.jpg", "Shorts.jpg", "Socks.jpg", "Face%20Mask.jpg",  "Hoodie.jpg",
+            "Leather%20Tote.jpg", "Scarf.jpg", "Phone.jpg",  "Umbrella.jpg", "Sign.jpg"       
+        ];
+        
+        const baseUrl = "https://raw.githubusercontent.com/Akshayadeveloper/VORYXofficial-/refs/heads/main/Chapters/";
+
+        const chapters = [
+            { id: 6, title: "The Scarlet Edge", subtitle: "High Spec Embroidery", color: "text-rose-500" },
+            { id: 7, title: "Midnight Silk", subtitle: "Architectural Draping", color: "text-blue-400" },
+            { id: 8, title: "Liquid Chrome", subtitle: "Reflective Streetwear", color: "text-gray-300" },
+            { id: 9, title: "Velvet Sovereignty", subtitle: "Regal Heavy GSM", color: "text-purple-500" },
+            { id: 10, title: "Masterpiece", subtitle: "Final $1000B Trust Layer", color: "text-gold" }
         ];
 
-        // UI Initialization
-        function initUI() {
-            const container = document.getElementById('frameContainer');
-            frames.forEach(frame => {
-                const btn = document.createElement('button');
-                btn.className = `frame-thumb p-4 rounded-xl flex flex-col items-center gap-2 bg-white/5 ${activeFrame === frame.id ? 'active' : ''}`;
-                btn.innerHTML = `
-                    <i data-lucide="${frame.icon}" class="w-5 h-5 text-gold"></i>
-                    <span class="text-[9px] uppercase tracking-widest text-gray-400">${frame.name}</span>
+        const slideshowRoot = document.getElementById('slideshow-root');
+
+        chapters.forEach((ch, chIndex) => {
+            const chamberSection = document.createElement('div');
+            chamberSection.className = "flex flex-col lg:flex-row items-center gap-10";
+            
+            let productSlides = "";
+            for(let i = 0; i < 6; i++) {
+                const imgIndex = (chIndex * 6) + i;
+                const fileName = productImages[imgIndex];
+                const cleanName = fileName.replace('.jpg', '').replace('%20', ' ');
+                
+                productSlides += `
+                    <div class="product-slide">
+                        <div class="glass-card overflow-hidden group tilt-card">
+                            <div class="h-[450px] relative">
+                                <img src="${baseUrl}${fileName}" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-1000">
+                                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-transparent to-transparent"></div>
+                                <div class="absolute bottom-6 left-6 text-left">
+                                    <p class="text-[8px] uppercase tracking-[0.4em] opacity-60 mb-2">Item ARCH-V${ch.id}-${i+1}</p>
+                                    <h5 class="text-sm font-bold uppercase tracking-widest">${cleanName}</h5>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 `;
-                btn.onclick = () => {
-                    document.querySelectorAll('.frame-thumb').forEach(b => b.classList.remove('active'));
-                    btn.classList.add('active');
-                    activeFrame = frame.id;
-                    render();
-                };
-                container.appendChild(btn);
+            }
+
+            chamberSection.innerHTML = `
+                <div class="lg:w-1/6 flex items-center justify-center lg:justify-start">
+                    <div class="chamber-label flex items-center gap-4">
+                        <span class="text-[10px] font-black uppercase tracking-[0.8em] opacity-30">Chamber</span>
+                        <span class="text-6xl font-black serif ${ch.color}">0${ch.id}</span>
+                    </div>
+                    <div class="ml-10 text-left">
+                        <h4 class="text-2xl serif mb-2">${ch.title}</h4>
+                        <p class="text-[9px] uppercase tracking-widest opacity-50">${ch.subtitle}</p>
+                    </div>
+                </div>
+                <div class="lg:w-5/6 overflow-hidden relative">
+                    <div id="track-ch-${ch.id}" class="slideshow-track">
+                        ${productSlides}
+                        ${productSlides} <!-- Duplicate for infinite loop -->
+                    </div>
+                </div>
+            `;
+            slideshowRoot.appendChild(chamberSection);
+        });
+
+        // 4. Automatic Slide Logic
+        function startAutoSlide() {
+            const tracks = [6,7,8,9,10].map(id => ({
+                el: document.getElementById(`track-ch-${id}`),
+                pos: 0,
+                max: 6
+            }));
+
+            setInterval(() => {
+                tracks.forEach(track => {
+                    track.pos++;
+                    if (track.pos >= track.max) {
+                        track.el.style.transition = 'none';
+                        track.pos = 0;
+                        track.el.style.transform = `translateX(0)`;
+                        setTimeout(() => {
+                            track.el.style.transition = 'transform 1.2s cubic-bezier(0.65, 0, 0.35, 1)';
+                            track.pos = 1;
+                            updateTransform(track);
+                        }, 50);
+                    } else {
+                        updateTransform(track);
+                    }
+                });
+            }, 4000);
+        }
+
+        function updateTransform(track) {
+            const width = window.innerWidth >= 768 ? 33.333 : 100;
+            track.el.style.transform = `translateX(-${track.pos * width}%)`;
+        }
+
+        // 5. 3D Tilt Hook for new elements
+        function initTilts() {
+            document.querySelectorAll('.tilt-card').forEach(card => {
+                card.addEventListener('mousemove', (e) => {
+                    const rect = card.getBoundingClientRect();
+                    const x = e.clientX - rect.left;
+                    const y = e.clientY - rect.top;
+                    const xc = rect.width / 2;
+                    const yc = rect.height / 2;
+                    const dx = x - xc;
+                    const dy = y - yc;
+                    card.style.transform = `rotateY(${dx / 20}deg) rotateX(${-dy / 20}deg)`;
+                });
+                card.addEventListener('mouseleave', () => {
+                    card.style.transform = 'rotateY(0) rotateX(0)';
+                });
             });
-            lucide.createIcons();
         }
 
-        imageInput.onchange = (e) => {
-            const file = e.target.files[0];
-            if (!file) return;
-            const reader = new FileReader();
-            reader.onload = (event) => {
-                userImage = new Image();
-                userImage.onload = () => {
-                    canvas.classList.remove('hidden');
-                    document.getElementById('placeholderText').classList.add('hidden');
-                    downloadBtn.disabled = false;
-                    render();
-                };
-                userImage.src = event.target.result;
-            };
-            reader.readAsDataURL(file);
+        // 6. IP-Based Localization
+        const translations = {
+            'EN': { welcome: 'Initializing Sovereign Protocol...', hero: 'Be yourself is the best of your own. Architecting the $1000B Trust architecture.' },
+            'FR': { welcome: 'Protocole Souverain...', hero: 'Soyez vous-même. Architecture de confiance de 1000 milliards de dollars.' },
+            'IN': { welcome: 'Voryx India Portal...', hero: 'Be yourself is the best of your own. Built for the global fashion empire.' }
         };
 
-        quoteInput.oninput = () => render();
-
-        function render() {
-            if (!userImage) return;
-
-            processingBar.style.width = "100%";
-            setTimeout(() => { processingBar.style.width = "0%"; }, 600);
-
-            // Aspect Ratio 4:5 (Professional Portrait)
-            const targetW = 1080;
-            const targetH = 1350;
-            canvas.width = targetW;
-            canvas.height = targetH;
-
-            // Draw Base Image (Cover Style)
-            const imgAr = userImage.width / userImage.height;
-            const targetAr = targetW / targetH;
-            let drawW, drawH, drawX, drawY;
-
-            if (imgAr > targetAr) {
-                drawH = targetH;
-                drawW = targetH * imgAr;
-                drawX = -(drawW - targetW) / 2;
-                drawY = 0;
-            } else {
-                drawW = targetW;
-                drawH = targetW / imgAr;
-                drawX = 0;
-                drawY = -(drawH - targetH) / 2;
-            }
-
-            ctx.clearRect(0, 0, targetW, targetH);
-            ctx.drawImage(userImage, drawX, drawY, drawW, drawH);
-
-            applyFrameEffect(activeFrame, targetW, targetH);
-            drawWatermark(targetW, targetH);
+        async function localize() {
+            try {
+                const response = await fetch('https://ipapi.co/json/');
+                const data = await response.json();
+                const welcomeEl = document.getElementById('geo-welcome');
+                if(welcomeEl) welcomeEl.innerText = `${translations[data.country_code]?.welcome || translations['EN'].welcome} [Detected: ${data.country_name}]`;
+            } catch (err) { console.log("Localisation defaults."); }
         }
 
-        function applyFrameEffect(type, w, h) {
-            const pad = w * 0.05;
-
-            if (type === 'sovereign_gold') {
-                // Double Border
-                ctx.strokeStyle = '#D4AF37';
-                ctx.lineWidth = w * 0.02;
-                ctx.strokeRect(pad, pad, w - pad*2, h - pad*2);
-                
-                ctx.lineWidth = 2;
-                ctx.strokeRect(pad * 1.5, pad * 1.5, w - pad*3, h - pad*3);
-                
-                // Vignette
-                const grad = ctx.createRadialGradient(w/2, h/2, w*0.3, w/2, h/2, w*0.8);
-                grad.addColorStop(0, 'transparent');
-                grad.addColorStop(1, 'rgba(0,0,0,0.6)');
-                ctx.fillStyle = grad;
-                ctx.fillRect(0,0,w,h);
-            }
-
-            if (type === 'crimson_bloom') {
-                const grad = ctx.createLinearGradient(0,0,0,h);
-                grad.addColorStop(0, 'rgba(139,0,0,0.3)');
-                grad.addColorStop(0.5, 'transparent');
-                grad.addColorStop(1, 'rgba(139,0,0,0.4)');
-                ctx.fillStyle = grad;
-                ctx.fillRect(0,0,w,h);
-                
-                // Petals (Randomized simple shapes)
-                ctx.fillStyle = 'rgba(255,46,99,0.4)';
-                for(let i=0; i<40; i++) {
-                    ctx.beginPath();
-                    ctx.ellipse(Math.random()*w, Math.random()*h, 10, 15, Math.random()*Math.PI, 0, Math.PI*2);
-                    ctx.fill();
-                }
-            }
-
-            if (type === 'midnight_velvet') {
-                const grad = ctx.createRadialGradient(w/2, h/2, 0, w/2, h/2, w);
-                grad.addColorStop(0, 'rgba(0,0,0,0)');
-                grad.addColorStop(1, 'rgba(10,5,20,0.8)');
-                ctx.fillStyle = grad;
-                ctx.fillRect(0,0,w,h);
-
-                // Stardust
-                ctx.fillStyle = 'white';
-                for(let i=0; i<200; i++) {
-                    ctx.globalAlpha = Math.random();
-                    ctx.fillRect(Math.random()*w, Math.random()*h, 2, 2);
-                }
-                ctx.globalAlpha = 1;
-            }
-
-            if (type === 'eternal_glow') {
-                ctx.globalCompositeOperation = 'screen';
-                const grad = ctx.createLinearGradient(0,0,w,h);
-                grad.addColorStop(0, 'rgba(212,175,55,0.2)');
-                grad.addColorStop(1, 'rgba(255,255,255,0.1)');
-                ctx.fillStyle = grad;
-                ctx.fillRect(0,0,w,h);
-                ctx.globalCompositeOperation = 'source-over';
-            }
-
-            // Draw Quote
-            const quote = quoteInput.value.trim();
-            if (quote) {
-                ctx.textAlign = 'center';
-                ctx.font = `italic ${w * 0.045}px 'Playfair Display', serif`;
-                ctx.fillStyle = 'white';
-                ctx.shadowColor = 'rgba(0,0,0,0.8)';
-                ctx.shadowBlur = 10;
-                ctx.fillText(quote, w/2, h * 0.85);
-                ctx.shadowBlur = 0;
-            }
-        }
-
-        function drawWatermark(w, h) {
-            ctx.textAlign = 'right';
-            ctx.font = `bold ${w * 0.02}px 'Inter', sans-serif`;
-            ctx.fillStyle = 'rgba(212, 175, 55, 0.5)';
-            ctx.letterSpacing = "2px";
-            ctx.fillText("VORYX OFFICIAL", w - 50, h - 50);
-            
-            ctx.textAlign = 'left';
-            ctx.font = `300 ${w * 0.015}px 'Inter', sans-serif`;
-            ctx.fillText("SOVEREIGN ROMANCE COLLECTION", 50, h - 50);
-        }
-
-        // Gating Logic
-        downloadBtn.onclick = () => {
-            const gateIndex = Math.min(downloadCount, socialGating.length - 1);
-            const gate = socialGating[gateIndex];
-
-            // Set Modal Content
-            document.getElementById('modalTitle').innerText = gate.title;
-            document.getElementById('modalDesc').innerText = gate.desc;
-            document.getElementById('modalIcon').innerHTML = `<i data-lucide="${gate.icon}" class="w-12 h-12"></i>`;
-            document.getElementById('socialActionBtn').href = gate.url;
-            document.getElementById('socialActionBtn').innerText = gateIndex === 3 ? 'Share Voryx Portal' : `Follow on ${gate.platform}`;
-
-            lucide.createIcons();
-            socialModal.classList.add('active');
+        window.onload = () => {
+            resizeCanvas();
+            initParticles();
+            animate();
+            localize();
+            startAutoSlide();
+            initTilts();
         };
 
-        verifyBtn.onclick = () => {
-            socialModal.classList.remove('active');
-            
-            // Increment and Save
-            downloadCount++;
-            localStorage.setItem('voryx_dl_count', downloadCount);
-
-            // Execute Download
-            const link = document.createElement('a');
-            link.download = `VORYX_Masterpiece_${Date.now()}.png`;
-            link.href = canvas.toDataURL('image/png', 1.0);
-            link.click();
-        };
-
-        initUI();
+        window.onresize = resizeCanvas;
     </script>
 </body>
 </html>
